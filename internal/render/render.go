@@ -11,21 +11,14 @@ import (
 	"github.com/glepnir/jarvis/pkg/util"
 )
 
-var (
-	templates = map[string]string{
-		"dein":   "./../../template/neovim-dein",
-		"plugin": "./../../template/neovim-plug"}
-)
-
-func GenerateTemplate() {
+func BackUpUserConf() {
 	if util.Exist(vim.ConfPath) {
 		os.Rename(vim.ConfPath, vim.ConfPath+"-bak")
 		color.PrintWarn("Back up your vim config to nvim-bak folder")
 	}
-	util.CopyDir(templates[vim.PluginManage], vim.ConfPath)
 }
 
-func GenerateLeaderkey(LeaderKey, LocalLeaderKey string) {
+func GenerateCore(LeaderKey, LocalLeaderKey string) {
 	keymap := map[string]string{
 		"Space":        "\\<Space>",
 		"Comma(,)":     ",",
@@ -36,8 +29,13 @@ func GenerateLeaderkey(LeaderKey, LocalLeaderKey string) {
 		color.PrintError(err.Error())
 		return
 	}
-	tpl := template.Must(template.ParseFiles(templates[vim.PluginManage] + "/core/core.vim"))
-	tpl.Execute(f, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
+	tpl := template.Must(template.New("").Parse(plugin.Core))
+	err = tpl.Execute(f, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
+	if err != nil {
+		color.PrintError(err.Error())
+		os.Exit(1)
+	}
+	color.PrintSuccess("Generate Core.vim Success")
 }
 
 func GenerateGeneral() {
@@ -54,4 +52,5 @@ func GenerateGeneral() {
 		color.PrintError(err.Error())
 		os.Exit(1)
 	}
+	color.PrintSuccess("Generate general.vim success")
 }

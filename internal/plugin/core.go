@@ -1,3 +1,7 @@
+// Package plugin provides ...
+package plugin
+
+const Core = `
 if &compatible
 	" vint: -ProhibitSetNoCompatible
 	set nocompatible
@@ -58,3 +62,4 @@ let g:oceanic_material_allow_bold = 1
 set secure
 
 " vim: set ts=2 sw=2 tw=80 noet :
+`
