@@ -32,3 +32,38 @@ func ExplorerPlugin() string {
 	options := []string{"defx.nvim", "nerdtree", "coc-explorer"}
 	return cli.SingleSelectTemplate(message, options)
 }
+
+func Languages() []string {
+	questionname := "LanguageQuestion"
+	message := "What Languages do you write"
+	pagesize := 19
+	options := []string{
+		"c-family",
+		"R",
+		"javascript",
+		"typescript",
+		"react",
+		"vue",
+		"go",
+		"rust",
+		"haskell",
+		"php",
+		"ruby",
+		"scala",
+		"shell",
+		"lua",
+		"python",
+		"dockerfile",
+		"json",
+		"nginx",
+		"toml",
+		"html",
+		"css",
+		"less",
+		"sass",
+		"stylus",
+		"sql",
+		"dart",
+	}
+	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
+}

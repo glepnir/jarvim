@@ -21,7 +21,7 @@ func NewCmd(use, description string, f func() error) *cobra.Command {
 	}
 }
 
-func MultiSelectTemplate(questionname, message string, options []string, pagesize int) ([]string, error) {
+func MultiSelectTemplate(questionname, message string, options []string, pagesize int) []string {
 	answers := []string{}
 	var question = []*survey.Question{
 		{
@@ -40,7 +40,7 @@ func MultiSelectTemplate(questionname, message string, options []string, pagesiz
 		fmt.Println("interrupted")
 		os.Exit(1)
 	}
-	return answers, nil
+	return answers
 }
 
 func SingleSelectTemplate(message string, options []string) string {
