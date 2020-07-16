@@ -7,9 +7,9 @@ import (
 )
 
 func LogicInit() {
-	// vim.PluginManage = PluginManage()
+	vim.PluginManage = PluginManage()
 	vim.Leaderkey = LeaderKey()
 	vim.LocalLeaderKey = LocalLeaderKey()
-	// render.GenerateGeneral()
+	render.GenerateGeneral()
 	render.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
 }
