@@ -2,12 +2,9 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/glepnir/jarvis/internal/render"
+	"github.com/glepnir/jarvis/internal/logic"
 )
 
 func main() {
-	render.GenerateTemplate()
-	fmt.Println(render.NeoVimConf)
+	logic.LogicInit()
 }

@@ -1,5 +1,5 @@
 // Package cli provides ...
-package common
+package cli
 
 import (
 	"fmt"
