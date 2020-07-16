@@ -34,8 +34,8 @@ let g:loaded_netrwFileHandlers = 1
 if has('vim_starting')
 	" Use spacebar as leader and ; as secondary-leader
 	" Required before loading plugins!
-	let g:mapleader={{.LeaderKey}}
-	let g:maplocalleader={{.LocalLeaderKey}}
+	let g:mapleader="{{index . 0}}"
+	let g:maplocalleader="{{index . 1}}"
 
 	" Release keymappings prefixes, evict entirely for use of plug-ins.
 	nnoremap <Space>  <Nop>

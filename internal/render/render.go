@@ -2,6 +2,7 @@
 package render
 
 import (
+	"log"
 	"os"
 	"text/template"
 
@@ -27,6 +28,16 @@ func GenerateTemplate() {
 }
 
 func GenerateLeaderkey(LeaderKey, LocalLeaderKey string) {
+	keymap := map[string]string{
+		"Space":        "\\<Space>",
+		"Comma(,)":     ",",
+		"Semicolon(;)": ";",
+	}
+	f, err := os.Create(os.ExpandEnv("$HOME/.config/nvim/core.vim"))
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 	tpl := template.Must(template.ParseFiles(templates[vim.PluginManage] + "/core/core.vim"))
-	tpl.Execute(os.Stdout, []string{LeaderKey, LocalLeaderKey})
+	tpl.Execute(f, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
 }
