@@ -67,3 +67,15 @@ func Languages() []string {
 	}
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
+
+func Enhance() []string {
+	questionname := "Choose the enhance plugins"
+	message := "What is your Leader Key?"
+	pagesize := 19
+	options := []string{
+		"rhysd/accelerated-jk",
+		"simnalamburt/vim-mundo",
+		"easymotion/vim-easymotion",
+	}
+	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
+}
