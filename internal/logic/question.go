@@ -20,3 +20,15 @@ func LocalLeaderKey() string {
 	options := []string{"Space", "Comma(,)", "Semicolon(;)"}
 	return cli.SingleSelectTemplate(message, options)
 }
+
+func LspPlugin() string {
+	message := "What is your  Lsp plugin?"
+	options := []string{"coc.nvim", "nvim-lsp"}
+	return cli.SingleSelectTemplate(message, options)
+}
+
+func ExplorerPlugin() string {
+	message := "What is your explorer plugin?"
+	options := []string{"defx.nvim", "nerdtree", "coc-explorer"}
+	return cli.SingleSelectTemplate(message, options)
+}
