@@ -43,14 +43,16 @@ func MultiSelectTemplate(questionname, message string, options []string, pagesiz
 	return answers, nil
 }
 
-func SingleSelectTemplate(message string, options []string) {
+func SingleSelectTemplate(message string, options []string) string {
 	var answer string
 	prompt := &survey.Select{
-		Message: "Choose a color:",
-		Options: []string{"red", "blue", "green"},
+		Message: message,
+		Options: options,
 	}
 	err := survey.AskOne(prompt, &answer)
 	if err == terminal.InterruptErr {
-		fmt.Println()
+		fmt.Println("interrupted")
+		os.Exit(1)
 	}
+	return answer
 }
