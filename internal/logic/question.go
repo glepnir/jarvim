@@ -26,7 +26,7 @@ func Colorscheme() []string {
 	message := "Choose your favorite colorscheme"
 	pagesize := 19
 	options := []string{
-		"hardcoreplayers/oceanic-material(author is me)",
+		"hardcoreplayers/oceanic-material",
 		"drewtempelmeyer/palenight.vim",
 		"gruvbox-community/gruvbox",
 		"ayu-theme/ayu-vim",

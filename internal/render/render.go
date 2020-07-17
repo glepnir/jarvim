@@ -20,6 +20,7 @@ func EnsureFolders() {
 	// Ensure our folder exists
 	os.MkdirAll(vim.ConfPath+"/core", 0700)
 	os.MkdirAll(vim.ConfPath+"/autoload", 0700)
+	os.MkdirAll(vim.ConfPath+"/modules", 0700)
 }
 
 // GenerateCore will generate core/core.vim
@@ -70,23 +71,23 @@ func GenerateTheme() {
 	color.PrintSuccess("Generate theme.vim success")
 }
 
-func GenerateColorscheme(colorschemes []string) {
+func GenerateCacheTheme(colorschemes []string) {
 	colorsmap := map[string]string{
-		"hardcoreplayers/oceanic-material(author is me)": "oceanic_materail",
-		"drewtempelmeyer/palenight.vim":                  "palenight",
-		"gruvbox-community/gruvbox":                      "gruvbox",
-		"ayu-theme/ayu-vim":                              "ayu",
-		"NLKNguyen/papercolor-theme":                     "PaperColor",
-		"lifepillar/vim-gruvbox8":                        "gruvbox8",
-		"lifepillar/vim-solarized8":                      "solarized8",
-		"joshdick/onedark.vim":                           "onedark",
-		"arcticicestudio/nord-vim":                       "nord",
-		"rakr/vim-one":                                   "one",
-		"mhartington/oceanic-next":                       "OceanicNext",
-		"dracula/vim":                                    "dracula",
-		"chriskempson/base16-vim":                        "base16-default-dark",
-		"kristijanhusak/vim-hybrid-material":             "hybrid_material",
-		"nanotech/jellybeans.vim":                        "jellybeans",
+		"hardcoreplayers/oceanic-material":   "oceanic_materail",
+		"drewtempelmeyer/palenight.vim":      "palenight",
+		"gruvbox-community/gruvbox":          "gruvbox",
+		"ayu-theme/ayu-vim":                  "ayu",
+		"NLKNguyen/papercolor-theme":         "PaperColor",
+		"lifepillar/vim-gruvbox8":            "gruvbox8",
+		"lifepillar/vim-solarized8":          "solarized8",
+		"joshdick/onedark.vim":               "onedark",
+		"arcticicestudio/nord-vim":           "nord",
+		"rakr/vim-one":                       "one",
+		"mhartington/oceanic-next":           "OceanicNext",
+		"dracula/vim":                        "dracula",
+		"chriskempson/base16-vim":            "base16-default-dark",
+		"kristijanhusak/vim-hybrid-material": "hybrid_material",
+		"nanotech/jellybeans.vim":            "jellybeans",
 	}
 	colors := colorsmap[colorschemes[0]]
 	f, err := os.OpenFile(vim.CachePath+"/theme.txt", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
@@ -99,4 +100,15 @@ func GenerateColorscheme(colorschemes []string) {
 		RollBack(err)
 	}
 	color.PrintSuccess("Write colorscheme to theme.txt success")
+}
+
+func GenerateColorscheme(colorschemes []string) {
+	f, err := os.OpenFile(vim.ConfPath+"/modules/appearance.toml", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+	defer f.Close()
+	if err != nil {
+		RollBack(err)
+	}
+	tpl := template.Must(template.New("").Parse(plugin.DeinColorscheme))
+	tpl.Execute(f, colorschemes)
+	color.PrintSuccess("Generate Colorscheme Plugins success")
 }

@@ -5,7 +5,7 @@ import "os"
 
 var (
 	ConfPath       = os.ExpandEnv("$HOME/.config/xnvim")
-	CachePath      = os.ExpandEnv("$HOME/.cache/vim")
+	CachePath      = os.ExpandEnv("$HOME/.cache/nvim")
 	PluginManage   string
 	Leaderkey      string
 	LocalLeaderKey string
