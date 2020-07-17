@@ -10,7 +10,8 @@ func LogicInit() {
 	vim.PluginManage = PluginManage()
 	vim.Leaderkey = LeaderKey()
 	vim.LocalLeaderKey = LocalLeaderKey()
-	render.BackUpUserConf()
+	render.EnsureFolders()
 	render.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
 	render.GenerateGeneral()
+	render.GenerateTheme()
 }
