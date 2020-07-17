@@ -21,6 +21,32 @@ func LocalLeaderKey() string {
 	return cli.SingleSelectTemplate(message, options)
 }
 
+func Colorscheme() []string {
+	questionname := "Colorscheme Question"
+	message := "Choose your favorite colorscheme"
+	pagesize := 19
+	options := []string{
+		"hardcoreplayers/oceanic-material(author is me)",
+		"drewtempelmeyer/palenight.vim",
+		"gruvbox-community/gruvbox",
+		"ayu-theme/ayu-vim",
+		"NLKNguyen/papercolor-theme",
+		"lifepillar/vim-gruvbox8",
+		"lifepillar/vim-solarized8",
+		"joshdick/onedark.vim",
+		"arcticicestudio/nord-vim",
+		"rakr/vim-one",
+		"mhartington/oceanic-next",
+		"patstockwell/vim-monokai-tasty",
+		"dracula/vim",
+		"chriskempson/base16-vim",
+		"kristijanhusak/vim-hybrid-material",
+		"kyoz/purify",
+		"nanotech/jellybeans.vim",
+	}
+	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
+}
+
 func LspPlugin() string {
 	message := "What is your  Lsp plugin?"
 	options := []string{"coc.nvim", "nvim-lsp"}

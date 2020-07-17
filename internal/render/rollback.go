@@ -8,6 +8,8 @@ import (
 	"github.com/glepnir/jarvis/pkg/color"
 )
 
+// RollBack will remove the config folder when
+// some errors disappear
 func RollBack(err error) {
 	color.PrintError(err.Error())
 	color.PrintWarn("Rolling back...")
