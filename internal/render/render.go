@@ -16,6 +16,8 @@ func BackUpUserConf() {
 		os.Rename(vim.ConfPath, vim.ConfPath+"-bak")
 		color.PrintWarn("Back up your vim config to nvim-bak folder")
 	}
+	// Ensure our folder exists
+	os.MkdirAll(vim.ConfPath+"/core", 0700)
 }
 
 func GenerateCore(LeaderKey, LocalLeaderKey string) {
@@ -24,7 +26,7 @@ func GenerateCore(LeaderKey, LocalLeaderKey string) {
 		"Comma(,)":     ",",
 		"Semicolon(;)": ";",
 	}
-	f, err := os.Create(os.ExpandEnv("$HOME/.config/nvim/core.vim"))
+	f, err := os.Create(vim.ConfPath + "/core/core.vim")
 	if err != nil {
 		color.PrintError(err.Error())
 		return
@@ -39,9 +41,6 @@ func GenerateCore(LeaderKey, LocalLeaderKey string) {
 }
 
 func GenerateGeneral() {
-	if !util.Exist(vim.ConfPath + "/core") {
-		os.Mkdir(vim.ConfPath+"/core", 0700)
-	}
 	f, err := os.OpenFile(vim.ConfPath+"/core/general.vim", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
 		color.PrintError(err.Error())
