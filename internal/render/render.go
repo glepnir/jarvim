@@ -112,3 +112,16 @@ func GenerateColorscheme(colorschemes []string) {
 	tpl.Execute(f, colorschemes)
 	color.PrintSuccess("Generate Colorscheme Plugins success")
 }
+
+func GenerateStatusLine() {
+	f, err := os.OpenFile(vim.ConfPath+"/modules/appearance.toml", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+	defer f.Close()
+	if err != nil {
+		RollBack(err)
+	}
+	_, err = f.WriteString(plugin.DeinStatusline)
+	if err != nil {
+		RollBack(err)
+	}
+	color.PrintSuccess("Generate statusline success")
+}

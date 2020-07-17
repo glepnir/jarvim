@@ -17,4 +17,5 @@ func LogicInit() {
 	render.GenerateTheme()
 	render.GenerateCacheTheme(vim.Colorscheme)
 	render.GenerateColorscheme(vim.Colorscheme)
+	render.GenerateStatusLine()
 }
