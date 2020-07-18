@@ -20,7 +20,7 @@ func (d *Dein) GenerateCore(LeaderKey, LocalLeaderKey string) {
 		"Comma(,)":     ",",
 		"Semicolon(;)": ";",
 	}
-	f, err := os.Create(vim.ConfPath + "/core/core.vim")
+	f, err := os.Create(vim.ConfCore + "core.vim")
 	if err != nil {
 		render.RollBack(err)
 	}
