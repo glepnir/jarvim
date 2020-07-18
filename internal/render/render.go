@@ -22,6 +22,8 @@ type Render interface {
 	GenerateStatusLine()
 	GenerateExplorer(explorer string)
 	GenerateDatabase(database bool)
+	GenerateFuzzyFind(fuzzfind bool)
+	GenerateIndentLine(indentplugin string)
 }
 
 func NewRender(p Render) Render {

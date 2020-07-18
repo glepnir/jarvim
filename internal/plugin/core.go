@@ -11,6 +11,10 @@ endif
 " Set main configuration directory as parent directory
 let $VIM_PATH = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 
+" Set data/cache directory as $XDG_CACHE_HOME/vim
+let $DATA_PATH =
+	\ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/vim')
+
 " Disable vim distribution plugins
 let g:loaded_gzip = 1
 let g:loaded_tar = 1

@@ -14,6 +14,7 @@ func RunLogic() {
 	vim.Colorscheme = Colorscheme()
 	vim.Explorer = ExplorerPlugin()
 	vim.Database = DatabasePlugin()
+	vim.IndentPlugin = IndentLinePlugin()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
 	r.GenerateGeneral()
 	r.GenerateTheme()
@@ -23,4 +24,5 @@ func RunLogic() {
 	r.GenerateStatusLine()
 	r.GenerateExplorer(vim.Explorer)
 	r.GenerateDatabase(vim.Database)
+	r.GenerateIndentLine(vim.IndentPlugin)
 }

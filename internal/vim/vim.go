@@ -15,4 +15,6 @@ var (
 	Colorscheme    []string
 	Explorer       string
 	Database       bool
+	Fuzzyfind      bool
+	IndentPlugin   string
 )

@@ -43,6 +43,10 @@ func (v *VimPlug) GenerateExplorer(explorer string) {
 
 }
 
-func (v *VimPlug) GenerateDatabase() {
+func (v *VimPlug) GenerateDatabase(database bool) {
+
+}
+
+func (v *VimPlug) GenerateFuzzyFind(fuzzyfind bool) {
 
 }

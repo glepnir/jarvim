@@ -68,6 +68,17 @@ func DatabasePlugin() bool {
 	return cli.ConfirmTemplate(message)
 }
 
+func FuzzyFindPlugin() bool {
+	message := "Do you want use fuzzy find plugin vim-clap?"
+	return cli.ConfirmTemplate(message)
+}
+
+func IndentLinePlugin() string {
+	message := "Choose  your favorite indenline plugin?"
+	options := []string{"Yggdroot/indentLine", "nathanaelkane/vim-indent-guides"}
+	return cli.SingleSelectTemplate(message, options)
+}
+
 func LanguageServerProtocol() []string {
 	questionname := "LanguageQuestion"
 	message := "What Languages do you write"

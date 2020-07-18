@@ -95,6 +95,23 @@ func (d *Dein) GenerateDatabase(database bool) {
 	if database {
 		render.WriteTemplate(vim.ConfAutoload+"initself.vim", "LoadEnv function", plugin.AutoloadLoadEnv)
 		render.WriteTemplate(vim.ConfModules+"database.toml", "Database", plugin.DeinDatabase)
+	} else {
+		color.PrintWarn("Skip Generate Datbase")
 	}
-	color.PrintWarn("Skip Generate Datbase")
+}
+
+func (d *Dein) GenerateFuzzyFind(fuzzyfind bool) {
+	if fuzzyfind {
+		render.WriteTemplate(vim.ConfModules+"fuzzyfind.toml", "vim-clap", plugin.DeinClap)
+	} else {
+		color.PrintWarn("Skip Generate fuzzyfind vim-clap")
+	}
+}
+
+func (d *Dein) GenerateIndentLine(indentplugin string) {
+	if indentplugin == "Yggdroot/indentLine" {
+		render.WriteTemplate(vim.ConfModules+"program.toml", indentplugin, plugin.DeinIndentLine)
+	} else {
+		render.WriteTemplate(vim.ConfModules+"program.toml", indentplugin, plugin.DeinIndenGuides)
+	}
 }
