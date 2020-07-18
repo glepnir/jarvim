@@ -57,12 +57,6 @@ func Colorscheme() []string {
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
-func LspPlugin() string {
-	message := "What is your  Lsp plugin?"
-	options := []string{"coc.nvim", "nvim-lsp"}
-	return cli.SingleSelectTemplate(message, options)
-}
-
 func ExplorerPlugin() string {
 	message := "What is your explorer plugin?"
 	options := []string{"defx.nvim", "nerdtree", "coc-explorer"}

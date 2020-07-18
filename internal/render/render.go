@@ -18,7 +18,9 @@ type Render interface {
 	GenerateCacheTheme(colorschemes []string)
 	GenerateColorscheme(colorschemes []string)
 	GenerateDevIcons()
+	GenerateBufferLine()
 	GenerateStatusLine()
+	GenerateExplorer(explorer string)
 }
 
 func NewRender(p Render) Render {

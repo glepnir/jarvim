@@ -31,6 +31,14 @@ func (v *VimPlug) GenerateDevIcons() {
 
 }
 
+func (v *VimPlug) GenerateBufferLine() {
+
+}
+
 func (v *VimPlug) GenerateStatusLine() {
+
+}
+
+func (v *VimPlug) GenerateExplorer(explorer string) {
 
 }

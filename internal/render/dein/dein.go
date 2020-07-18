@@ -73,6 +73,19 @@ func (d *Dein) GenerateDevIcons() {
 	render.WriteTemplate(vim.ConfModules+"appearance.toml", "Vim-Devicons", plugin.DeinDevicons)
 }
 
+func (d *Dein) GenerateBufferLine() {
+	render.WriteTemplate(vim.ConfModules+"appearance.toml", "Vim-Buffer", plugin.DeinBufferLine)
+}
+
 func (d *Dein) GenerateStatusLine() {
 	render.WriteTemplate(vim.ConfModules+"appearance.toml", "Statusline", plugin.DeinStatusline)
+}
+
+func (d *Dein) GenerateExplorer(explorer string) {
+	if explorer == "coc-explorer" {
+	} else if explorer == "defx.nvim" {
+		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Defx.nvim", plugin.DeinDefx)
+	} else {
+		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Nerdtree", plugin.DeinNerdTree)
+	}
 }

@@ -13,4 +13,5 @@ var (
 	Leaderkey      string
 	LocalLeaderKey string
 	Colorscheme    []string
+	Explorer       string
 )

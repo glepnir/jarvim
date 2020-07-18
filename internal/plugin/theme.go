@@ -47,11 +47,3 @@ augroup user_theme
 augroup END
 
 `
-
-const DeinColorscheme = `
-{{range .}}
-[[plugins]]
-repo = '{{.}}'
-
-{{end}}
-`
