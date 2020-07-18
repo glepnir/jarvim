@@ -11,7 +11,7 @@ func LogicInit() {
 	vim.Leaderkey = LeaderKey()
 	vim.LocalLeaderKey = LocalLeaderKey()
 	vim.Colorscheme = Colorscheme()
-	util.EnsureFoldersExist(vim.ConfPath, vim.ConfCore, vim.ConfAutoload, vim.ConfModules)
+	util.EnsureFoldersExist(vim.ConfPath, vim.ConfCore, vim.ConfAutoload, vim.ConfModules, vim.CachePath)
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
 	r.GenerateGeneral()
 	r.GenerateTheme()
