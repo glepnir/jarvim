@@ -26,4 +26,5 @@ var (
 	TagsPlugin        bool
 	QuickRun          bool
 	DataTypeFile      []string
+	EnhancePlugins    []string
 )

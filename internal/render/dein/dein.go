@@ -3,6 +3,7 @@ package dein
 
 import (
 	"os"
+	"strings"
 
 	"github.com/glepnir/jarvis/internal/plugin"
 	"github.com/glepnir/jarvis/internal/render"
@@ -190,6 +191,22 @@ func (d *Dein) GenerateDataTypeFile(datafile []string) {
 		_, ok := datamap[f]
 		if ok {
 			render.WriteTemplate(vim.ConfModules+"filetype.toml", f, datamap[f])
+		}
+	}
+}
+
+func (d *Dein) GenerateEnhanceplugin(plugins []string) {
+	pluginsmap := map[string]string{
+		"accelerated-jk accelerate up-down moving (j and k mapping)": plugin.DeinFastJK,
+		"vim-mundo  vim undo tree":                                   plugin.DeinMundo,
+		"vim-easymotion fast jump":                                   plugin.DeinEasyMotion,
+		"rainbow  rainbow parentheses":                               plugin.DeinRainbow,
+		"vim-floterm  vim terminal float":                            plugin.DeinFloaterm,
+	}
+	for _, v := range plugins {
+		_, ok := pluginsmap[v]
+		if ok {
+			render.WriteTemplate(vim.ConfModules+"enhance.toml", strings.Split(v, " ")[0], pluginsmap[v])
 		}
 	}
 }

@@ -25,6 +25,7 @@ func RunLogic() {
 	vim.TagsPlugin = GentagsPlugin()
 	vim.QuickRun = QuickRunPlugin()
 	vim.DataTypeFile = DataTypeFile()
+	vim.EnhancePlugins = EnhancePlugin()
 	r.GenerateInit()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
 	r.GenerateGeneral()
@@ -44,4 +45,5 @@ func RunLogic() {
 	r.GenerateTags(vim.TagsPlugin)
 	r.GenerateQuickRun(vim.QuickRun)
 	r.GenerateDataTypeFile(vim.DataTypeFile)
+	r.GenerateEnhanceplugin(vim.EnhancePlugins)
 }

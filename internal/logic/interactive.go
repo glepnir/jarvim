@@ -133,6 +133,20 @@ func DataTypeFile() []string {
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
+func EnhancePlugin() []string {
+	questionname := "Enhance question"
+	message := "Choose the enhace plugins that you need "
+	pagesize := 10
+	options := []string{
+		"accelerated-jk accelerate up-down moving (j and k mapping)",
+		"vim-mundo  vim undo tree",
+		"vim-easymotion fast jump",
+		"rainbow  rainbow parentheses",
+		"vim-floterm  vim terminal float",
+	}
+	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
+}
+
 func LanguageServerProtocol() []string {
 	questionname := "LanguageQuestion"
 	message := "What Languages do you write"

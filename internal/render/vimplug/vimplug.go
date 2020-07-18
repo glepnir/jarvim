@@ -86,3 +86,5 @@ func (v *VimPlug) GenerateEditorConfig(editorconfig bool) {
 
 func (v *VimPlug) GenerateDataTypeFile(datafile []string) {
 }
+
+func (v *VimPlug) GenerateEnhanceplugin(plugins []string) {}

@@ -32,6 +32,7 @@ type Render interface {
 	GenerateTags(tagsplugin bool)
 	GenerateQuickRun(quickrun bool)
 	GenerateDataTypeFile(datafile []string)
+	GenerateEnhanceplugin(plugins []string)
 }
 
 func NewRender(p Render) Render {

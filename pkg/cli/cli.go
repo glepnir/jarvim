@@ -29,7 +29,9 @@ func ConfirmTemplate(message string) bool {
 	err := survey.AskOne(prompt, &confirm)
 	if err == terminal.InterruptErr {
 		fmt.Println("interrupted")
-		os.Exit(1)
+		os.Exit(0)
+	} else if err != nil {
+		panic(err)
 	}
 	return confirm
 }
@@ -51,7 +53,9 @@ func MultiSelectTemplate(questionname, message string, options []string, pagesiz
 	}), survey.WithPageSize(pagesize))
 	if err == terminal.InterruptErr {
 		fmt.Println("interrupted")
-		os.Exit(1)
+		os.Exit(0)
+	} else if err != nil {
+		panic(err)
 	}
 	return answers
 }
@@ -65,7 +69,9 @@ func SingleSelectTemplate(message string, options []string) string {
 	err := survey.AskOne(prompt, &answer)
 	if err == terminal.InterruptErr {
 		fmt.Println("interrupted")
-		os.Exit(1)
+		os.Exit(0)
+	} else if err != nil {
+		panic(err)
 	}
 	return answer
 }
