@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+
+	"github.com/glepnir/jarvis/pkg/color"
 )
 
 // Exist to check the file or folder exists
@@ -13,6 +15,19 @@ import (
 func Exist(filename string) bool {
 	_, err := os.Stat(filename)
 	return err == nil || os.IsExist(err)
+}
+
+// Ensure our necessary folders exists
+func EnsureFoldersExist(rootpath string, paths ...string) {
+	if Exist(rootpath) {
+		os.Rename(rootpath, rootpath+"-bak")
+		color.PrintWarn(fmt.Sprintf("Backup %v to %v-bak folder", rootpath, rootpath))
+	}
+	if len(paths) > 0 {
+		for _, path := range paths {
+			os.MkdirAll(path, 0700)
+		}
+	}
 }
 
 // CopyFile copies the contents of the file named src to the file named
