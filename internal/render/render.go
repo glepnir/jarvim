@@ -17,6 +17,7 @@ type Render interface {
 	GenerateTheme()
 	GenerateCacheTheme(colorschemes []string)
 	GenerateColorscheme(colorschemes []string)
+	GenerateDevIcons()
 	GenerateStatusLine()
 }
 

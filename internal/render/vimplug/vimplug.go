@@ -27,6 +27,10 @@ func (v *VimPlug) GenerateColorscheme(colorschemes []string) {
 
 }
 
+func (v *VimPlug) GenerateDevIcons() {
+
+}
+
 func (v *VimPlug) GenerateStatusLine() {
 
 }
