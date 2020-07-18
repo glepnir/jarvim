@@ -104,7 +104,7 @@ func (d *Dein) GenerateFuzzyFind(fuzzyfind bool) {
 	if fuzzyfind {
 		render.WriteTemplate(vim.ConfModules+"fuzzyfind.toml", "vim-clap", plugin.DeinClap)
 	} else {
-		color.PrintWarn("Skip Generate fuzzyfind vim-clap")
+		color.PrintWarn("Skip generate fuzzyfind vim-clap config")
 	}
 }
 
@@ -113,5 +113,27 @@ func (d *Dein) GenerateIndentLine(indentplugin string) {
 		render.WriteTemplate(vim.ConfModules+"program.toml", indentplugin, plugin.DeinIndentLine)
 	} else {
 		render.WriteTemplate(vim.ConfModules+"program.toml", indentplugin, plugin.DeinIndenGuides)
+	}
+}
+
+func (d *Dein) GenerateComment(comment bool) {
+	if comment {
+		render.WriteTemplate(vim.ConfModules+"program.toml", "Caw.vim", plugin.DeinCaw)
+	} else {
+		color.PrintWarn("Skip generate caw.vim config")
+	}
+}
+
+func (d *Dein) GenerateOutLine(outline bool) {
+	if outline {
+		render.WriteTemplate(vim.ConfModules+"program.toml", "Vista.vim", plugin.DeinVista)
+	} else {
+		color.PrintWarn("Skip generate vista.vim config")
+	}
+}
+
+func (d *Dein) GenerateTags(tagsplugin bool) {
+	if tagsplugin {
+		render.WriteTemplate(vim.ConfModules+"program.toml", "vim-gutentags", plugin.DeinGuTenTags)
 	}
 }

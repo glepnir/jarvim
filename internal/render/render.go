@@ -24,6 +24,9 @@ type Render interface {
 	GenerateDatabase(database bool)
 	GenerateFuzzyFind(fuzzfind bool)
 	GenerateIndentLine(indentplugin string)
+	GenerateComment(comment bool)
+	GenerateOutLine(outline bool)
+	GenerateTags(tagsplugin bool)
 }
 
 func NewRender(p Render) Render {

@@ -15,6 +15,9 @@ func RunLogic() {
 	vim.Explorer = ExplorerPlugin()
 	vim.Database = DatabasePlugin()
 	vim.IndentPlugin = IndentLinePlugin()
+	vim.CommentPlugin = CommentPlugin()
+	vim.OutLinePlugin = ViewSymbolsPlugin()
+	vim.TagsPlugin = GentagsPlugin()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
 	r.GenerateGeneral()
 	r.GenerateTheme()
@@ -25,4 +28,7 @@ func RunLogic() {
 	r.GenerateExplorer(vim.Explorer)
 	r.GenerateDatabase(vim.Database)
 	r.GenerateIndentLine(vim.IndentPlugin)
+	r.GenerateComment(vim.CommentPlugin)
+	r.GenerateOutLine(vim.OutLinePlugin)
+	r.GenerateTags(vim.TagsPlugin)
 }

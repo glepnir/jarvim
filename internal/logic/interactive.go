@@ -64,7 +64,7 @@ func ExplorerPlugin() string {
 }
 
 func DatabasePlugin() bool {
-	message := "Do you use need database plugins?"
+	message := "Do you need database plugins?"
 	return cli.ConfirmTemplate(message)
 }
 
@@ -77,6 +77,21 @@ func IndentLinePlugin() string {
 	message := "Choose  your favorite indenline plugin?"
 	options := []string{"Yggdroot/indentLine", "nathanaelkane/vim-indent-guides"}
 	return cli.SingleSelectTemplate(message, options)
+}
+
+func CommentPlugin() bool {
+	message := "Do you want to use Caw.vim as comment plugin?"
+	return cli.ConfirmTemplate(message)
+}
+
+func ViewSymbolsPlugin() bool {
+	message := "Do you want to use vista.vim to view tags and LSP symbols in sidebar"
+	return cli.ConfirmTemplate(message)
+}
+
+func GentagsPlugin() bool {
+	message := "Do you want to use vim-gutentags to gen tags"
+	return cli.ConfirmTemplate(message)
 }
 
 func LanguageServerProtocol() []string {

@@ -50,3 +50,19 @@ func (v *VimPlug) GenerateDatabase(database bool) {
 func (v *VimPlug) GenerateFuzzyFind(fuzzyfind bool) {
 
 }
+
+func (v *VimPlug) GenerateIndentLine(indentplugin string) {
+
+}
+
+func (v *VimPlug) GenerateComment(comment bool) {
+
+}
+
+func (v *VimPlug) GenerateOutLine(outline bool) {
+
+}
+
+func (v *VimPlug) GenerateTags(tagsplugin bool) {
+
+}

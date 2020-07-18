@@ -17,4 +17,7 @@ var (
 	Database       bool
 	Fuzzyfind      bool
 	IndentPlugin   string
+	CommentPlugin  bool
+	OutLinePlugin  bool
+	TagsPlugin     bool
 )
