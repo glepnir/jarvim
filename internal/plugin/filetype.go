@@ -1,3 +1,5 @@
+// Package plugin provides ...
+package plugin
 
 const DeinContextFileType = `
 [[plugins]]

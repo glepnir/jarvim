@@ -73,6 +73,11 @@ func FuzzyFindPlugin() bool {
 	return cli.ConfirmTemplate(message)
 }
 
+func EditorConfigPlugin() bool {
+	message := "Do you want use editorconfig to control program style(like indent,whitespace etc)"
+	return cli.ConfirmTemplate(message)
+}
+
 func IndentLinePlugin() string {
 	message := "Choose  your favorite indenline plugin?"
 	options := []string{"Yggdroot/indentLine", "nathanaelkane/vim-indent-guides"}
@@ -91,6 +96,11 @@ func ViewSymbolsPlugin() bool {
 
 func GentagsPlugin() bool {
 	message := "Do you want to use vim-gutentags to gen tags"
+	return cli.ConfirmTemplate(message)
+}
+
+func QuickRunPlugin() bool {
+	message := "Do you want to use vim-quickrun to fast run program in vim?"
 	return cli.ConfirmTemplate(message)
 }
 

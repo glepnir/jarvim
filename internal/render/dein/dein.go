@@ -108,6 +108,14 @@ func (d *Dein) GenerateFuzzyFind(fuzzyfind bool) {
 	}
 }
 
+func (d *Dein) GenerateEditorConfig(editorconfig bool) {
+	if editorconfig {
+		render.WriteTemplate(vim.ConfModules+"program.toml", "editorconfig", plugin.DeinEditorConfig)
+	} else {
+		color.PrintWarn("Skip generate editorconfig config")
+	}
+}
+
 func (d *Dein) GenerateIndentLine(indentplugin string) {
 	if indentplugin == "Yggdroot/indentLine" {
 		render.WriteTemplate(vim.ConfModules+"program.toml", indentplugin, plugin.DeinIndentLine)
@@ -135,5 +143,15 @@ func (d *Dein) GenerateOutLine(outline bool) {
 func (d *Dein) GenerateTags(tagsplugin bool) {
 	if tagsplugin {
 		render.WriteTemplate(vim.ConfModules+"program.toml", "vim-gutentags", plugin.DeinGuTenTags)
+	} else {
+		color.PrintWarn("Skip generate vim-gutentags config")
+	}
+}
+
+func (d *Dein) GenerateQuickRun(quickrun bool) {
+	if quickrun {
+		render.WriteTemplate(vim.ConfModules+"program.toml", "vim-quickrun", plugin.DeinQuickRun)
+	} else {
+		color.PrintWarn("Skip generate vim-quickrun config")
 	}
 }

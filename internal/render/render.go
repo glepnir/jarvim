@@ -23,10 +23,12 @@ type Render interface {
 	GenerateExplorer(explorer string)
 	GenerateDatabase(database bool)
 	GenerateFuzzyFind(fuzzfind bool)
+	GenerateEditorConfig(editorconfig bool)
 	GenerateIndentLine(indentplugin string)
 	GenerateComment(comment bool)
 	GenerateOutLine(outline bool)
 	GenerateTags(tagsplugin bool)
+	GenerateQuickRun(quickrun bool)
 }
 
 func NewRender(p Render) Render {

@@ -1,6 +1,11 @@
 // Package plugin provides ...
 package plugin
 
+const DeinEditorConfig = `
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+`
+
 const DeinIndentLine = `
 [[plugins]]
 repo = 'Yggdroot/indentLine'
@@ -73,5 +78,19 @@ hook_source = '''
     let g:gutentags_exclude_filetypes = [ 'defx', 'denite', 'vista', 'magit' ]
     let g:gutentags_ctags_extra_args = ['--output-format=e-ctags']
     let g:gutentags_ctags_exclude = ['*.json', '*.js', '*.ts', '*.jsx', '*.css', '*.less', '*.sass', '*.go', '*.dart', 'node_modules', 'dist', 'vendor']
+'''
+`
+
+const DeinQuickRun = `
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
+hook_source = '''
+    let g:quickrun_config = {
+      \   "_" : {
+        \       "outputter" : "message",
+        \   },
+        \}
+    let g:quickrun_no_default_key_mappings = 1
 '''
 `

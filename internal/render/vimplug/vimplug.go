@@ -66,3 +66,10 @@ func (v *VimPlug) GenerateOutLine(outline bool) {
 func (v *VimPlug) GenerateTags(tagsplugin bool) {
 
 }
+
+func (v *VimPlug) GenerateQuickRun(quickrun bool) {
+
+}
+
+func (v *VimPlug) GenerateEditorConfig(editorconfig bool) {
+}

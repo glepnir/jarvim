@@ -16,8 +16,10 @@ var (
 	Explorer       string
 	Database       bool
 	Fuzzyfind      bool
+	EditorConfig   bool
 	IndentPlugin   string
 	CommentPlugin  bool
 	OutLinePlugin  bool
 	TagsPlugin     bool
+	QuickRun       bool
 )
