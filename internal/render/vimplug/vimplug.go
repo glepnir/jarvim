@@ -1,11 +1,19 @@
 // Package plug provides ...
 package vimplug
 
-import "github.com/glepnir/jarvis/internal/render"
+import (
+	"github.com/glepnir/jarvis/internal/render"
+	"github.com/glepnir/jarvis/internal/vim"
+)
 
 type VimPlug struct{}
 
 var _ render.Render = (*VimPlug)(nil)
+
+func (v *VimPlug) GenerateInit() {
+	const init = `execute 'source' fnamemodify(expand('<sfile>'), ':h').'/core/core.vim'`
+	render.WriteTemplate(vim.ConfPath+"/init.vim", "init.vim", init)
+}
 
 func (v *VimPlug) GenerateCore(Leaderkey, LocalLeaderKey string) {
 
@@ -31,11 +39,13 @@ func (v *VimPlug) GenerateDevIcons() {
 
 }
 
-func (v *VimPlug) GenerateBufferLine() {
+func (v *VimPlug) GenerateDashboard(dashboard bool) {}
+
+func (v *VimPlug) GenerateBufferLine(bufferline bool) {
 
 }
 
-func (v *VimPlug) GenerateStatusLine() {
+func (v *VimPlug) GenerateStatusLine(statusline bool) {
 
 }
 
@@ -72,4 +82,7 @@ func (v *VimPlug) GenerateQuickRun(quickrun bool) {
 }
 
 func (v *VimPlug) GenerateEditorConfig(editorconfig bool) {
+}
+
+func (v *VimPlug) GenerateDataTypeFile(datafile []string) {
 }

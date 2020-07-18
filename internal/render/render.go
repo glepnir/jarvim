@@ -12,14 +12,16 @@ import (
 )
 
 type Render interface {
+	GenerateInit()
 	GenerateCore(Leader, LocalLeaderKey string)
 	GenerateGeneral()
 	GenerateTheme()
 	GenerateCacheTheme(colorschemes []string)
 	GenerateColorscheme(colorschemes []string)
 	GenerateDevIcons()
-	GenerateBufferLine()
-	GenerateStatusLine()
+	GenerateDashboard(dashboard bool)
+	GenerateBufferLine(bufferline bool)
+	GenerateStatusLine(statusline bool)
 	GenerateExplorer(explorer string)
 	GenerateDatabase(database bool)
 	GenerateFuzzyFind(fuzzfind bool)
@@ -29,6 +31,7 @@ type Render interface {
 	GenerateOutLine(outline bool)
 	GenerateTags(tagsplugin bool)
 	GenerateQuickRun(quickrun bool)
+	GenerateDataTypeFile(datafile []string)
 }
 
 func NewRender(p Render) Render {

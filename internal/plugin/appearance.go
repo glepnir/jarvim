@@ -11,6 +11,12 @@ const DeinColorscheme = `
 repo = '{{.}}'
 {{end}}
 `
+
+const DeinDashboard = `
+[[plugins]]
+repo = 'hardcoreplayers/dashboard-nvim'
+`
+
 const DeinStatusline = `
 [[plugins]]
 repo = 'hardcoreplayers/spaceline.vim'

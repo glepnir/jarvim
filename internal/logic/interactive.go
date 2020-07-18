@@ -57,6 +57,21 @@ func Colorscheme() []string {
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
+func DashboardPlugin() bool {
+	message := "Do you want use dashboard-nvim a better StartScreenPlugin?"
+	return cli.ConfirmTemplate(message)
+}
+
+func BufferLinePlugin() bool {
+	message := "Do you want use vim-buffet as your bufferline?"
+	return cli.ConfirmTemplate(message)
+}
+
+func SpacelinePlugin() bool {
+	message := "Do you want use spaceline.vim a light and beautiful statusline?"
+	return cli.ConfirmTemplate(message)
+}
+
 func ExplorerPlugin() string {
 	message := "What is your explorer plugin?"
 	options := []string{"defx.nvim", "nerdtree", "coc-explorer"}
@@ -102,6 +117,20 @@ func GentagsPlugin() bool {
 func QuickRunPlugin() bool {
 	message := "Do you want to use vim-quickrun to fast run program in vim?"
 	return cli.ConfirmTemplate(message)
+}
+
+func DataTypeFile() []string {
+	questionname := "Data filetype"
+	message := "Which Data filetype you need?"
+	pagesize := 10
+	options := []string{
+		"Markdown",
+		"Toml",
+		"Nginx",
+		"Json",
+		"DockerFile",
+	}
+	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
 func LanguageServerProtocol() []string {

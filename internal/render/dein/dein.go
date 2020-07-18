@@ -14,6 +14,11 @@ type Dein struct{}
 
 var _ render.Render = (*Dein)(nil)
 
+func (d *Dein) GenerateInit() {
+	const init = `execute 'source' fnamemodify(expand('<sfile>'), ':h').'/core/core.vim'`
+	render.WriteTemplate(vim.ConfPath+"/init.vim", "init.vim", init)
+}
+
 // GenerateCore will generate core/core.vim
 func (d *Dein) GenerateCore(LeaderKey, LocalLeaderKey string) {
 	keymap := map[string]string{
@@ -74,12 +79,28 @@ func (d *Dein) GenerateDevIcons() {
 	render.WriteTemplate(vim.ConfModules+"appearance.toml", "Vim-Devicons", plugin.DeinDevicons)
 }
 
-func (d *Dein) GenerateBufferLine() {
-	render.WriteTemplate(vim.ConfModules+"appearance.toml", "Vim-Buffer", plugin.DeinBufferLine)
+func (d *Dein) GenerateDashboard(dashboard bool) {
+	if dashboard {
+		render.WriteTemplate(vim.ConfModules+"appearance.toml", "dashboard-nvim", plugin.DeinDashboard)
+	} else {
+		color.PrintWarn("Skip generate dashboard-nvim config")
+	}
 }
 
-func (d *Dein) GenerateStatusLine() {
-	render.WriteTemplate(vim.ConfModules+"appearance.toml", "Statusline", plugin.DeinStatusline)
+func (d *Dein) GenerateBufferLine(bufferline bool) {
+	if bufferline {
+		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Vim-Buffer", plugin.DeinBufferLine)
+	} else {
+		color.PrintWarn("Skip generate vim-bufferlet config")
+	}
+}
+
+func (d *Dein) GenerateStatusLine(spaceline bool) {
+	if spaceline {
+		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Statusline", plugin.DeinStatusline)
+	} else {
+		color.PrintWarn("Skip generate spaceline.vim config")
+	}
 }
 
 func (d *Dein) GenerateExplorer(explorer string) {
@@ -104,7 +125,7 @@ func (d *Dein) GenerateFuzzyFind(fuzzyfind bool) {
 	if fuzzyfind {
 		render.WriteTemplate(vim.ConfModules+"fuzzyfind.toml", "vim-clap", plugin.DeinClap)
 	} else {
-		color.PrintWarn("Skip generate fuzzyfind vim-clap config")
+		color.PrintWarn("Skip generate fuzzyfind vim-clap config ")
 	}
 }
 
@@ -126,6 +147,7 @@ func (d *Dein) GenerateIndentLine(indentplugin string) {
 
 func (d *Dein) GenerateComment(comment bool) {
 	if comment {
+		render.WriteTemplate(vim.ConfModules+"filetype.toml", "context_filetype.vim", plugin.DeinContextFileType)
 		render.WriteTemplate(vim.ConfModules+"program.toml", "Caw.vim", plugin.DeinCaw)
 	} else {
 		color.PrintWarn("Skip generate caw.vim config")
@@ -153,5 +175,21 @@ func (d *Dein) GenerateQuickRun(quickrun bool) {
 		render.WriteTemplate(vim.ConfModules+"program.toml", "vim-quickrun", plugin.DeinQuickRun)
 	} else {
 		color.PrintWarn("Skip generate vim-quickrun config")
+	}
+}
+
+func (d *Dein) GenerateDataTypeFile(datafile []string) {
+	datamap := map[string]string{
+		"MarkDown":   plugin.DeinMarkDown,
+		"Toml":       plugin.DeinToml,
+		"Nginx":      plugin.DeinNginx,
+		"Json":       plugin.DeinJson,
+		"Dockerfile": plugin.DeinDockerFile,
+	}
+	for _, f := range datafile {
+		_, ok := datamap[f]
+		if ok {
+			render.WriteTemplate(vim.ConfModules+"filetype.toml", f, datamap[f])
+		}
 	}
 }
