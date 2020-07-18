@@ -20,7 +20,7 @@ type Render interface {
 	GenerateDevIcons()
 	GenerateBufferLine()
 	GenerateStatusLine()
-	GenerateExplorer(explorer string)
+	GenerateExplorer()
 }
 
 func NewRender(p Render) Render {
@@ -37,17 +37,17 @@ func RollBack(err error) {
 	os.Exit(1)
 }
 
-func ParseTemplate(plugin string, plugintemplate string, w io.Writer, data interface{}) {
+func ParseTemplate(name string, plugintemplate string, w io.Writer, data interface{}) {
 	tpl := template.Must(template.New("").Parse(plugintemplate))
 	err := tpl.Execute(w, data)
 	if err != nil {
 		RollBack(err)
 	}
-	color.PrintSuccess(fmt.Sprintf("Generate %v success", plugin))
+	color.PrintSuccess(fmt.Sprintf("Generate %v success", name))
 }
 
-func WriteTemplate(file string, plugin, plugintemplate string) {
-	f, err := os.OpenFile(file, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+func WriteTemplate(targetfile string, name, plugintemplate string) {
+	f, err := os.OpenFile(targetfile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	defer f.Close()
 	if err != nil {
 		RollBack(err)
@@ -56,5 +56,5 @@ func WriteTemplate(file string, plugin, plugintemplate string) {
 	if err != nil {
 		RollBack(err)
 	}
-	color.PrintSuccess(fmt.Sprintf("Generate %v success", plugin))
+	color.PrintSuccess(fmt.Sprintf("Generate %v success", name))
 }
