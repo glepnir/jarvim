@@ -28,6 +28,7 @@ func RunLogic() {
 	vim.EnhancePlugins = EnhancePlugin()
 	r.GenerateInit()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
+	r.GeneratePlugMan()
 	r.GenerateGeneral()
 	r.GenerateTheme()
 	r.GenerateCacheTheme(vim.Colorscheme)

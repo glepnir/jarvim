@@ -14,6 +14,7 @@ import (
 type Render interface {
 	GenerateInit()
 	GenerateCore(Leader, LocalLeaderKey string)
+	GeneratePlugMan()
 	GenerateGeneral()
 	GenerateTheme()
 	GenerateCacheTheme(colorschemes []string)

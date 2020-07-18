@@ -19,6 +19,10 @@ func (v *VimPlug) GenerateCore(Leaderkey, LocalLeaderKey string) {
 
 }
 
+func (v *VimPlug) GeneratePlugMan() {
+
+}
+
 func (v *VimPlug) GenerateGeneral() {
 
 }

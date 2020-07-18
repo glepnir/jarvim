@@ -34,6 +34,10 @@ func (d *Dein) GenerateCore(LeaderKey, LocalLeaderKey string) {
 	render.ParseTemplate("core/core.vim", plugin.Core, f, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
 }
 
+func (d *Dein) GeneratePlugMan() {
+	render.WriteTemplate(vim.ConfCore+"dein.vim", "dein.vim", plugin.Dein)
+}
+
 // GenerateGeneral will generate core/general.vim
 func (d *Dein) GenerateGeneral() {
 	render.WriteTemplate(vim.ConfCore+"general.vim", "core/general.vim", plugin.General)
