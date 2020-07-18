@@ -2,16 +2,12 @@
 package logic
 
 import (
-	"github.com/glepnir/jarvis/internal/render"
-	"github.com/glepnir/jarvis/internal/render/dein"
 	"github.com/glepnir/jarvis/internal/vim"
 	"github.com/glepnir/jarvis/pkg/util"
 )
 
 func LogicInit() {
-	vim.PluginManage = PluginManage()
-	p := new(dein.Dein)
-	r := render.NewRender(p)
+	r := PluginManage()
 	vim.Leaderkey = LeaderKey()
 	vim.LocalLeaderKey = LocalLeaderKey()
 	vim.Colorscheme = Colorscheme()

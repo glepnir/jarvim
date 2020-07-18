@@ -16,15 +16,15 @@ var (
 
 // PrintError Message use red color
 func PrintError(message string) {
-	fmt.Println(Red + message + Reset)
+	fmt.Println(Red + "✘ " + message + Reset)
 }
 
 // PrintWarn Message use yellow color
 func PrintWarn(message string) {
-	fmt.Println(Yellow + message + Reset)
+	fmt.Println(Yellow + "⚠ " + message + Reset)
 }
 
 // PrintSuccess Message use green color
 func PrintSuccess(message string) {
-	fmt.Println(Green + message + Reset)
+	fmt.Println(Green + "✔ " + message + Reset)
 }

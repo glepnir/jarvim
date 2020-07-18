@@ -1,12 +1,22 @@
 // Package logic provides ...
 package logic
 
-import "github.com/glepnir/jarvis/pkg/cli"
+import (
+	"github.com/glepnir/jarvis/internal/render"
+	"github.com/glepnir/jarvis/internal/render/dein"
+	"github.com/glepnir/jarvis/internal/render/vimplug"
+	"github.com/glepnir/jarvis/pkg/cli"
+)
 
-func PluginManage() string {
+func PluginManage() render.Render {
 	message := "What is plugin manage do you use?"
 	options := []string{"dein", "vim-plug"}
-	return cli.SingleSelectTemplate(message, options)
+	pm := cli.SingleSelectTemplate(message, options)
+	if pm == "dein" {
+		return new(dein.Dein)
+	} else {
+		return new(vimplug.VimPlug)
+	}
 }
 
 func LeaderKey() string {
