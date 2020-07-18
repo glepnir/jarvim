@@ -3,12 +3,10 @@ package dein
 
 import (
 	"os"
-	"text/template"
 
 	"github.com/glepnir/jarvis/internal/plugin"
 	"github.com/glepnir/jarvis/internal/render"
 	"github.com/glepnir/jarvis/internal/vim"
-	"github.com/glepnir/jarvis/pkg/color"
 )
 
 type Dein struct{}
@@ -26,41 +24,18 @@ func (d *Dein) GenerateCore(LeaderKey, LocalLeaderKey string) {
 	if err != nil {
 		render.RollBack(err)
 	}
-	tpl := template.Must(template.New("").Parse(plugin.Core))
-	err = tpl.Execute(f, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
-	if err != nil {
-		render.RollBack(err)
-	}
-	color.PrintSuccess("Generate Core.vim Success")
+	render.ParseTemplate("core/core.vim", plugin.Core, f, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
 }
 
 // GenerateGeneral will generate core/general.vim
 func (d *Dein) GenerateGeneral() {
-	f, err := os.OpenFile(vim.ConfPath+"/core/general.vim", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	defer f.Close()
-	if err != nil {
-		render.RollBack(err)
-	}
-	_, err = f.WriteString(plugin.General)
-	if err != nil {
-		render.RollBack(err)
-	}
-	color.PrintSuccess("Generate general.vim success")
+	render.WriteTemplate(vim.ConfCore+"general.vim", "core/general.vim", plugin.General)
 }
 
 // GenerateTheme will generate autoload/theme.vim
 // theme.vim read or write the theme.txt from $CACHE/.vim/theme.txt
 func (d *Dein) GenerateTheme() {
-	f, err := os.OpenFile(vim.ConfPath+"/autoload/theme.vim", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	defer f.Close()
-	if err != nil {
-		render.RollBack(err)
-	}
-	_, err = f.WriteString(plugin.Theme)
-	if err != nil {
-		render.RollBack(err)
-	}
-	color.PrintSuccess("Generate theme.vim success")
+	render.WriteTemplate(vim.ConfAutoload+"theme.vim", "Autoload/theme.vim", plugin.Theme)
 }
 
 func (d *Dein) GenerateCacheTheme(colorschemes []string) {
@@ -82,38 +57,22 @@ func (d *Dein) GenerateCacheTheme(colorschemes []string) {
 		"nanotech/jellybeans.vim":            "jellybeans",
 	}
 	colors := colorsmap[colorschemes[0]]
-	f, err := os.OpenFile(vim.CachePath+"/theme.txt", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	defer f.Close()
-	if err != nil {
-		render.RollBack(err)
-	}
-	_, err = f.WriteString(colors)
-	if err != nil {
-		render.RollBack(err)
-	}
-	color.PrintSuccess("Write colorscheme to theme.txt success")
+	render.WriteTemplate(vim.CachePath+"theme.txt", "theme.txt", colors)
 }
 
 func (d *Dein) GenerateColorscheme(colorschemes []string) {
-	f, err := os.OpenFile(vim.ConfPath+"/modules/appearance.toml", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(vim.ConfModules+"appearance.toml", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	defer f.Close()
 	if err != nil {
 		render.RollBack(err)
 	}
-	tpl := template.Must(template.New("").Parse(plugin.DeinColorscheme))
-	tpl.Execute(f, colorschemes)
-	color.PrintSuccess("Generate Colorscheme Plugins success")
+	render.ParseTemplate("Colorscheme", plugin.DeinColorscheme, f, colorschemes)
+}
+
+func (d *Dein) GenerateDevIcons() {
+	render.WriteTemplate(vim.ConfModules+"appearance.toml", "Vim-Devicons", plugin.DeinDevicons)
 }
 
 func (d *Dein) GenerateStatusLine() {
-	f, err := os.OpenFile(vim.ConfPath+"/modules/appearance.toml", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	defer f.Close()
-	if err != nil {
-		render.RollBack(err)
-	}
-	_, err = f.WriteString(plugin.DeinStatusline)
-	if err != nil {
-		render.RollBack(err)
-	}
-	color.PrintSuccess("Generate statusline success")
+	render.WriteTemplate(vim.ConfModules+"appearance.toml", "Statusline", plugin.DeinStatusline)
 }
