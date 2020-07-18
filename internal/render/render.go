@@ -11,7 +11,6 @@ type Render interface {
 }
 
 func NewRender(p Render) Render {
-	var r Render
-	r = p
+	var r Render = p
 	return r
 }
