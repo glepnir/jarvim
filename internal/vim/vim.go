@@ -14,4 +14,5 @@ var (
 	LocalLeaderKey string
 	Colorscheme    []string
 	Explorer       string
+	Database       bool
 )

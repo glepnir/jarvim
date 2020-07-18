@@ -21,6 +21,19 @@ func NewCmd(use, description string, f func() error) *cobra.Command {
 	}
 }
 
+func ConfirmTemplate(message string) bool {
+	confirm := false
+	prompt := &survey.Confirm{
+		Message: message,
+	}
+	err := survey.AskOne(prompt, &confirm)
+	if err == terminal.InterruptErr {
+		fmt.Println("interrupted")
+		os.Exit(1)
+	}
+	return confirm
+}
+
 func MultiSelectTemplate(questionname, message string, options []string, pagesize int) []string {
 	answers := []string{}
 	var question = []*survey.Question{

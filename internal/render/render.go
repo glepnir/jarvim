@@ -20,7 +20,8 @@ type Render interface {
 	GenerateDevIcons()
 	GenerateBufferLine()
 	GenerateStatusLine()
-	GenerateExplorer()
+	GenerateExplorer(explorer string)
+	GenerateDatabase(database bool)
 }
 
 func NewRender(p Render) Render {

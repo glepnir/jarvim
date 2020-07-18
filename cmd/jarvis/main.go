@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	logic.LogicInit()
+	logic.RunLogic()
 }

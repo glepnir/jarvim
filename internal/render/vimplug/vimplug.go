@@ -42,3 +42,7 @@ func (v *VimPlug) GenerateStatusLine() {
 func (v *VimPlug) GenerateExplorer(explorer string) {
 
 }
+
+func (v *VimPlug) GenerateDatabase() {
+
+}

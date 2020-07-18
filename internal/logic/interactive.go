@@ -63,7 +63,12 @@ func ExplorerPlugin() string {
 	return cli.SingleSelectTemplate(message, options)
 }
 
-func Languages() []string {
+func DatabasePlugin() bool {
+	message := "Do you use need database plugins?"
+	return cli.ConfirmTemplate(message)
+}
+
+func LanguageServerProtocol() []string {
 	questionname := "LanguageQuestion"
 	message := "What Languages do you write"
 	pagesize := 19
@@ -94,18 +99,6 @@ func Languages() []string {
 		"stylus",
 		"sql",
 		"dart",
-	}
-	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
-}
-
-func Enhance() []string {
-	questionname := "Choose the enhance plugins"
-	message := "What is your Leader Key?"
-	pagesize := 19
-	options := []string{
-		"rhysd/accelerated-jk",
-		"simnalamburt/vim-mundo",
-		"easymotion/vim-easymotion",
 	}
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }

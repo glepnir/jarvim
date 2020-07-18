@@ -7,6 +7,7 @@ import (
 	"github.com/glepnir/jarvis/internal/plugin"
 	"github.com/glepnir/jarvis/internal/render"
 	"github.com/glepnir/jarvis/internal/vim"
+	"github.com/glepnir/jarvis/pkg/color"
 )
 
 type Dein struct{}
@@ -88,4 +89,12 @@ func (d *Dein) GenerateExplorer(explorer string) {
 	} else {
 		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Nerdtree", plugin.DeinNerdTree)
 	}
+}
+
+func (d *Dein) GenerateDatabase(database bool) {
+	if database {
+		render.WriteTemplate(vim.ConfAutoload+"initself.vim", "LoadEnv function", plugin.AutoloadLoadEnv)
+		render.WriteTemplate(vim.ConfModules+"database.toml", "Database", plugin.DeinDatabase)
+	}
+	color.PrintWarn("Skip Generate Datbase")
 }

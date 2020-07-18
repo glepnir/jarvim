@@ -6,13 +6,14 @@ import (
 	"github.com/glepnir/jarvis/pkg/util"
 )
 
-func LogicInit() {
+func RunLogic() {
 	util.EnsureFoldersExist(vim.ConfPath, vim.ConfCore, vim.ConfAutoload, vim.ConfModules, vim.CachePath)
 	r := PluginManage()
 	vim.Leaderkey = LeaderKey()
 	vim.LocalLeaderKey = LocalLeaderKey()
 	vim.Colorscheme = Colorscheme()
 	vim.Explorer = ExplorerPlugin()
+	vim.Database = DatabasePlugin()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
 	r.GenerateGeneral()
 	r.GenerateTheme()
@@ -21,4 +22,5 @@ func LogicInit() {
 	r.GenerateBufferLine()
 	r.GenerateStatusLine()
 	r.GenerateExplorer(vim.Explorer)
+	r.GenerateDatabase(vim.Database)
 }
