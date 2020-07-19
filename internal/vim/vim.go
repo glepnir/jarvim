@@ -31,6 +31,7 @@ var (
 	QuickRun          bool
 	DataTypeFile      []string
 	EnhancePlugins    []string
+	SandwichPlugin    bool
 
 	LeaderKeyMap = map[string]string{
 		"Space":        "\\<Space>",

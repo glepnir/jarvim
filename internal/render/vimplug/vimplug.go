@@ -87,3 +87,11 @@ func (v *VimPlug) GenerateDataTypeFile(datafile []string, datafilemap map[string
 }
 
 func (v *VimPlug) GenerateEnhanceplugin(plugins []string, enhancepluginmap map[string]string) {}
+
+func (v *VimPlug) GenerateSandWich(sandiwch bool) {
+
+}
+
+func (v *VimPlug) GenerateTextObj() {
+
+}

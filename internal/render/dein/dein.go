@@ -135,3 +135,11 @@ func (d *Dein) GenerateEnhanceplugin(plugins []string, enhancepluginmap map[stri
 		}
 	}
 }
+
+func (d *Dein) GenerateSandWich(sandwich bool) {
+	render.WithConfirm(sandwich, vim.ConfModules+"textobj.toml", "vim-sandwich", plugin.DeinSandWich)
+}
+
+func (d *Dein) GenerateTextObj() {
+	render.WithConfirm(true, vim.ConfModules+"textobj.toml", "textobj plugins", plugin.DeinTextObj)
+}

@@ -145,6 +145,11 @@ func EnhancePlugin() []string {
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
+func SandWichPlugin() bool {
+	message := "Do you want use vim-sandwich more useful than vim-surround?"
+	return cli.ConfirmTemplate(message)
+}
+
 func LanguageServerProtocol() []string {
 	questionname := "LanguageQuestion"
 	message := "What Languages do you write"

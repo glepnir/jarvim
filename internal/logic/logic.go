@@ -26,6 +26,7 @@ func RunLogic() {
 	vim.QuickRun = QuickRunPlugin()
 	vim.DataTypeFile = DataTypeFile()
 	vim.EnhancePlugins = EnhancePlugin()
+	vim.SandwichPlugin = SandWichPlugin()
 	r.GenerateInit()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey, vim.LeaderKeyMap)
 	r.GeneratePlugMan()
@@ -47,4 +48,6 @@ func RunLogic() {
 	r.GenerateQuickRun(vim.QuickRun)
 	r.GenerateDataTypeFile(vim.DataTypeFile, vim.DataFileMap)
 	r.GenerateEnhanceplugin(vim.EnhancePlugins, vim.EnhancePluginMap)
+	r.GenerateSandWich(vim.SandwichPlugin)
+	r.GenerateTextObj()
 }

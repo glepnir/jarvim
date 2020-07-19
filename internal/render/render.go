@@ -33,6 +33,8 @@ type Render interface {
 	GenerateQuickRun(quickrun bool)
 	GenerateDataTypeFile(datafile []string, datafilemap map[string]string)
 	GenerateEnhanceplugin(plugins []string, enhancepluginmap map[string]string)
+	GenerateSandWich(sandwich bool)
+	GenerateTextObj()
 }
 
 func NewRender(p Render) Render {
