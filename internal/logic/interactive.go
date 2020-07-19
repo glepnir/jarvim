@@ -150,6 +150,18 @@ func SandWichPlugin() bool {
 	return cli.ConfirmTemplate(message)
 }
 
+func VersionControlPlugin() []string {
+	questionname := "Version Control plugin"
+	message := "Choose the version control plugins that you need"
+	pagesize := 10
+	options := []string{
+		"jreybert/vimagit",
+		"tpope/vim-fugitive",
+		"lambdalisue/gina.vim",
+	}
+	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
+}
+
 func LanguageServerProtocol() []string {
 	questionname := "LanguageQuestion"
 	message := "What Languages do you write"

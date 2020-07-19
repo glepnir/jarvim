@@ -32,6 +32,10 @@ func (d *Dein) GenerateGeneral() {
 	render.WithConfirm(true, vim.ConfCore+"general.vim", "core/general.vim", plugin.General)
 }
 
+func (d *Dein) GenerateAutoloadSourceFile() {
+	render.WithConfirm(true, vim.ConfAutoload+"initself.vim", "autoload/initself.vim", plugin.AutoloadSourceFile)
+}
+
 // GenerateTheme will generate autoload/theme.vim
 // theme.vim read or write the theme.txt from $CACHE/.vim/theme.txt
 func (d *Dein) GenerateTheme() {
@@ -142,4 +146,14 @@ func (d *Dein) GenerateSandWich(sandwich bool) {
 
 func (d *Dein) GenerateTextObj() {
 	render.WithConfirm(true, vim.ConfModules+"textobj.toml", "textobj plugins", plugin.DeinTextObj)
+}
+
+func (d *Dein) GenerateVersionControl(userversion []string, versionmap map[string]string) {
+	for i, v := range userversion {
+		_, ok := versionmap[v]
+		if ok {
+			render.WriteTemplate(vim.ConfModules+"version.toml", userversion[i], versionmap[v])
+		}
+	}
+	render.WriteTemplate(vim.ConfModules+"version.toml", "committia.vim", plugin.DeinCommita)
 }

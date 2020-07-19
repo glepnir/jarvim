@@ -15,6 +15,7 @@ type Render interface {
 	GenerateCore(Leader, LocalLeaderKey string, leaderkeymap map[string]string)
 	GeneratePlugMan()
 	GenerateGeneral()
+	GenerateAutoloadSourceFile()
 	GenerateTheme()
 	GenerateCacheTheme(usercolors []string, colorschememap map[string]string)
 	GenerateColorscheme(colorschemes []string)
@@ -35,6 +36,7 @@ type Render interface {
 	GenerateEnhanceplugin(plugins []string, enhancepluginmap map[string]string)
 	GenerateSandWich(sandwich bool)
 	GenerateTextObj()
+	GenerateVersionControl(userversion []string, versionmap map[string]string)
 }
 
 func NewRender(p Render) Render {

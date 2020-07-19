@@ -27,10 +27,12 @@ func RunLogic() {
 	vim.DataTypeFile = DataTypeFile()
 	vim.EnhancePlugins = EnhancePlugin()
 	vim.SandwichPlugin = SandWichPlugin()
+	vim.VersionControlPlugin = VersionControlPlugin()
 	r.GenerateInit()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey, vim.LeaderKeyMap)
 	r.GeneratePlugMan()
 	r.GenerateGeneral()
+	r.GenerateAutoloadSourceFile()
 	r.GenerateTheme()
 	r.GenerateCacheTheme(vim.Colorscheme, vim.ColorschemeMap)
 	r.GenerateColorscheme(vim.Colorscheme)
@@ -50,4 +52,5 @@ func RunLogic() {
 	r.GenerateEnhanceplugin(vim.EnhancePlugins, vim.EnhancePluginMap)
 	r.GenerateSandWich(vim.SandwichPlugin)
 	r.GenerateTextObj()
+	r.GenerateVersionControl(vim.VersionControlPlugin, vim.VersionControlMap)
 }

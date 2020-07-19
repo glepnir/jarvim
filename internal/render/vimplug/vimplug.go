@@ -22,6 +22,10 @@ func (v *VimPlug) GenerateGeneral() {
 
 }
 
+func (v *VimPlug) GenerateAutoloadSourceFile() {
+
+}
+
 func (v *VimPlug) GenerateTheme() {
 
 }
@@ -95,3 +99,5 @@ func (v *VimPlug) GenerateSandWich(sandiwch bool) {
 func (v *VimPlug) GenerateTextObj() {
 
 }
+
+func (v *VimPlug) GenerateVersionControl(userversion []string, versionmap map[string]string) {}

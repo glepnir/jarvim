@@ -8,30 +8,31 @@ import (
 )
 
 var (
-	ConfPath          = os.ExpandEnv("$HOME/.config/xnvim")
-	CachePath         = os.ExpandEnv("$HOME/.cache/nvim/")
-	ConfCore          = ConfPath + "/core/"
-	ConfAutoload      = ConfPath + "/autoload/"
-	ConfModules       = ConfPath + "/modules/"
-	PluginManage      string
-	Leaderkey         string
-	LocalLeaderKey    string
-	Colorscheme       []string
-	StartScreenPlugin bool
-	StatusLine        bool
-	BufferLine        bool
-	Explorer          string
-	Database          bool
-	Fuzzyfind         bool
-	EditorConfig      bool
-	IndentPlugin      string
-	CommentPlugin     bool
-	OutLinePlugin     bool
-	TagsPlugin        bool
-	QuickRun          bool
-	DataTypeFile      []string
-	EnhancePlugins    []string
-	SandwichPlugin    bool
+	ConfPath             = os.ExpandEnv("$HOME/.config/xnvim")
+	CachePath            = os.ExpandEnv("$HOME/.cache/nvim/")
+	ConfCore             = ConfPath + "/core/"
+	ConfAutoload         = ConfPath + "/autoload/"
+	ConfModules          = ConfPath + "/modules/"
+	PluginManage         string
+	Leaderkey            string
+	LocalLeaderKey       string
+	Colorscheme          []string
+	StartScreenPlugin    bool
+	StatusLine           bool
+	BufferLine           bool
+	Explorer             string
+	Database             bool
+	Fuzzyfind            bool
+	EditorConfig         bool
+	IndentPlugin         string
+	CommentPlugin        bool
+	OutLinePlugin        bool
+	TagsPlugin           bool
+	QuickRun             bool
+	DataTypeFile         []string
+	EnhancePlugins       []string
+	SandwichPlugin       bool
+	VersionControlPlugin []string
 
 	LeaderKeyMap = map[string]string{
 		"Space":        "\\<Space>",
@@ -69,5 +70,10 @@ var (
 		"vim-easymotion fast jump":                                   plugin.DeinEasyMotion,
 		"rainbow  rainbow parentheses":                               plugin.DeinRainbow,
 		"vim-floterm  vim terminal float":                            plugin.DeinFloaterm,
+	}
+	VersionControlMap = map[string]string{
+		"jreybert/vimagit":     plugin.DeinVimagt,
+		"tpope/vim-fugitive":   plugin.DeinFugiTive,
+		"lambdalisue/gina.vim": plugin.DeinGina,
 	}
 )
