@@ -38,6 +38,7 @@ type Render interface {
 	GenerateTextObj()
 	GenerateVersionControl(userversion []string, versionmap map[string]string)
 	GeneratePluginFolder()
+	GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string)
 }
 
 func NewRender(p Render) Render {

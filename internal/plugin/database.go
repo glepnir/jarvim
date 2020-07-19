@@ -9,7 +9,7 @@ repo = 'tpope/vim-dadbod'
 repo = 'kristijanhusak/vim-dadbod-ui'
 on_cmd = ['DBUIToggle', 'DBUIAddConnection', 'DBUI', 'DBUIFindBuffer', 'DBUIRenameBuffer']
 on_source = vim-dadbod
-hook_source: '''
+hook_source = '''
     let g:db_ui_show_help = 0
     let g:db_ui_win_position = 'left'
     let g:db_ui_use_nerd_fonts = 1

@@ -170,3 +170,12 @@ func (d *Dein) GeneratePluginFolder() {
 	}
 	color.PrintSuccess("Generate plugin folder success")
 }
+
+func (d *Dein) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string) {
+	for i, k := range UserLanguages {
+		v, ok := LanguagesPluginMap[k]
+		if ok {
+			render.WriteTemplate(vim.ConfModules+"languages.toml", UserLanguages[i], v)
+		}
+	}
+}

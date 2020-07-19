@@ -28,6 +28,7 @@ func RunLogic() {
 	vim.EnhancePlugins = EnhancePlugin()
 	vim.SandwichPlugin = SandWichPlugin()
 	vim.VersionControlPlugin = VersionControlPlugin()
+	vim.UserLanguages = LanguageServerProtocol()
 	r.GenerateInit()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey, vim.LeaderKeyMap)
 	r.GeneratePlugMan()

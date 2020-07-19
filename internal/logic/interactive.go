@@ -149,33 +149,9 @@ func LanguageServerProtocol() []string {
 	questionname := "LanguageQuestion"
 	message := "What Languages do you write"
 	pagesize := 19
-	options := []string{
-		"c-family",
-		"R",
-		"javascript",
-		"typescript",
-		"react",
-		"vue",
-		"go",
-		"rust",
-		"haskell",
-		"php",
-		"ruby",
-		"scala",
-		"shell",
-		"lua",
-		"python",
-		"dockerfile",
-		"json",
-		"nginx",
-		"toml",
-		"html",
-		"css",
-		"less",
-		"sass",
-		"stylus",
-		"sql",
-		"dart",
+	options := make([]string, 0)
+	for k, _ := range vim.LanguagesPluginMap {
+		options = append(options, k)
 	}
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }

@@ -34,6 +34,7 @@ var (
 	EnhancePlugins       []string
 	SandwichPlugin       bool
 	VersionControlPlugin []string
+	UserLanguages        []string
 
 	LeaderKeyMap = map[string]string{
 		"Space":        "\\<Space>",
@@ -76,5 +77,28 @@ var (
 		"jreybert/vimagit":     plugin.DeinVimagt,
 		"tpope/vim-fugitive":   plugin.DeinFugiTive,
 		"lambdalisue/gina.vim": plugin.DeinGina,
+	}
+	LanguagesPluginMap = map[string]string{
+		"C-family":   plugin.DeinCFamily,
+		"R":          plugin.DeinR,
+		"Javascript": plugin.DeinJavascript,
+		"Typescript": plugin.DeinTypescript,
+		"Dart":       plugin.DeinDart,
+		"React":      plugin.DeinReact,
+		"Vue":        plugin.DeinVue,
+		"Go":         plugin.DeinGo,
+		"Rust":       plugin.DeinRust,
+		"Haskell":    plugin.DeinHaskell,
+		"Php":        plugin.DeinPhp,
+		"Ruby":       plugin.DeinRuby,
+		"Scala":      plugin.DeinScala,
+		"Shell":      plugin.DeinShell,
+		"Lua":        plugin.DeinLua,
+		"Python":     plugin.DeinPython,
+		"Html":       plugin.DeinHtml,
+		"Css":        plugin.DeinCss,
+		"Less":       plugin.DeinLess,
+		"Sass scss":  plugin.DeinSass,
+		"Stylus":     plugin.DeinStylus,
 	}
 )

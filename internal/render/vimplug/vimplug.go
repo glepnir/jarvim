@@ -115,3 +115,5 @@ func (v *VimPlug) GeneratePluginFolder() {
 	}
 	color.PrintSuccess("Generate plugin folder success")
 }
+func (v *VimPlug) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string) {
+}
