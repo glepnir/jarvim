@@ -55,4 +55,5 @@ func RunLogic() {
 	r.GenerateSandWich(vim.SandwichPlugin)
 	r.GenerateTextObj()
 	r.GenerateVersionControl(vim.VersionControlPlugin, vim.VersionControlMap)
+	r.GenerateCocJson()
 }

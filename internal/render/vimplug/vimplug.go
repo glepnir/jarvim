@@ -117,3 +117,5 @@ func (v *VimPlug) GeneratePluginFolder() {
 }
 func (v *VimPlug) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string) {
 }
+
+func (v *VimPlug) GenerateCocJson() {}

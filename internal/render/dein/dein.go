@@ -179,3 +179,12 @@ func (d *Dein) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap
 		}
 	}
 }
+
+func (d *Dein) GenerateCocJson() {
+	err := util.CopyFile("../../../example.json", vim.ConfPath+"/coc-settings.json")
+	if err != nil {
+		color.PrintError("Generate coc-settings.json failed")
+		os.Exit(0)
+	}
+	color.PrintSuccess("Generate coc-settings.json success")
+}

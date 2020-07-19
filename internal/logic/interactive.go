@@ -78,7 +78,7 @@ func EditorConfigPlugin() bool {
 }
 
 func IndentLinePlugin() string {
-	message := "Choose  your favorite indenline plugin?"
+	message := "Choose  your favorite indentline plugin?"
 	options := []string{"Yggdroot/indentLine", "nathanaelkane/vim-indent-guides"}
 	return cli.SingleSelectTemplate(message, options)
 }
@@ -117,7 +117,7 @@ func DataTypeFile() []string {
 
 func EnhancePlugin() []string {
 	questionname := "Enhance question"
-	message := "Choose the enhace plugins that you need "
+	message := "Choose the enhance plugins that you need "
 	pagesize := 10
 	options := make([]string, 0)
 	for k, _ := range vim.EnhancePluginMap {

@@ -39,6 +39,7 @@ type Render interface {
 	GenerateVersionControl(userversion []string, versionmap map[string]string)
 	GeneratePluginFolder()
 	GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string)
+	GenerateCocJson()
 }
 
 func NewRender(p Render) Render {
