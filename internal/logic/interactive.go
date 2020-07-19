@@ -4,6 +4,7 @@ package logic
 import (
 	"github.com/glepnir/jarvis/internal/render"
 	"github.com/glepnir/jarvis/internal/render/dein"
+	"github.com/glepnir/jarvis/internal/vim"
 	"github.com/glepnir/jarvis/pkg/cli"
 )
 
@@ -33,24 +34,9 @@ func Colorscheme() []string {
 	questionname := "Colorscheme Question"
 	message := "Choose your favorite colorscheme"
 	pagesize := 19
-	options := []string{
-		"hardcoreplayers/oceanic-material",
-		"drewtempelmeyer/palenight.vim",
-		"gruvbox-community/gruvbox",
-		"ayu-theme/ayu-vim",
-		"NLKNguyen/papercolor-theme",
-		"lifepillar/vim-gruvbox8",
-		"lifepillar/vim-solarized8",
-		"joshdick/onedark.vim",
-		"arcticicestudio/nord-vim",
-		"rakr/vim-one",
-		"mhartington/oceanic-next",
-		"patstockwell/vim-monokai-tasty",
-		"dracula/vim",
-		"chriskempson/base16-vim",
-		"kristijanhusak/vim-hybrid-material",
-		"kyoz/purify",
-		"nanotech/jellybeans.vim",
+	options := make([]string, 0)
+	for k, _ := range vim.ColorschemeMap {
+		options = append(options, k)
 	}
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
@@ -121,13 +107,11 @@ func DataTypeFile() []string {
 	questionname := "Data filetype"
 	message := "Which Data filetype you need?"
 	pagesize := 10
-	options := []string{
-		"Markdown",
-		"Toml",
-		"Nginx",
-		"Json",
-		"DockerFile",
+	options := make([]string, 0)
+	for k, _ := range vim.DataFileMap {
+		options = append(options, k)
 	}
+
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
@@ -135,13 +119,11 @@ func EnhancePlugin() []string {
 	questionname := "Enhance question"
 	message := "Choose the enhace plugins that you need "
 	pagesize := 10
-	options := []string{
-		"accelerated-jk accelerate up-down moving (j and k mapping)",
-		"vim-mundo  vim undo tree",
-		"vim-easymotion fast jump",
-		"rainbow  rainbow parentheses",
-		"vim-floterm  vim terminal float",
+	options := make([]string, 0)
+	for k, _ := range vim.EnhancePluginMap {
+		options = append(options, k)
 	}
+
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
@@ -154,11 +136,12 @@ func VersionControlPlugin() []string {
 	questionname := "Version Control plugin"
 	message := "Choose the version control plugins that you need"
 	pagesize := 10
-	options := []string{
-		"jreybert/vimagit",
-		"tpope/vim-fugitive",
-		"lambdalisue/gina.vim",
+
+	options := make([]string, 0)
+	for k, _ := range vim.VersionControlMap {
+		options = append(options, k)
 	}
+
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 

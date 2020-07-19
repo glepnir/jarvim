@@ -33,6 +33,7 @@ func RunLogic() {
 	r.GeneratePlugMan()
 	r.GenerateGeneral()
 	r.GenerateAutoloadFunc()
+	r.GeneratePluginFolder()
 	r.GenerateTheme()
 	r.GenerateCacheTheme(vim.Colorscheme, vim.ColorschemeMap)
 	r.GenerateColorscheme(vim.Colorscheme)
@@ -53,5 +54,4 @@ func RunLogic() {
 	r.GenerateSandWich(vim.SandwichPlugin)
 	r.GenerateTextObj()
 	r.GenerateVersionControl(vim.VersionControlPlugin, vim.VersionControlMap)
-	r.GeneratePluginFolder()
 }
