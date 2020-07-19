@@ -3,7 +3,6 @@ package render
 
 import (
 	"fmt"
-	"io"
 	"os"
 	"text/template"
 
@@ -17,7 +16,7 @@ type Render interface {
 	GeneratePlugMan()
 	GenerateGeneral()
 	GenerateTheme()
-	GenerateCacheTheme(colorschemes []string)
+	GenerateCacheTheme(usercolors []string, colorschememap map[string]string)
 	GenerateColorscheme(colorschemes []string)
 	GenerateDevIcons()
 	GenerateDashboard(dashboard bool)
@@ -32,8 +31,8 @@ type Render interface {
 	GenerateOutLine(outline bool)
 	GenerateTags(tagsplugin bool)
 	GenerateQuickRun(quickrun bool)
-	GenerateDataTypeFile(datafile []string)
-	GenerateEnhanceplugin(plugins []string)
+	GenerateDataTypeFile(datafile []string, datafilemap map[string]string)
+	GenerateEnhanceplugin(plugins []string, enhancepluginmap map[string]string)
 }
 
 func NewRender(p Render) Render {
@@ -50,9 +49,14 @@ func RollBack(err error) {
 	os.Exit(1)
 }
 
-func ParseTemplate(name string, plugintemplate string, w io.Writer, data interface{}) {
+func ParseTemplate(targetfile, name string, plugintemplate string, data interface{}) {
+	f, err := os.OpenFile(targetfile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
+	defer f.Close()
+	if err != nil {
+		RollBack(err)
+	}
 	tpl := template.Must(template.New("").Parse(plugintemplate))
-	err := tpl.Execute(w, data)
+	err = tpl.Execute(f, data)
 	if err != nil {
 		RollBack(err)
 	}
@@ -70,4 +74,12 @@ func WriteTemplate(targetfile string, name, plugintemplate string) {
 		RollBack(err)
 	}
 	color.PrintSuccess(fmt.Sprintf("Generate %v success", name))
+}
+
+func WithConfirm(confirm bool, targetfile, name, plugintemplate string) {
+	if confirm {
+		WriteTemplate(targetfile, name, plugintemplate)
+		return
+	}
+	color.PrintWarn(fmt.Sprintf("Skip generate %v cofnig", name))
 }

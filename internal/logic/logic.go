@@ -31,7 +31,7 @@ func RunLogic() {
 	r.GeneratePlugMan()
 	r.GenerateGeneral()
 	r.GenerateTheme()
-	r.GenerateCacheTheme(vim.Colorscheme)
+	r.GenerateCacheTheme(vim.Colorscheme, vim.ColorschemeMap)
 	r.GenerateColorscheme(vim.Colorscheme)
 	r.GenerateDashboard(vim.StartScreenPlugin)
 	r.GenerateBufferLine(vim.BufferLine)
@@ -45,6 +45,6 @@ func RunLogic() {
 	r.GenerateOutLine(vim.OutLinePlugin)
 	r.GenerateTags(vim.TagsPlugin)
 	r.GenerateQuickRun(vim.QuickRun)
-	r.GenerateDataTypeFile(vim.DataTypeFile)
-	r.GenerateEnhanceplugin(vim.EnhancePlugins)
+	r.GenerateDataTypeFile(vim.DataTypeFile, vim.DataFileMap)
+	r.GenerateEnhanceplugin(vim.EnhancePlugins, vim.EnhancePluginMap)
 }

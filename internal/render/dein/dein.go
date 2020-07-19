@@ -2,7 +2,6 @@
 package dein
 
 import (
-	"os"
 	"strings"
 
 	"github.com/glepnir/jarvis/internal/plugin"
@@ -16,8 +15,7 @@ type Dein struct{}
 var _ render.Render = (*Dein)(nil)
 
 func (d *Dein) GenerateInit() {
-	const init = `execute 'source' fnamemodify(expand('<sfile>'), ':h').'/core/core.vim'`
-	render.WriteTemplate(vim.ConfPath+"/init.vim", "init.vim", init)
+	render.WithConfirm(true, vim.ConfPath+"/init.vim", "init.vim", plugin.InitVim)
 }
 
 // GenerateCore will generate core/core.vim
@@ -27,57 +25,31 @@ func (d *Dein) GenerateCore(LeaderKey, LocalLeaderKey string) {
 		"Comma(,)":     ",",
 		"Semicolon(;)": ";",
 	}
-	f, err := os.Create(vim.ConfCore + "core.vim")
-	if err != nil {
-		render.RollBack(err)
-	}
-	render.ParseTemplate("core/core.vim", plugin.Core, f, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
+	render.ParseTemplate(vim.ConfCore+"core.vim", "core/core.vim", plugin.Core, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
 }
 
 func (d *Dein) GeneratePlugMan() {
-	render.WriteTemplate(vim.ConfCore+"dein.vim", "dein.vim", plugin.Dein)
+	render.WithConfirm(true, vim.ConfCore+"dein.vim", "dein.vim", plugin.Dein)
 }
 
 // GenerateGeneral will generate core/general.vim
 func (d *Dein) GenerateGeneral() {
-	render.WriteTemplate(vim.ConfCore+"general.vim", "core/general.vim", plugin.General)
+	render.WithConfirm(true, vim.ConfCore+"general.vim", "core/general.vim", plugin.General)
 }
 
 // GenerateTheme will generate autoload/theme.vim
 // theme.vim read or write the theme.txt from $CACHE/.vim/theme.txt
 func (d *Dein) GenerateTheme() {
-	render.WriteTemplate(vim.ConfAutoload+"theme.vim", "Autoload/theme.vim", plugin.Theme)
+	render.WithConfirm(true, vim.ConfAutoload+"theme.vim", "autoload/theme.vim", plugin.Theme)
 }
 
-func (d *Dein) GenerateCacheTheme(colorschemes []string) {
-	colorsmap := map[string]string{
-		"hardcoreplayers/oceanic-material":   "oceanic_materail",
-		"drewtempelmeyer/palenight.vim":      "palenight",
-		"gruvbox-community/gruvbox":          "gruvbox",
-		"ayu-theme/ayu-vim":                  "ayu",
-		"NLKNguyen/papercolor-theme":         "PaperColor",
-		"lifepillar/vim-gruvbox8":            "gruvbox8",
-		"lifepillar/vim-solarized8":          "solarized8",
-		"joshdick/onedark.vim":               "onedark",
-		"arcticicestudio/nord-vim":           "nord",
-		"rakr/vim-one":                       "one",
-		"mhartington/oceanic-next":           "OceanicNext",
-		"dracula/vim":                        "dracula",
-		"chriskempson/base16-vim":            "base16-default-dark",
-		"kristijanhusak/vim-hybrid-material": "hybrid_material",
-		"nanotech/jellybeans.vim":            "jellybeans",
-	}
-	colors := colorsmap[colorschemes[0]]
+func (d *Dein) GenerateCacheTheme(usercolors []string, colorschememap map[string]string) {
+	colors := colorschememap[usercolors[0]]
 	render.WriteTemplate(vim.CachePath+"theme.txt", "theme.txt", colors)
 }
 
-func (d *Dein) GenerateColorscheme(colorschemes []string) {
-	f, err := os.OpenFile(vim.ConfModules+"appearance.toml", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
-	defer f.Close()
-	if err != nil {
-		render.RollBack(err)
-	}
-	render.ParseTemplate("Colorscheme", plugin.DeinColorscheme, f, colorschemes)
+func (d *Dein) GenerateColorscheme(usercolors []string) {
+	render.ParseTemplate(vim.ConfModules+"appearance.toml", "Colorscheme", plugin.DeinColorscheme, usercolors)
 }
 
 func (d *Dein) GenerateDevIcons() {
@@ -85,27 +57,15 @@ func (d *Dein) GenerateDevIcons() {
 }
 
 func (d *Dein) GenerateDashboard(dashboard bool) {
-	if dashboard {
-		render.WriteTemplate(vim.ConfModules+"appearance.toml", "dashboard-nvim", plugin.DeinDashboard)
-	} else {
-		color.PrintWarn("Skip generate dashboard-nvim config")
-	}
+	render.WithConfirm(dashboard, vim.ConfModules+"appearance.toml", "dashboard-nvim", plugin.DeinDashboard)
 }
 
 func (d *Dein) GenerateBufferLine(bufferline bool) {
-	if bufferline {
-		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Vim-Buffer", plugin.DeinBufferLine)
-	} else {
-		color.PrintWarn("Skip generate vim-bufferlet config")
-	}
+	render.WithConfirm(bufferline, vim.ConfModules+"appearance.toml", "Vim-Buffer", plugin.DeinBufferLine)
 }
 
 func (d *Dein) GenerateStatusLine(spaceline bool) {
-	if spaceline {
-		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Statusline", plugin.DeinStatusline)
-	} else {
-		color.PrintWarn("Skip generate spaceline.vim config")
-	}
+	render.WithConfirm(spaceline, vim.ConfModules+"appearance.toml", "Statusline", plugin.DeinStatusline)
 }
 
 func (d *Dein) GenerateExplorer(explorer string) {
@@ -127,19 +87,11 @@ func (d *Dein) GenerateDatabase(database bool) {
 }
 
 func (d *Dein) GenerateFuzzyFind(fuzzyfind bool) {
-	if fuzzyfind {
-		render.WriteTemplate(vim.ConfModules+"fuzzyfind.toml", "vim-clap", plugin.DeinClap)
-	} else {
-		color.PrintWarn("Skip generate fuzzyfind vim-clap config ")
-	}
+	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzyfind.toml", "vim-clap", plugin.DeinClap)
 }
 
 func (d *Dein) GenerateEditorConfig(editorconfig bool) {
-	if editorconfig {
-		render.WriteTemplate(vim.ConfModules+"program.toml", "editorconfig", plugin.DeinEditorConfig)
-	} else {
-		color.PrintWarn("Skip generate editorconfig config")
-	}
+	render.WithConfirm(editorconfig, vim.ConfModules+"program.toml", "editorconfig", plugin.DeinEditorConfig)
 }
 
 func (d *Dein) GenerateIndentLine(indentplugin string) {
@@ -160,57 +112,31 @@ func (d *Dein) GenerateComment(comment bool) {
 }
 
 func (d *Dein) GenerateOutLine(outline bool) {
-	if outline {
-		render.WriteTemplate(vim.ConfModules+"program.toml", "Vista.vim", plugin.DeinVista)
-	} else {
-		color.PrintWarn("Skip generate vista.vim config")
-	}
+	render.WithConfirm(outline, vim.ConfModules+"program.toml", "Vista.vim", plugin.DeinVista)
 }
 
 func (d *Dein) GenerateTags(tagsplugin bool) {
-	if tagsplugin {
-		render.WriteTemplate(vim.ConfModules+"program.toml", "vim-gutentags", plugin.DeinGuTenTags)
-	} else {
-		color.PrintWarn("Skip generate vim-gutentags config")
-	}
+	render.WithConfirm(tagsplugin, vim.ConfModules+"program.toml", "vim-gutentags", plugin.DeinGuTenTags)
 }
 
 func (d *Dein) GenerateQuickRun(quickrun bool) {
-	if quickrun {
-		render.WriteTemplate(vim.ConfModules+"program.toml", "vim-quickrun", plugin.DeinQuickRun)
-	} else {
-		color.PrintWarn("Skip generate vim-quickrun config")
-	}
+	render.WithConfirm(quickrun, vim.ConfModules+"program.toml", "vim-quickrun", plugin.DeinQuickRun)
 }
 
-func (d *Dein) GenerateDataTypeFile(datafile []string) {
-	datamap := map[string]string{
-		"MarkDown":   plugin.DeinMarkDown,
-		"Toml":       plugin.DeinToml,
-		"Nginx":      plugin.DeinNginx,
-		"Json":       plugin.DeinJson,
-		"Dockerfile": plugin.DeinDockerFile,
-	}
+func (d *Dein) GenerateDataTypeFile(datafile []string, datafilemap map[string]string) {
 	for _, f := range datafile {
-		_, ok := datamap[f]
+		_, ok := datafilemap[f]
 		if ok {
-			render.WriteTemplate(vim.ConfModules+"filetype.toml", f, datamap[f])
+			render.WriteTemplate(vim.ConfModules+"filetype.toml", f, datafilemap[f])
 		}
 	}
 }
 
-func (d *Dein) GenerateEnhanceplugin(plugins []string) {
-	pluginsmap := map[string]string{
-		"accelerated-jk accelerate up-down moving (j and k mapping)": plugin.DeinFastJK,
-		"vim-mundo  vim undo tree":                                   plugin.DeinMundo,
-		"vim-easymotion fast jump":                                   plugin.DeinEasyMotion,
-		"rainbow  rainbow parentheses":                               plugin.DeinRainbow,
-		"vim-floterm  vim terminal float":                            plugin.DeinFloaterm,
-	}
+func (d *Dein) GenerateEnhanceplugin(plugins []string, enhancepluginmap map[string]string) {
 	for _, v := range plugins {
-		_, ok := pluginsmap[v]
+		_, ok := enhancepluginmap[v]
 		if ok {
-			render.WriteTemplate(vim.ConfModules+"enhance.toml", strings.Split(v, " ")[0], pluginsmap[v])
+			render.WriteTemplate(vim.ConfModules+"enhance.toml", strings.Split(v, " ")[0], enhancepluginmap[v])
 		}
 	}
 }
