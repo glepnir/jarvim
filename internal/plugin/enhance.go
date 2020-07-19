@@ -1,6 +1,11 @@
 // Package plugin provides ...
 package plugin
 
+const DeinDein = `
+[[plugins]]
+repo = 'Shougo/dein.vim'
+`
+
 const DeinFastJK = `
 [[plugins]]
 repo = 'rhysd/accelerated-jk'

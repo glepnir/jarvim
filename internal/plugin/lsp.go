@@ -1,19 +1,32 @@
 package plugin
 
-const coc = `
+const DeinCoC = `
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 merged = 0
-build = 'yarn install --frozen-lockfile'
+rev = 'release'
 hook_add: '''
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
     let g:coc_status_error_sign = '•'
     let g:coc_status_warning_sign = '•'
     let g:coc_global_extensions =[
-		{{range .}}
-		\ '{{.}}'
-		{{end}}
+		\ 'coc-snippets',
+		\ 'coc-pairs',
+		\ 'coc-json',
+		\ 'coc-highlight',
+		\ 'coc-git',
+		\ 'coc-emoji',
+		\ 'coc-lists',
+		\ 'coc-stylelint',
+		\ 'coc-yaml',
+		\ 'coc-tabnine',
+		\ 'coc-gitignore',
+		\ 'coc-yank',
+		\ 'coc-actions',
+		\ 'coc-db',
+		\ 'coc-spell-checker',
+		\ 'coc-vimlsp',
         \]
 
     augroup coc_event

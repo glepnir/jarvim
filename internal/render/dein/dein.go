@@ -65,6 +65,7 @@ func (d *Dein) GenerateDashboard(dashboard bool) {
 
 func (d *Dein) GenerateBufferLine(bufferline bool) {
 	render.WithConfirm(bufferline, vim.ConfModules+"appearance.toml", "Vim-Buffer", plugin.DeinBufferLine)
+	render.WithConfirm(bufferline, vim.ConfCore+"pmap.vim", "vim-buffer keymap", plugin.BuffetKeyMap)
 }
 
 func (d *Dein) GenerateStatusLine(spaceline bool) {
@@ -75,6 +76,8 @@ func (d *Dein) GenerateExplorer(explorer string) {
 	if explorer == "coc-explorer" {
 	} else if explorer == "defx.nvim" {
 		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Defx.nvim", plugin.DeinDefx)
+		render.WriteTemplate(vim.ConfCore+"pmap.vim", "defx keymap", plugin.DefxKeyMap)
+		render.WriteTemplate(vim.ConfCore+"pmap.vim", "defx keymap", plugin.DefxFindKeyMap)
 	} else {
 		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Nerdtree", plugin.DeinNerdTree)
 	}
@@ -84,6 +87,7 @@ func (d *Dein) GenerateDatabase(database bool) {
 	if database {
 		render.WriteTemplate(vim.ConfAutoload+"initself.vim", "LoadEnv function", plugin.AutoloadLoadEnv)
 		render.WriteTemplate(vim.ConfModules+"database.toml", "Database", plugin.DeinDatabase)
+		render.WriteTemplate(vim.ConfCore+"pmap.vim", "database keymap", plugin.DataBaseKeyMap)
 	} else {
 		color.PrintWarn("Skip Generate Datbase")
 	}
@@ -91,6 +95,8 @@ func (d *Dein) GenerateDatabase(database bool) {
 
 func (d *Dein) GenerateFuzzyFind(fuzzyfind bool) {
 	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzyfind.toml", "vim-clap", plugin.DeinClap)
+	render.WithConfirm(fuzzyfind, vim.ConfCore+"pmap.vim", "vim-clap keymap", plugin.ClapKeyMap)
+	render.WithConfirm(fuzzyfind, vim.ConfCore+"pmap.vim", "coc-clap keymap", plugin.CocClapKeyMap)
 }
 
 func (d *Dein) GenerateEditorConfig(editorconfig bool) {
@@ -109,6 +115,7 @@ func (d *Dein) GenerateComment(comment bool) {
 	if comment {
 		render.WriteTemplate(vim.ConfModules+"filetype.toml", "context_filetype.vim", plugin.DeinContextFileType)
 		render.WriteTemplate(vim.ConfModules+"program.toml", "Caw.vim", plugin.DeinCaw)
+		render.WriteTemplate(vim.ConfCore+"pmap.vim", "caw.vim keymap", plugin.CawKeyMap)
 	} else {
 		color.PrintWarn("Skip generate caw.vim config")
 	}
@@ -116,6 +123,7 @@ func (d *Dein) GenerateComment(comment bool) {
 
 func (d *Dein) GenerateOutLine(outline bool) {
 	render.WithConfirm(outline, vim.ConfModules+"program.toml", "Vista.vim", plugin.DeinVista)
+	render.WithConfirm(outline, vim.ConfCore+"pmap.vim", "vista.vim keymap", plugin.VistaKeyMap)
 }
 
 func (d *Dein) GenerateTags(tagsplugin bool) {
@@ -124,6 +132,7 @@ func (d *Dein) GenerateTags(tagsplugin bool) {
 
 func (d *Dein) GenerateQuickRun(quickrun bool) {
 	render.WithConfirm(quickrun, vim.ConfModules+"program.toml", "vim-quickrun", plugin.DeinQuickRun)
+	render.WithConfirm(quickrun, vim.ConfCore+"pmap.vim", "quickrun keymap", plugin.QuickRunKeyMap)
 }
 
 func (d *Dein) GenerateDataTypeFile(datafile []string, datafilemap map[string]string) {
@@ -136,20 +145,39 @@ func (d *Dein) GenerateDataTypeFile(datafile []string, datafilemap map[string]st
 }
 
 func (d *Dein) GenerateEnhanceplugin(plugins []string, enhancepluginmap map[string]string) {
+	var enhancekeymap = map[string]string{
+		"vim-mundo":      plugin.MundoKeyMap,
+		"vim-easymotion": plugin.EasyMotionKeyMap,
+		"vim-floterm":    plugin.FloatermKeyMap,
+	}
+	render.WriteTemplate(vim.ConfModules+"enhance.toml", "dein.vim", plugin.DeinDein)
 	for _, v := range plugins {
-		_, ok := enhancepluginmap[v]
+		pluginname := strings.Split(v, " ")[0]
+		i, ok := enhancepluginmap[v]
 		if ok {
-			render.WriteTemplate(vim.ConfModules+"enhance.toml", strings.Split(v, " ")[0], enhancepluginmap[v])
+			render.WriteTemplate(vim.ConfModules+"enhance.toml", pluginname, i)
+		}
+		j, ok := enhancekeymap[pluginname]
+		if ok {
+			render.WriteTemplate(vim.ConfCore+"pmap.vim", pluginname+"keymap", j)
 		}
 	}
 }
 
 func (d *Dein) GenerateSandWich(sandwich bool) {
 	render.WithConfirm(sandwich, vim.ConfModules+"textobj.toml", "vim-sandwich", plugin.DeinSandWich)
+	render.WithConfirm(sandwich, vim.ConfCore+"pmap.vim", "vim-sandwich keymap", plugin.SandWichKeyMap)
 }
 
 func (d *Dein) GenerateTextObj() {
 	render.WithConfirm(true, vim.ConfModules+"textobj.toml", "textobj plugins", plugin.DeinTextObj)
+	render.WriteTemplate(vim.ConfCore+"pmap.vim", "textobj vim", plugin.NiceBlockKeyMap)
+	render.WriteTemplate(vim.ConfCore+"pmap.vim", "textobj vim", plugin.VimExpandRegionKeyMap)
+	render.WriteTemplate(vim.ConfCore+"pmap.vim", "textobj vim", plugin.DsfKeyMap)
+	render.WriteTemplate(vim.ConfCore+"pmap.vim", "textobj vim", plugin.SplitJoinKeyMap)
+	render.WriteTemplate(vim.ConfCore+"pmap.vim", "textobj vim", plugin.OperatorReplaceKeyMap)
+	render.WriteTemplate(vim.ConfCore+"pmap.vim", "textobj vim", plugin.MultiBlockKeyMap)
+	render.WriteTemplate(vim.ConfCore+"pmap.vim", "textobj vim", plugin.TextObjFunctionKeyMap)
 }
 
 func (d *Dein) GenerateVersionControl(userversion []string, versionmap map[string]string) {
@@ -178,6 +206,8 @@ func (d *Dein) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap
 			render.WriteTemplate(vim.ConfModules+"languages.toml", UserLanguages[i], v)
 		}
 	}
+	render.WriteTemplate(vim.ConfModules+"completion.toml", "coc.nvim", plugin.DeinCoC)
+	render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc.nvim keymap", plugin.CocKeyMap)
 }
 
 func (d *Dein) GenerateCocJson() {
@@ -187,4 +217,8 @@ func (d *Dein) GenerateCocJson() {
 		os.Exit(0)
 	}
 	color.PrintSuccess("Generate coc-settings.json success")
+}
+
+func (d *Dein) GenerateVimMap() {
+	render.WriteTemplate(vim.ConfCore+"vmap.vim", "vim map", plugin.VimKeyMap)
 }

@@ -56,4 +56,5 @@ func RunLogic() {
 	r.GenerateTextObj()
 	r.GenerateVersionControl(vim.VersionControlPlugin, vim.VersionControlMap)
 	r.GenerateCocJson()
+	r.GenerateVimMap()
 }

@@ -40,6 +40,7 @@ type Render interface {
 	GeneratePluginFolder()
 	GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string)
 	GenerateCocJson()
+	GenerateVimMap()
 }
 
 func NewRender(p Render) Render {
