@@ -22,7 +22,7 @@ func (v *VimPlug) GenerateGeneral() {
 
 }
 
-func (v *VimPlug) GenerateAutoloadSourceFile() {
+func (v *VimPlug) GenerateAutoloadFunc() {
 
 }
 

@@ -15,7 +15,7 @@ type Render interface {
 	GenerateCore(Leader, LocalLeaderKey string, leaderkeymap map[string]string)
 	GeneratePlugMan()
 	GenerateGeneral()
-	GenerateAutoloadSourceFile()
+	GenerateAutoloadFunc()
 	GenerateTheme()
 	GenerateCacheTheme(usercolors []string, colorschememap map[string]string)
 	GenerateColorscheme(colorschemes []string)

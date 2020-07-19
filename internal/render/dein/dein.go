@@ -32,8 +32,9 @@ func (d *Dein) GenerateGeneral() {
 	render.WithConfirm(true, vim.ConfCore+"general.vim", "core/general.vim", plugin.General)
 }
 
-func (d *Dein) GenerateAutoloadSourceFile() {
+func (d *Dein) GenerateAutoloadFunc() {
 	render.WithConfirm(true, vim.ConfAutoload+"initself.vim", "autoload/initself.vim", plugin.AutoloadSourceFile)
+	render.WithConfirm(true, vim.ConfAutoload+"initself.vim", "autoload/initself.vim", plugin.AutoloadMkdir)
 }
 
 // GenerateTheme will generate autoload/theme.vim

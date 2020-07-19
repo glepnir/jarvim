@@ -94,3 +94,16 @@ hook_source = '''
     let g:quickrun_no_default_key_mappings = 1
 '''
 `
+
+const DeinEmmet = `
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_event = 'InsertEnter'
+on_ft = [ 'html','css','javascript','javascriptreact','vue','typescript','typescriptreact' ]
+hook_source = '''
+    let g:user_emmet_complete_tag = 0
+    let g:user_emmet_install_global = 0
+    let g:user_emmet_install_command = 0
+    let g:user_emmet_mode = 'i'
+'''
+`
