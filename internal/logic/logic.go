@@ -57,4 +57,5 @@ func RunLogic() {
 	r.GenerateVersionControl(vim.VersionControlPlugin, vim.VersionControlMap)
 	r.GenerateCocJson()
 	r.GenerateVimMap()
+	r.GenerateLanguagePlugin(vim.UserLanguages, vim.LanguagesPluginMap)
 }

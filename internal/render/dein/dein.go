@@ -206,17 +206,13 @@ func (d *Dein) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap
 			render.WriteTemplate(vim.ConfModules+"languages.toml", UserLanguages[i], v)
 		}
 	}
+	render.WriteTemplate(vim.ConfAutoload+"initself.vim", "autoload coc function", plugin.AutoloadCoc)
 	render.WriteTemplate(vim.ConfModules+"completion.toml", "coc.nvim", plugin.DeinCoC)
 	render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc.nvim keymap", plugin.CocKeyMap)
 }
 
 func (d *Dein) GenerateCocJson() {
-	err := util.CopyFile("../../../example.json", vim.ConfPath+"/coc-settings.json")
-	if err != nil {
-		color.PrintError("Generate coc-settings.json failed")
-		os.Exit(0)
-	}
-	color.PrintSuccess("Generate coc-settings.json success")
+	render.WriteTemplate(vim.ConfPath+"/coc-settings.json", "coc-settings.json file", plugin.CocJson)
 }
 
 func (d *Dein) GenerateVimMap() {

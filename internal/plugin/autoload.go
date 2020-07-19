@@ -68,3 +68,12 @@ function! initself#mkdir_as_necessary(dir, force) abort
   endif
 endfunction
 `
+const AutoloadCoc = `
+" COC select the current word
+function! initself#select_current_word()
+    if !get(g:, 'coc_cursors_activated', 0)
+        return "\<Plug>(coc-cursors-word)"
+    endif
+    return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+endfunction
+`
