@@ -2,7 +2,12 @@
 package vimplug
 
 import (
+	"os"
+
 	"github.com/glepnir/jarvis/internal/render"
+	"github.com/glepnir/jarvis/internal/vim"
+	"github.com/glepnir/jarvis/pkg/color"
+	"github.com/glepnir/jarvis/pkg/util"
 )
 
 type VimPlug struct{}
@@ -101,3 +106,12 @@ func (v *VimPlug) GenerateTextObj() {
 }
 
 func (v *VimPlug) GenerateVersionControl(userversion []string, versionmap map[string]string) {}
+
+func (v *VimPlug) GeneratePluginFolder() {
+	err := util.CopyDir("./../../plugin", vim.ConfPlugin)
+	if err != nil {
+		color.PrintError("Copy plugin folder to your vim config path failed")
+		os.Exit(0)
+	}
+	color.PrintSuccess("Generate plugin folder success")
+}

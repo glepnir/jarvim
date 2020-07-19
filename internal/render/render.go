@@ -37,6 +37,7 @@ type Render interface {
 	GenerateSandWich(sandwich bool)
 	GenerateTextObj()
 	GenerateVersionControl(userversion []string, versionmap map[string]string)
+	GeneratePluginFolder()
 }
 
 func NewRender(p Render) Render {

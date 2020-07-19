@@ -13,6 +13,7 @@ var (
 	ConfCore             = ConfPath + "/core/"
 	ConfAutoload         = ConfPath + "/autoload/"
 	ConfModules          = ConfPath + "/modules/"
+	ConfPlugin           = ConfPath + "/plugin/"
 	PluginManage         string
 	Leaderkey            string
 	LocalLeaderKey       string

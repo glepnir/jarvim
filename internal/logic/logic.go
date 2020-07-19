@@ -32,7 +32,7 @@ func RunLogic() {
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey, vim.LeaderKeyMap)
 	r.GeneratePlugMan()
 	r.GenerateGeneral()
-	r.GenerateAutoloadSourceFile()
+	r.GenerateAutoloadFunc()
 	r.GenerateTheme()
 	r.GenerateCacheTheme(vim.Colorscheme, vim.ColorschemeMap)
 	r.GenerateColorscheme(vim.Colorscheme)
@@ -53,4 +53,5 @@ func RunLogic() {
 	r.GenerateSandWich(vim.SandwichPlugin)
 	r.GenerateTextObj()
 	r.GenerateVersionControl(vim.VersionControlPlugin, vim.VersionControlMap)
+	r.GeneratePluginFolder()
 }

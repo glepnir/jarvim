@@ -2,12 +2,14 @@
 package dein
 
 import (
+	"os"
 	"strings"
 
 	"github.com/glepnir/jarvis/internal/plugin"
 	"github.com/glepnir/jarvis/internal/render"
 	"github.com/glepnir/jarvis/internal/vim"
 	"github.com/glepnir/jarvis/pkg/color"
+	"github.com/glepnir/jarvis/pkg/util"
 )
 
 type Dein struct{}
@@ -30,6 +32,7 @@ func (d *Dein) GeneratePlugMan() {
 // GenerateGeneral will generate core/general.vim
 func (d *Dein) GenerateGeneral() {
 	render.WithConfirm(true, vim.ConfCore+"general.vim", "core/general.vim", plugin.General)
+	render.WithConfirm(true, vim.ConfCore+"event.vim", "core/event.vim", plugin.Event)
 }
 
 func (d *Dein) GenerateAutoloadFunc() {
@@ -157,4 +160,13 @@ func (d *Dein) GenerateVersionControl(userversion []string, versionmap map[strin
 		}
 	}
 	render.WriteTemplate(vim.ConfModules+"version.toml", "committia.vim", plugin.DeinCommita)
+}
+
+func (d *Dein) GeneratePluginFolder() {
+	err := util.CopyDir("./../../plugin", vim.ConfPlugin)
+	if err != nil {
+		color.PrintError("Copy plugin folder to your vim config path failed")
+		os.Exit(0)
+	}
+	color.PrintSuccess("Generate plugin folder success")
 }
