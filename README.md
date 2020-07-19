@@ -22,11 +22,12 @@ go get github.com/glepnir/jarvis
 ## FAQ
 
 - Why I write jarvis?
+
   I have been maintaining Thinkvim for a long time, and slowly it deviated from my original intention. At first, I wanted to use it as a vim configuration template for Vimer to use, but slowly it has to accept everyone’s preferences, I have to get Add more language support and other plug-in configurations, thinkvim becomes more and more bloated. This is wrong. I think that vim should be lightweight, so I wrote this cli tool jarvis, which will generate a greateful configuration for you, there are some useful hacks in the generated configuration, I hope it can help you, if you are new to vim, you no longer need to refer to other people's configurations, you can use the generated configuration as your starting point , This will greatly save your time.
 
 ## Donate
 
-Do you like dashboard-nvim? buy me a coffe 😘!
+Do you like jarvis? buy me a coffe 😘!
 
 [![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/bobbyhub)
 
