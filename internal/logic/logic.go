@@ -27,7 +27,7 @@ func RunLogic() {
 	vim.DataTypeFile = DataTypeFile()
 	vim.EnhancePlugins = EnhancePlugin()
 	r.GenerateInit()
-	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey)
+	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey, vim.LeaderKeyMap)
 	r.GeneratePlugMan()
 	r.GenerateGeneral()
 	r.GenerateTheme()

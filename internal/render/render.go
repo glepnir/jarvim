@@ -12,7 +12,7 @@ import (
 
 type Render interface {
 	GenerateInit()
-	GenerateCore(Leader, LocalLeaderKey string)
+	GenerateCore(Leader, LocalLeaderKey string, leaderkeymap map[string]string)
 	GeneratePlugMan()
 	GenerateGeneral()
 	GenerateTheme()

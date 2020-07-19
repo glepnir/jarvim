@@ -12,7 +12,7 @@ var _ render.Render = (*VimPlug)(nil)
 func (v *VimPlug) GenerateInit() {
 }
 
-func (v *VimPlug) GenerateCore(Leaderkey, LocalLeaderKey string) {
+func (v *VimPlug) GenerateCore(Leaderkey, LocalLeaderKey string, leaderkeymap map[string]string) {
 
 }
 

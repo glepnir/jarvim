@@ -31,7 +31,14 @@ var (
 	QuickRun          bool
 	DataTypeFile      []string
 	EnhancePlugins    []string
-	ColorschemeMap    = map[string]string{
+
+	LeaderKeyMap = map[string]string{
+		"Space":        "\\<Space>",
+		"Comma(,)":     ",",
+		"Semicolon(;)": ";",
+	}
+
+	ColorschemeMap = map[string]string{
 		"hardcoreplayers/oceanic-material":   "oceanic_materail",
 		"drewtempelmeyer/palenight.vim":      "palenight",
 		"gruvbox-community/gruvbox":          "gruvbox",

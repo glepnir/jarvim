@@ -19,13 +19,8 @@ func (d *Dein) GenerateInit() {
 }
 
 // GenerateCore will generate core/core.vim
-func (d *Dein) GenerateCore(LeaderKey, LocalLeaderKey string) {
-	keymap := map[string]string{
-		"Space":        "\\<Space>",
-		"Comma(,)":     ",",
-		"Semicolon(;)": ";",
-	}
-	render.ParseTemplate(vim.ConfCore+"core.vim", "core/core.vim", plugin.Core, []string{keymap[LeaderKey], keymap[LocalLeaderKey]})
+func (d *Dein) GenerateCore(LeaderKey, LocalLeaderKey string, leaderkeymap map[string]string) {
+	render.ParseTemplate(vim.ConfCore+"core.vim", "core/core.vim", plugin.Core, []string{leaderkeymap[LeaderKey], leaderkeymap[LocalLeaderKey]})
 }
 
 func (d *Dein) GeneratePlugMan() {
