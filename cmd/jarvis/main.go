@@ -1,10 +1,8 @@
 // Package main provides ...
 package main
 
-import (
-	"github.com/glepnir/jarvis/internal/logic"
-)
+import "github.com/glepnir/jarvis/internal/cli"
 
 func main() {
-	logic.RunLogic()
+	cli.Execute()
 }

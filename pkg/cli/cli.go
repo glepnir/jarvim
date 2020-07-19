@@ -7,19 +7,7 @@ import (
 
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/AlecAivazis/survey/v2/terminal"
-	"github.com/spf13/cobra"
 )
-
-func NewCmd(use, description string, f func() error) *cobra.Command {
-	return &cobra.Command{
-		Use:   use,
-		Long:  description,
-		Short: description,
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return f()
-		},
-	}
-}
 
 func ConfirmTemplate(message string) bool {
 	confirm := false

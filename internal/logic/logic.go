@@ -6,7 +6,7 @@ import (
 	"github.com/glepnir/jarvis/pkg/util"
 )
 
-func RunLogic() {
+func RunLogic() error {
 	util.EnsureFoldersExist(vim.ConfPath, vim.ConfCore, vim.ConfAutoload, vim.ConfModules, vim.CachePath)
 	r := PluginManage()
 	vim.Leaderkey = LeaderKey()
@@ -58,4 +58,5 @@ func RunLogic() {
 	r.GenerateCocJson()
 	r.GenerateVimMap()
 	r.GenerateLanguagePlugin(vim.UserLanguages, vim.LanguagesPluginMap)
+	return nil
 }
