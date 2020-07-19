@@ -2,13 +2,6 @@
 
 Generate a module vim configruation like a VIM PRO!
 
-I have been maintaining Thinkvim for a long time, and slowly it deviated from my original intention. At first, I wanted to use it as a
-vim configuration template for Vimer to use, but slowly it has to accept everyone’s preferences, I have to get Add more language support
-and other plug-in configurations, thinkvim becomes more and more bloated. This is wrong. I think that vim should be lightweight, so I wrote
-this cli tool jarvis, which will generate a greateful configuration for you, there are some useful hacks in the generated configuration,
-I hope it can help you, if you are new to vim, you no longer need to refer to other people's configurations, you can use the generated configuration
-as your starting point , This will greatly save your time.
-
 ## Install
 
 ```console
@@ -26,6 +19,11 @@ go get github.com/glepnir/jarvis
 - `-v` to print jarvis version.
 - `-g` to generate vim configuration.
 
+## FAQ
+
+- Why I write jarvis?
+  I have been maintaining Thinkvim for a long time, and slowly it deviated from my original intention. At first, I wanted to use it as a vim configuration template for Vimer to use, but slowly it has to accept everyone’s preferences, I have to get Add more language support and other plug-in configurations, thinkvim becomes more and more bloated. This is wrong. I think that vim should be lightweight, so I wrote this cli tool jarvis, which will generate a greateful configuration for you, there are some useful hacks in the generated configuration, I hope it can help you, if you are new to vim, you no longer need to refer to other people's configurations, you can use the generated configuration as your starting point , This will greatly save your time.
+
 ## Donate
 
 Do you like dashboard-nvim? buy me a coffe 😘!
@@ -35,12 +33,6 @@ Do you like dashboard-nvim? buy me a coffe 😘!
 | Wechat                                                                                                          | AliPay                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | ![wechat](https://user-images.githubusercontent.com/41671631/84404718-c8312a00-ac39-11ea-90d7-ee679fbb3705.png) | ![ali](https://user-images.githubusercontent.com/41671631/84403276-1a714b80-ac38-11ea-8607-8492df84e516.png) |
-
-## Acknowledgement
-
-- Inspired by [doom emacs](https://github.com/hlissner/doom-emacs)
-
-- [vim-startify](https://github.com/mhinz/vim-startify)
 
 ## LICENSE
 
