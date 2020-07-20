@@ -4,6 +4,8 @@ Generate a module vim configruation like a VIM PRO!
 
 ## Install
 
+- MacOS
+
 ```console
 brew tap glepnir/jarvis
 brew install jarvis
