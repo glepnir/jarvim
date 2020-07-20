@@ -25,6 +25,8 @@ func (v *VimPlug) GenerateInit() {
 	os.MkdirAll(vim.ConfModules+"textobj", 0700)
 	os.MkdirAll(vim.ConfModules+"filetype", 0700)
 	os.MkdirAll(vim.ConfModules+"languages", 0700)
+	os.MkdirAll(vim.ConfModules+"fuzzyfind", 0700)
+	os.MkdirAll(vim.ConfModules+"version", 0700)
 }
 
 func (v *VimPlug) GenerateCore(LeaderKey, LocalLeaderKey string, leaderkeymap map[string]string) {
@@ -105,9 +107,9 @@ func (v *VimPlug) GenerateDatabase(database bool) {
 
 func (v *VimPlug) GenerateFuzzyFind(fuzzyfind bool) {
 	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzyfind/plugins.vim", "vim-clap", plugin.PlugClap)
-	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzfind/config.vim", "vim-clap setting", plugin.PlugClapSetting)
-	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzfind/config.vim", "vim-clap keymap", plugin.ClapKeyMap)
-	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzfind/config.vim", "coc-clap keymap", plugin.CocClapKeyMap)
+	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzyfind/config.vim", "vim-clap setting", plugin.PlugClapSetting)
+	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzyfind/config.vim", "vim-clap keymap", plugin.ClapKeyMap)
+	render.WithConfirm(fuzzyfind, vim.ConfModules+"fuzzyfind/config.vim", "coc-clap keymap", plugin.CocClapKeyMap)
 }
 
 func (v *VimPlug) GenerateIndentLine(indentplugin string) {
@@ -154,10 +156,10 @@ func (v *VimPlug) GenerateDataTypeFile(datafile []string, datafilemap map[string
 	for _, f := range datafile {
 		_, ok := datafilemap[f]
 		if ok {
-			render.WriteTemplate(vim.ConfModules+"filetype/plugins.toml", f, datafilemap[f])
+			render.WriteTemplate(vim.ConfModules+"filetype/plugins.vim", f, datafilemap[f])
 		}
 		if f == "MarkDown" {
-			render.WriteTemplate(vim.ConfModules+"filetype/config.toml", "Markdwon settings", plugin.PlugMarkDownSetting)
+			render.WriteTemplate(vim.ConfModules+"filetype/config.vim", "Markdwon settings", plugin.PlugMarkDownSetting)
 		}
 	}
 }
@@ -219,9 +221,9 @@ func (v *VimPlug) GenerateVersionControl(userversion []string, versionmap map[st
 		if ok {
 			render.WriteTemplate(vim.ConfModules+"version/plugins.vim", userversion[i], versionmap[v])
 			if v == "vim-fugitive" {
-				render.WriteTemplate(vim.ConfModules+"verison/config.vim", "vim-fugtive setting", plugin.PlugFugTiveSetting)
+				render.WriteTemplate(vim.ConfModules+"version/config.vim", "vim-fugtive setting", plugin.PlugFugTiveSetting)
 			} else {
-				render.WriteTemplate(vim.ConfModules+"verison/config.vim", "vim-fugtive setting", plugin.PlugVimagitSetting)
+				render.WriteTemplate(vim.ConfModules+"version/config.vim", "vim-fugtive setting", plugin.PlugVimagitSetting)
 			}
 		}
 		_, ok = versionkeymap[v]
@@ -260,7 +262,7 @@ func (v *VimPlug) GenerateLanguagePlugin(UserLanguages []string, LanguagesPlugin
 		})
 	}
 	render.WriteTemplate(vim.ConfAutoload+"initself.vim", "autoload coc function", plugin.AutoloadCoc)
-	render.ParseTemplate(vim.ConfModules+"completion.toml", "coc.nvim", plugin.DeinCoC, data)
+	render.ParseTemplate(vim.ConfModules+"completion/plugins.vim", "coc.nvim", plugin.DeinCoC, data)
 	render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc.nvim keymap", plugin.CocKeyMap)
 }
 
