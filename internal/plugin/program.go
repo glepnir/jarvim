@@ -39,8 +39,8 @@ hook_add = '''
 const DeinCaw = `
 [[plugins]]
 repo = 'tyru/caw.vim'
-depends: context_filetype.vim
-on_map: { nx = '<Plug>' }
+depends = 'context_filetype.vim'
+on_map = { nx = '<Plug>' }
 `
 
 const DeinVista = `

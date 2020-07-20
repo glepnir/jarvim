@@ -5,9 +5,9 @@ const DeinClap = `
 [[plugins]]
 repo = 'liuchengxu/vim-clap'
 merged = 0
-build = "bash install.sh"
+build = 'bash install.sh'
 on_map = { n = '<Plug>' }
-hook_source: '''
+hook_source = '''
     let s:zshrc = expand($HOME . '/.zshrc')
     let s:tmux_conf = expand($HOME . '/.tmux.conf')
     let g:clap_cache_directory = $DATA_PATH . '/clap'

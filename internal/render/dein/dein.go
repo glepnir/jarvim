@@ -218,3 +218,8 @@ func (d *Dein) GenerateCocJson() {
 func (d *Dein) GenerateVimMap() {
 	render.WriteTemplate(vim.ConfCore+"vmap.vim", "vim map", plugin.VimKeyMap)
 }
+
+func (d *Dein) GenerateInstallScripts() {
+	render.WriteTemplate(vim.ConfPath+"/Makefile", "Makefile", plugin.DeinMakeFile)
+	render.WriteTemplate(vim.ConfPath+"/install.sh", "install.sh", plugin.DeinInstallShell)
+}

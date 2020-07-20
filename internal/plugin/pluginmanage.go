@@ -62,7 +62,7 @@ function! s:main()
 	endif
 
 	" Initializes chosen package manager
-	call s:use_{s:package_manager}()
+	call s:use_dein()
 endfunction
 
 function! s:use_dein()

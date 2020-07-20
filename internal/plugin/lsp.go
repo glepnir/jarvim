@@ -5,7 +5,7 @@ const DeinCoC = `
 repo = 'neoclide/coc.nvim'
 merged = 0
 rev = 'release'
-hook_add: '''
+hook_add = '''
     let g:coc_snippet_next = '<TAB>'
     let g:coc_snippet_prev = '<S-TAB>'
     let g:coc_status_error_sign = '•'
@@ -52,6 +52,7 @@ hook_add: '''
       let col = col('.') - 1
       return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
+'''
 
 [[plugins]]
 repo = 'honza/vim-snippets'

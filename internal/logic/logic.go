@@ -58,5 +58,6 @@ func RunLogic() error {
 	r.GenerateCocJson()
 	r.GenerateVimMap()
 	r.GenerateLanguagePlugin(vim.UserLanguages, vim.LanguagesPluginMap)
+	r.GenerateInstallScripts()
 	return nil
 }
