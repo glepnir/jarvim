@@ -5,7 +5,8 @@ Generate a module vim configruation like a VIM PRO!
 ## Install
 
 ```console
-brew
+brew tap glepnir/jarvis
+brew install jarvis
 ```
 
 - if you have go env, you can install from source code.
