@@ -7,7 +7,7 @@ Generate a module vim configruation like a VIM PRO!
 - MacOS
 
 ```console
-brew tap glepnir/jarvis
+brew tap glepnir/tap
 brew install jarvis
 ```
 
