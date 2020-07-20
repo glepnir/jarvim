@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	cli_version = "0.0.1"
+	cli_version = "0.1.1"
 	version     bool
 	genConfig   bool
 )
