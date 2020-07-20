@@ -134,11 +134,108 @@ endfunction
 call s:main()
 `
 
-const vimplug = `
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+const VimPlug = `
+" Set main configuration directory as parent directory
+let $VIM_PATH =
+	\ get(g:, 'etc_vim_path',
+	\   exists('*stdpath') ? stdpath('config') :
+	\   ! empty($MYVIMRC) ? fnamemodify(expand($MYVIMRC), ':h') :
+	\   ! empty($VIMCONFIG) ? expand($VIMCONFIG) :
+	\   ! empty($VIM_PATH) ? expand($VIM_PATH) :
+	\   fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
+	\ )
 
+" Set data/cache directory as $XDG_CACHE_HOME/vim
+let $DATA_PATH =
+	\ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/vim')
+
+" Collection of  plugins list config file-paths
+let s:config_paths = split(globpath('$VIM_PATH/modules', '*'), '\n')
+
+function! s:main()
+	if has('vim_starting')
+		" When using VIMINIT trick for exotic MYVIMRC locations, add path now.
+		if &runtimepath !~# $VIM_PATH
+			set runtimepath^=$VIM_PATH
+		endif
+
+		" Ensure data directories
+		for s:path in [
+				\ $DATA_PATH,
+				\ $DATA_PATH . '/undo',
+				\ $DATA_PATH . '/backup',
+				\ $DATA_PATH . '/session']
+			if ! isdirectory(s:path)
+				call mkdir(s:path, 'p')
+			endif
+		endfor
+
+		" Python interpreter settings
+		if has('nvim')
+			" Try using pyenv virtualenv called 'neovim'
+			let l:virtualenv = ''
+			if ! empty($PYENV_ROOT)
+				let l:virtualenv = $PYENV_ROOT . '/versions/neovim/bin/python'
+			endif
+			if empty(l:virtualenv) || ! filereadable(l:virtualenv)
+				" Fallback to old virtualenv location
+				let l:virtualenv = $DATA_PATH . '/venv/neovim3/bin/python'
+			endif
+			if filereadable(l:virtualenv)
+				let g:python3_host_prog = l:virtualenv
+			endif
+
+		elseif has('pythonx')
+			if has('python3')
+				set pyxversion=3
+			elseif has('python')
+				set pyxversion=2
+			endif
+		endif
+	endif
+
+	" Initializes chosen package manager
+	call s:use_plug()
+endfunction
+
+function! s:use_plug() abort
+	" vim-plug package-manager initialization
+	let l:cache_root = $DATA_PATH . '/plug'
+	let l:cache_init = l:cache_root . '/init.vimplug'
+	let l:cache_repos = l:cache_root . '/repos'
+
+	augroup user_plugin_vimplug
+		autocmd!
+	augroup END
+
+	if &runtimepath !~# '/init.vimplug'
+
+		if ! isdirectory(l:cache_init)
+			silent !curl -fLo $DATA_PATH/plug/init.vimplug/autoload/plug.vim
+				\ --create-dirs
+				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+			autocmd user_plugin_vimplug VimEnter * PlugInstall --sync | source $MYVIMRC
+		endif
+
+		execute 'set runtimepath+='.substitute(
+			\ fnamemodify(l:cache_init, ':p') , '/$', '', '')
+	endif
+
+	call plug#begin(l:cache_repos)
+
+	" Automatically install missing plugins on startup
+	if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+	autocmd VimEnter * PlugInstall | q
+	endif
+
+	let l:rc = split(globpath($VIM_PATH."/modules","plugins.vim"))
+	for l:plugin in l:rc
+		source l:plugin
+	endfor
+
+	call plug#end()
+endfunction
+
+call s:main()
 `

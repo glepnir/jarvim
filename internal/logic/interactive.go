@@ -4,6 +4,7 @@ package logic
 import (
 	"github.com/glepnir/jarvis/internal/render"
 	"github.com/glepnir/jarvis/internal/render/dein"
+	"github.com/glepnir/jarvis/internal/render/vimplug"
 	"github.com/glepnir/jarvis/internal/vim"
 	"github.com/glepnir/jarvis/pkg/cli"
 )
@@ -14,8 +15,9 @@ func PluginManage() render.Render {
 	pm := cli.SingleSelectTemplate(message, options)
 	if pm == "dein" {
 		return new(dein.Dein)
+	} else {
+		return new(vimplug.VimPlug)
 	}
-	return nil
 }
 
 func LeaderKey() string {
