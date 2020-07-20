@@ -2,6 +2,7 @@
 package logic
 
 import (
+	"github.com/glepnir/jarvis/internal/plugin"
 	"github.com/glepnir/jarvis/internal/render"
 	"github.com/glepnir/jarvis/internal/render/dein"
 	"github.com/glepnir/jarvis/internal/render/vimplug"
@@ -20,6 +21,46 @@ func PluginManage() render.Render {
 	}
 }
 
+func NewDataFileMap(r render.Render) map[string]string {
+	_, ok := r.(*dein.Dein)
+	if ok {
+		return map[string]string{
+			"MarkDown":   plugin.DeinMarkDown,
+			"Toml":       plugin.DeinToml,
+			"Nginx":      plugin.DeinNginx,
+			"Json":       plugin.DeinJson,
+			"Dockerfile": plugin.DeinDockerFile,
+		}
+	}
+	return map[string]string{
+		"MarkDown":   plugin.PlugMarkDown,
+		"Toml":       plugin.PlugToml,
+		"Nginx":      plugin.PlugNginx,
+		"Json":       plugin.PlugJson,
+		"Dockerfile": plugin.PlugDockerFile,
+	}
+
+}
+
+func NewEnhancePluginMap(r render.Render) map[string]string {
+	_, ok := r.(*dein.Dein)
+	if ok {
+		return map[string]string{
+			"accelerated-jk accelerate up-down moving (j and k mapping)": plugin.DeinFastJK,
+			"vim-mundo  vim undo tree":                                   plugin.DeinMundo,
+			"vim-easymotion fast jump":                                   plugin.DeinEasyMotion,
+			"rainbow  rainbow parentheses":                               plugin.DeinRainbow,
+			"vim-floterm  vim terminal float":                            plugin.DeinFloaterm,
+		}
+	}
+	return map[string]string{
+		"accelerated-jk accelerate up-down moving (j and k mapping)": plugin.PlugFastJK,
+		"vim-mundo  vim undo tree":                                   plugin.PlugMundo,
+		"vim-easymotion fast jump":                                   plugin.PlugEasyMotion,
+		"rainbow  rainbow parentheses":                               plugin.PlugRainbow,
+		"vim-floterm  vim terminal float":                            plugin.PlugFloaterm,
+	}
+}
 func LeaderKey() string {
 	message := "What is your Leader Key?"
 	options := []string{"Space", "Comma(,)", "Semicolon(;)"}
@@ -105,24 +146,24 @@ func QuickRunPlugin() bool {
 	return cli.ConfirmTemplate(message)
 }
 
-func DataTypeFile() []string {
+func DataTypeFile(r render.Render) []string {
 	questionname := "Data filetype"
 	message := "Which Data filetype you need?"
 	pagesize := 10
 	options := make([]string, 0)
-	for k, _ := range vim.DataFileMap {
+	for k, _ := range NewDataFileMap(r) {
 		options = append(options, k)
 	}
 
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
-func EnhancePlugin() []string {
+func EnhancePlugin(r render.Render) []string {
 	questionname := "Enhance question"
 	message := "Choose the enhance plugins that you need "
 	pagesize := 10
 	options := make([]string, 0)
-	for k, _ := range vim.EnhancePluginMap {
+	for k, _ := range NewEnhancePluginMap(r) {
 		options = append(options, k)
 	}
 
