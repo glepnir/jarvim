@@ -316,3 +316,26 @@ omap <silent> if <Plug>(textobj-function-i)
 xmap <silent> af <Plug>(textobj-function-a)
 xmap <silent> if <Plug>(textobj-function-i)
 `
+
+const VimagitKeyMap = `
+nnoremap <silent> <Leader>gg :Magit<CR>
+`
+
+const FugiTiveKeyMap = `
+nnoremap <silent> <Leader>ga :Git add %:p<CR>
+nnoremap <silent> <Leader>gd :Gdiffsplit<CR>
+nnoremap <silent> <Leader>gc :Git commit<CR>
+nnoremap <silent> <Leader>gb :Git blame<CR>
+nnoremap <silent> <Leader>gf :Gfetch<CR>
+nnoremap <silent> <Leader>gs :Git<CR>
+nnoremap <silent> <Leader>gp :Gpush<CR>
+`
+
+const NerdTreeKeyMap = `
+nnoremap <silent><leader>e :NERDTreeToggle <CR>
+nnoremap <silent><leader>F :NERDTreeFind <CR>
+`
+
+const CocExplorerKeyMap = `
+nmap <leader>e :CocCommand explorer<CR>
+`

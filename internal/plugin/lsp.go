@@ -26,6 +26,9 @@ hook_add = '''
 		\ 'coc-db',
 		\ 'coc-spell-checker',
 		\ 'coc-vimlsp',
+		{{ if index . 1}}
+		\ 'coc-explorer',
+		{{end}}
         \]
 
     augroup coc_event

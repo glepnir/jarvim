@@ -178,3 +178,5 @@ on_source = 'nerdtree'
 repo = 'Xuyuanp/nerdtree-git-plugin'
 on_source = 'nerdtree'
 `
+
+var DeinCocExplorer = false

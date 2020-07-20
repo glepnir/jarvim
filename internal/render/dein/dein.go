@@ -74,12 +74,15 @@ func (d *Dein) GenerateStatusLine(spaceline bool) {
 
 func (d *Dein) GenerateExplorer(explorer string) {
 	if explorer == "coc-explorer" {
+		plugin.DeinCocExplorer = true
+		render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc-explorer keymap", plugin.CocExplorerKeyMap)
 	} else if explorer == "defx.nvim" {
 		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Defx.nvim", plugin.DeinDefx)
 		render.WriteTemplate(vim.ConfCore+"pmap.vim", "defx keymap", plugin.DefxKeyMap)
 		render.WriteTemplate(vim.ConfCore+"pmap.vim", "defx keymap", plugin.DefxFindKeyMap)
 	} else {
 		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Nerdtree", plugin.DeinNerdTree)
+		render.WriteTemplate(vim.ConfCore+"pmap.vim", "nerdtree keymap", plugin.NerdTreeKeyMap)
 	}
 }
 
@@ -181,10 +184,19 @@ func (d *Dein) GenerateTextObj() {
 }
 
 func (d *Dein) GenerateVersionControl(userversion []string, versionmap map[string]string) {
+	versionkeymap := map[string]string{
+		"jreybert/vimagit":   plugin.VimagitKeyMap,
+		"tpope/vim-fugitive": plugin.FugiTiveKeyMap,
+	}
+
 	for i, v := range userversion {
 		_, ok := versionmap[v]
 		if ok {
 			render.WriteTemplate(vim.ConfModules+"version.toml", userversion[i], versionmap[v])
+		}
+		_, ok = versionkeymap[v]
+		if ok {
+			render.WriteTemplate(vim.ConfCore+"pmap.vim", v+"keymap", versionkeymap[v])
 		}
 	}
 	render.WriteTemplate(vim.ConfModules+"version.toml", "committia.vim", plugin.DeinCommita)
@@ -200,6 +212,7 @@ func (d *Dein) GeneratePluginFolder() {
 }
 
 func (d *Dein) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string) {
+	data := []interface{}{plugin.DeinCoC, plugin.DeinCocExplorer}
 	for i, k := range UserLanguages {
 		v, ok := LanguagesPluginMap[k]
 		if ok {
@@ -207,7 +220,7 @@ func (d *Dein) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap
 		}
 	}
 	render.WriteTemplate(vim.ConfAutoload+"initself.vim", "autoload coc function", plugin.AutoloadCoc)
-	render.WriteTemplate(vim.ConfModules+"completion.toml", "coc.nvim", plugin.DeinCoC)
+	render.ParseTemplate(vim.ConfModules+"completion.toml", "coc.nvim", plugin.DeinCoC, data)
 	render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc.nvim keymap", plugin.CocKeyMap)
 }
 
