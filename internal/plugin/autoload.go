@@ -1,6 +1,7 @@
 // Package plugin provides ...
 package plugin
 
+// AutoloadLoadEnv is a hack load data from .env file
 const AutoloadLoadEnv = `
 " Load Env file and return env content
 function! initself#load_env()
@@ -33,6 +34,7 @@ function! initself#load_db_from_env()
 endfunction
 `
 
+// AutoloadSourceFile is a hack to source file
 const AutoloadSourceFile = `
 function! initself#source_file(root_path,path, ...)
 	" Source user configuration files with set/global sensitivity
@@ -57,6 +59,7 @@ function! initself#source_file(root_path,path, ...)
 endfunction
 `
 
+// AutoloadMkdir ensure dir exist
 const AutoloadMkdir = `
 " Credits: https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/options.rc.vim#L147
 " mkdir
@@ -68,6 +71,8 @@ function! initself#mkdir_as_necessary(dir, force) abort
   endif
 endfunction
 `
+
+// AutoloadCoc
 const AutoloadCoc = `
 " COC select the current word
 function! initself#select_current_word()

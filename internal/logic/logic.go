@@ -6,6 +6,7 @@ import (
 	"github.com/glepnir/jarvis/pkg/util"
 )
 
+// RunLogic run our logic
 func RunLogic() error {
 	util.EnsureFoldersExist(vim.ConfPath, vim.ConfCore, vim.ConfAutoload, vim.ConfModules, vim.CachePath)
 	r := PluginManage()

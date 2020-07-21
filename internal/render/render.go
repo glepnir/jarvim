@@ -10,6 +10,7 @@ import (
 	"github.com/glepnir/jarvis/pkg/color"
 )
 
+// Render interface
 type Render interface {
 	GenerateInit()
 	GenerateCore(Leader, LocalLeaderKey string, leaderkeymap map[string]string)
@@ -44,11 +45,6 @@ type Render interface {
 	GenerateInstallScripts()
 }
 
-func NewRender(p Render) Render {
-	var r Render = p
-	return r
-}
-
 // RollBack will remove the config folder when
 // some errors disappear
 func RollBack(err error) {
@@ -58,6 +54,7 @@ func RollBack(err error) {
 	os.Exit(0)
 }
 
+// ParseTemplate
 func ParseTemplate(targetfile, name string, plugintemplate string, data interface{}) {
 	f, err := os.OpenFile(targetfile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	defer f.Close()
@@ -72,6 +69,7 @@ func ParseTemplate(targetfile, name string, plugintemplate string, data interfac
 	color.PrintSuccess(fmt.Sprintf("Generate %v success", name))
 }
 
+// WriteTemplate
 func WriteTemplate(targetfile string, name, plugintemplate string) {
 	f, err := os.OpenFile(targetfile, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	defer f.Close()
@@ -85,6 +83,7 @@ func WriteTemplate(targetfile string, name, plugintemplate string) {
 	color.PrintSuccess(fmt.Sprintf("Generate %v success", name))
 }
 
+// WithConfirm
 func WithConfirm(confirm bool, targetfile, name, plugintemplate string) {
 	if confirm {
 		WriteTemplate(targetfile, name, plugintemplate)

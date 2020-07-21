@@ -1,8 +1,12 @@
-// Package cli provides ...
+// Copyright 2020 The jarvis Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 package cli
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/glepnir/jarvis/internal/logic"
@@ -36,9 +40,10 @@ func init() {
 	rootCmd.Flags().BoolVarP(&genConfig, "Generate vim config", "g", false, "generate new configuration")
 }
 
+// Execute do the rootmcmd.Execute() function
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 		os.Exit(1)
 	}
 }

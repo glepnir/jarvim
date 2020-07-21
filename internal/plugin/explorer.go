@@ -2,6 +2,7 @@
 package plugin
 
 const (
+	// DeinDefx
 	DeinDefx = `
 [[plugins]]
 repo = 'Shougo/defx.nvim'

@@ -1,6 +1,7 @@
 // Package plugin provides ...
 package plugin
 
+// Core is dein
 const Core = `
 if &compatible
 	" vint: -ProhibitSetNoCompatible
@@ -68,6 +69,7 @@ set secure
 " vim: set ts=2 sw=2 tw=80 noet :
 `
 
+// PlugCore is vim-plug
 const PlugCore = `
 if &compatible
 	" vint: -ProhibitSetNoCompatible
@@ -125,7 +127,6 @@ endif
 call initself#source_file($VIM_PATH,'core/plug.vim')
 call initself#source_file($VIM_PATH,'core/general.vim')
 call initself#source_file($VIM_PATH,'core/event.vim')
-call initself#source_file($VIM_PATH,'core/pmap.vim')
 call initself#source_file($VIM_PATH,'core/vmap.vim')
 call theme#theme_init()
 let g:oceanic_material_allow_bold = 1

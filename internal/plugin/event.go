@@ -1,6 +1,7 @@
 // Package plugin provides ...
 package plugin
 
+// Event is event.vim
 const Event = `
 augroup common "{{{
   autocmd!
