@@ -27,6 +27,7 @@ func (v *VimPlug) GenerateInit() {
 	os.MkdirAll(vim.ConfModules+"languages", 0700)
 	os.MkdirAll(vim.ConfModules+"fuzzyfind", 0700)
 	os.MkdirAll(vim.ConfModules+"version", 0700)
+	os.MkdirAll(vim.ConfModules+"completion", 0700)
 }
 
 func (v *VimPlug) GenerateCore(LeaderKey, LocalLeaderKey string, leaderkeymap map[string]string) {
@@ -244,7 +245,28 @@ func (v *VimPlug) GeneratePluginFolder() {
 	}
 	color.PrintSuccess("Generate plugin folder success")
 }
+
 func (v *VimPlug) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string) {
+	pluglsp := map[string]string{
+		plugin.PlugCFamily:    plugin.PlugCFamilyLsp,
+		plugin.PlugR:          plugin.PlugRLsp,
+		plugin.PlugJavascript: plugin.PlugJavascriptLsp,
+		plugin.PlugTypescript: plugin.PlugTypescriptLsp,
+		plugin.PlugDart:       plugin.PlugDartLsp,
+		plugin.PlugVue:        plugin.PlugVueLsp,
+		plugin.PlugGo:         plugin.PlugGoLsp,
+		plugin.PlugRust:       plugin.PlugRustLsp,
+		plugin.PlugHaskell:    plugin.PlugHaskellLsp,
+		plugin.PlugPhp:        plugin.PlugPhpLsp,
+		plugin.PlugRuby:       plugin.PlugRubyLsp,
+		plugin.PlugScala:      plugin.PlugScalaLsp,
+		plugin.PlugShell:      plugin.PlugShellLsp,
+		plugin.PlugLua:        plugin.PlugLuaLsp,
+		plugin.PlugPython:     plugin.PlugPythonLsp,
+		plugin.PlugHtml:       plugin.PlugHtmlLsp,
+		plugin.PlugCss:        plugin.PlugCssLsp,
+	}
+
 	var once sync.Once
 	needemmet := []string{"React", "Vue", "Html"}
 	data := []interface{}{plugin.DeinCoC, plugin.DeinCocExplorer}
@@ -253,17 +275,23 @@ func (v *VimPlug) GenerateLanguagePlugin(UserLanguages []string, LanguagesPlugin
 		if ok {
 			render.WriteTemplate(vim.ConfModules+"languages/plugins.vim", UserLanguages[i], v)
 		}
+		l, ok := pluglsp[v]
+		if ok {
+			render.WriteTemplate(vim.ConfModules+"languages/config.vim", UserLanguages[i]+"lsp setting", l)
+		}
 		once.Do(func() {
 			for _, j := range needemmet {
 				if j == k {
-					render.WriteTemplate(vim.ConfModules+"program/plugins.vim", "emmet plugins", plugin.DeinEmmet)
+					render.WriteTemplate(vim.ConfModules+"program/plugins.vim", "emmet plugins", plugin.PlugEmmet)
+					render.WriteTemplate(vim.ConfModules+"program/config.vim", "emmet plugins setting", plugin.PlugEmmetSetting)
 				}
 			}
 		})
 	}
 	render.WriteTemplate(vim.ConfAutoload+"initself.vim", "autoload coc function", plugin.AutoloadCoc)
-	render.ParseTemplate(vim.ConfModules+"completion/plugins.vim", "coc.nvim", plugin.DeinCoC, data)
-	render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc.nvim keymap", plugin.CocKeyMap)
+	render.WriteTemplate(vim.ConfModules+"completion/plugins.vim", "completion plugins", plugin.PlugCoc)
+	render.ParseTemplate(vim.ConfModules+"completion/config.vim", "coc.nvim", plugin.PlugCocSetting, data)
+	render.WriteTemplate(vim.ConfModules+"completion/config.vim", "coc.nvim keymap", plugin.CocKeyMap)
 }
 
 func (v *VimPlug) GenerateCocJson() {
@@ -275,4 +303,6 @@ func (v *VimPlug) GenerateVimMap() {
 }
 
 func (v *VimPlug) GenerateInstallScripts() {
+	render.WriteTemplate(vim.ConfPath+"/Makefile", "Makefile", plugin.PlugMakefile)
+	render.WriteTemplate(vim.ConfPath+"/install.sh", "install.sh", plugin.PlugInstallShell)
 }

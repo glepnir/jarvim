@@ -183,4 +183,15 @@ let g:quickrun_no_default_key_mappings = 1
 	PlugEditorConfig = `
 Plug 'editorconfig/editorconfig-vim'
 `
+
+	PlugEmmet = `
+Plug 'mattn/emmet-vim' ,{'for': [ 'html','css','javascript','javascriptreact','vue','typescript','typescriptreact' ]}
+`
+
+	PlugEmmetSetting = `
+let g:user_emmet_complete_tag = 0
+let g:user_emmet_install_global = 0
+let g:user_emmet_install_command = 0
+let g:user_emmet_mode = 'i'
+`
 )

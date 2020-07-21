@@ -61,6 +61,77 @@ func NewEnhancePluginMap(r render.Render) map[string]string {
 		"vim-floterm  vim terminal float":                            plugin.PlugFloaterm,
 	}
 }
+
+func NewVersionPluginMap(r render.Render) map[string]string {
+	_, ok := r.(*dein.Dein)
+	if ok {
+		return map[string]string{
+			"jreybert/vimagit":     plugin.DeinVimagt,
+			"tpope/vim-fugitive":   plugin.DeinFugiTive,
+			"lambdalisue/gina.vim": plugin.DeinGina,
+		}
+	}
+	return map[string]string{
+		"jreybert/vimagit":     plugin.PlugVimagit,
+		"tpope/vim-fugitive":   plugin.PlugFugTive,
+		"lambdalisue/gina.vim": plugin.PlugGina,
+	}
+
+}
+
+func NewLanguagePlugMap(r render.Render) map[string]string {
+	_, ok := r.(*dein.Dein)
+	if ok {
+		return map[string]string{
+			"C-family":   plugin.DeinCFamily,
+			"R":          plugin.DeinR,
+			"Javascript": plugin.DeinJavascript,
+			"Typescript": plugin.DeinTypescript,
+			"Dart":       plugin.DeinDart,
+			"React":      plugin.DeinReact,
+			"Vue":        plugin.DeinVue,
+			"Go":         plugin.DeinGo,
+			"Rust":       plugin.DeinRust,
+			"Haskell":    plugin.DeinHaskell,
+			"Php":        plugin.DeinPhp,
+			"Ruby":       plugin.DeinRuby,
+			"Scala":      plugin.DeinScala,
+			"Shell":      plugin.DeinShell,
+			"Lua":        plugin.DeinLua,
+			"Python":     plugin.DeinPython,
+			"Html":       plugin.DeinHtml,
+			"Css":        plugin.DeinCss,
+			"Less":       plugin.DeinLess,
+			"Sass scss":  plugin.DeinSass,
+			"Stylus":     plugin.DeinStylus,
+		}
+	}
+	return map[string]string{
+		"C-family":   plugin.PlugCFamily,
+		"R":          plugin.PlugR,
+		"Javascript": plugin.PlugJavascript,
+		"Typescript": plugin.PlugTypescript,
+		"Dart":       plugin.PlugDart,
+		"React":      plugin.PlugReact,
+		"Vue":        plugin.PlugVue,
+		"Go":         plugin.PlugGo,
+		"Rust":       plugin.PlugRust,
+		"Haskell":    plugin.PlugHaskell,
+		"Php":        plugin.PlugPhp,
+		"Ruby":       plugin.PlugRuby,
+		"Scala":      plugin.PlugScala,
+		"Shell":      plugin.PlugShell,
+		"Lua":        plugin.PlugLua,
+		"Python":     plugin.PlugPython,
+		"Html":       plugin.PlugHtml,
+		"Css":        plugin.PlugCss,
+		"Less":       plugin.PlugLess,
+		"Sass scss":  plugin.PlugSass,
+		"Stylus":     plugin.PlugStylus,
+	}
+
+}
+
 func LeaderKey() string {
 	message := "What is your Leader Key?"
 	options := []string{"Space", "Comma(,)", "Semicolon(;)"}
@@ -175,25 +246,25 @@ func SandWichPlugin() bool {
 	return cli.ConfirmTemplate(message)
 }
 
-func VersionControlPlugin() []string {
+func VersionControlPlugin(r render.Render) []string {
 	questionname := "Version Control plugin"
 	message := "Choose the version control plugins that you need"
 	pagesize := 10
 
 	options := make([]string, 0)
-	for k, _ := range vim.VersionControlMap {
+	for k, _ := range NewVersionPluginMap(r) {
 		options = append(options, k)
 	}
 
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
-func LanguageServerProtocol() []string {
+func LanguageServerProtocol(r render.Render) []string {
 	questionname := "LanguageQuestion"
 	message := "What Languages do you write"
 	pagesize := 19
 	options := make([]string, 0)
-	for k, _ := range vim.LanguagesPluginMap {
+	for k, _ := range NewLanguagePlugMap(r) {
 		options = append(options, k)
 	}
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)

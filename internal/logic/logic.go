@@ -27,8 +27,8 @@ func RunLogic() error {
 	vim.DataTypeFile = DataTypeFile(r)
 	vim.EnhancePlugins = EnhancePlugin(r)
 	vim.SandwichPlugin = SandWichPlugin()
-	vim.VersionControlPlugin = VersionControlPlugin()
-	vim.UserLanguages = LanguageServerProtocol()
+	vim.VersionControlPlugin = VersionControlPlugin(r)
+	vim.UserLanguages = LanguageServerProtocol(r)
 	r.GenerateInit()
 	r.GenerateCore(vim.Leaderkey, vim.LocalLeaderKey, vim.LeaderKeyMap)
 	r.GeneratePlugMan()
@@ -54,10 +54,10 @@ func RunLogic() error {
 	r.GenerateEnhanceplugin(vim.EnhancePlugins, NewEnhancePluginMap(r))
 	r.GenerateSandWich(vim.SandwichPlugin)
 	r.GenerateTextObj()
-	r.GenerateVersionControl(vim.VersionControlPlugin, vim.VersionControlMap)
+	r.GenerateVersionControl(vim.VersionControlPlugin, NewVersionPluginMap(r))
 	r.GenerateCocJson()
 	r.GenerateVimMap()
-	r.GenerateLanguagePlugin(vim.UserLanguages, vim.LanguagesPluginMap)
+	r.GenerateLanguagePlugin(vim.UserLanguages, NewLanguagePlugMap(r))
 	r.GenerateInstallScripts()
 	return nil
 }

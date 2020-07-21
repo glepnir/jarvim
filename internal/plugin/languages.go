@@ -66,6 +66,9 @@ hook_add = '''
 [[plugins]]
 repo = 'posva/vim-vue'
 on_ft = 'vue'
+hook_source = '''
+	call coc#add_extension('coc-vetur')
+'''
 `
 	DeinGo = `
 [[plugins]]
@@ -95,6 +98,23 @@ hook_source = '''
 [[plugins]]
 repo = 'neovimhaskell/haskell-vim'
 on_ft = 'haskell'
+hook_source = '''
+	call coc#config('languageserver', {
+		\ 'haskell': {
+		\ "command": "hie-wrapper",
+		\ "rootPatterns": [".stack.yaml","cabal.config","package.yaml"],
+		\ "filetypes": ["hs","lhs","haskell"],
+		\ "initializationOptions":{},
+		\ "settings":{
+			\ "languageServerHaskell":{
+			\ "hlintOn":"true",
+			\ "maxNumberOfProblems":10,
+			\ "completionSnippetsOn": "true"
+		\ }
+		\ }
+		\ }
+		\})
+'''
 `
 
 	DeinPhp = `
@@ -279,6 +299,10 @@ Plug 'MaxMEllon/vim-jsx-pretty', {'for': [ 'javascript', 'javascriptreact', 'typ
 	PlugVue = `
 Plug 'posva/vim-vue' , {'for': 'vue'}
 `
+
+	PlugVueLsp = `
+call coc#add_extension('coc-vetur')
+`
 	PlugGo = `
 Plug  'hardcoreplayers/go-nvim' , {'for' : ['go','gomod']}
 `
@@ -301,6 +325,24 @@ call coc#add_extension('coc-rust-analyzer')
 `
 	PlugHaskell = `
 Plug 'neovimhaskell/haskell-vim' , {'for': 'haskell'}
+`
+
+	PlugHaskellLsp = `
+call coc#config('languageserver', {
+    \ 'haskell': {
+      \ "command": "hie-wrapper",
+      \ "rootPatterns": [".stack.yaml","cabal.config","package.yaml"],
+      \ "filetypes": ["hs","lhs","haskell"],
+      \ "initializationOptions":{},
+      \ "settings":{
+        \ "languageServerHaskell":{
+          \ "hlintOn":"true",
+          \ "maxNumberOfProblems":10,
+          \ "completionSnippetsOn": "true"
+      \ }
+      \ }
+      \ }
+      \})
 `
 
 	PlugPhp = `
