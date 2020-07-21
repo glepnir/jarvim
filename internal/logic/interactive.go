@@ -2,8 +2,10 @@
 package logic
 
 import (
+	"github.com/glepnir/jarvis/internal/plugin"
 	"github.com/glepnir/jarvis/internal/render"
 	"github.com/glepnir/jarvis/internal/render/dein"
+	"github.com/glepnir/jarvis/internal/render/vimplug"
 	"github.com/glepnir/jarvis/internal/vim"
 	"github.com/glepnir/jarvis/pkg/cli"
 )
@@ -14,8 +16,120 @@ func PluginManage() render.Render {
 	pm := cli.SingleSelectTemplate(message, options)
 	if pm == "dein" {
 		return new(dein.Dein)
+	} else {
+		return new(vimplug.VimPlug)
 	}
-	return nil
+}
+
+func NewDataFileMap(r render.Render) map[string]string {
+	_, ok := r.(*dein.Dein)
+	if ok {
+		return map[string]string{
+			"MarkDown":   plugin.DeinMarkDown,
+			"Toml":       plugin.DeinToml,
+			"Nginx":      plugin.DeinNginx,
+			"Json":       plugin.DeinJson,
+			"Dockerfile": plugin.DeinDockerFile,
+		}
+	}
+	return map[string]string{
+		"MarkDown":   plugin.PlugMarkDown,
+		"Toml":       plugin.PlugToml,
+		"Nginx":      plugin.PlugNginx,
+		"Json":       plugin.PlugJson,
+		"Dockerfile": plugin.PlugDockerFile,
+	}
+
+}
+
+func NewEnhancePluginMap(r render.Render) map[string]string {
+	_, ok := r.(*dein.Dein)
+	if ok {
+		return map[string]string{
+			"accelerated-jk accelerate up-down moving (j and k mapping)": plugin.DeinFastJK,
+			"vim-mundo  vim undo tree":                                   plugin.DeinMundo,
+			"vim-easymotion fast jump":                                   plugin.DeinEasyMotion,
+			"rainbow  rainbow parentheses":                               plugin.DeinRainbow,
+			"vim-floterm  vim terminal float":                            plugin.DeinFloaterm,
+		}
+	}
+	return map[string]string{
+		"accelerated-jk accelerate up-down moving (j and k mapping)": plugin.PlugFastJK,
+		"vim-mundo  vim undo tree":                                   plugin.PlugMundo,
+		"vim-easymotion fast jump":                                   plugin.PlugEasyMotion,
+		"rainbow  rainbow parentheses":                               plugin.PlugRainbow,
+		"vim-floterm  vim terminal float":                            plugin.PlugFloaterm,
+	}
+}
+
+func NewVersionPluginMap(r render.Render) map[string]string {
+	_, ok := r.(*dein.Dein)
+	if ok {
+		return map[string]string{
+			"jreybert/vimagit":     plugin.DeinVimagt,
+			"tpope/vim-fugitive":   plugin.DeinFugiTive,
+			"lambdalisue/gina.vim": plugin.DeinGina,
+		}
+	}
+	return map[string]string{
+		"jreybert/vimagit":     plugin.PlugVimagit,
+		"tpope/vim-fugitive":   plugin.PlugFugTive,
+		"lambdalisue/gina.vim": plugin.PlugGina,
+	}
+
+}
+
+func NewLanguagePlugMap(r render.Render) map[string]string {
+	_, ok := r.(*dein.Dein)
+	if ok {
+		return map[string]string{
+			"C-family":   plugin.DeinCFamily,
+			"R":          plugin.DeinR,
+			"Javascript": plugin.DeinJavascript,
+			"Typescript": plugin.DeinTypescript,
+			"Dart":       plugin.DeinDart,
+			"React":      plugin.DeinReact,
+			"Vue":        plugin.DeinVue,
+			"Go":         plugin.DeinGo,
+			"Rust":       plugin.DeinRust,
+			"Haskell":    plugin.DeinHaskell,
+			"Php":        plugin.DeinPhp,
+			"Ruby":       plugin.DeinRuby,
+			"Scala":      plugin.DeinScala,
+			"Shell":      plugin.DeinShell,
+			"Lua":        plugin.DeinLua,
+			"Python":     plugin.DeinPython,
+			"Html":       plugin.DeinHtml,
+			"Css":        plugin.DeinCss,
+			"Less":       plugin.DeinLess,
+			"Sass scss":  plugin.DeinSass,
+			"Stylus":     plugin.DeinStylus,
+		}
+	}
+	return map[string]string{
+		"C-family":   plugin.PlugCFamily,
+		"R":          plugin.PlugR,
+		"Javascript": plugin.PlugJavascript,
+		"Typescript": plugin.PlugTypescript,
+		"Dart":       plugin.PlugDart,
+		"React":      plugin.PlugReact,
+		"Vue":        plugin.PlugVue,
+		"Go":         plugin.PlugGo,
+		"Rust":       plugin.PlugRust,
+		"Haskell":    plugin.PlugHaskell,
+		"Php":        plugin.PlugPhp,
+		"Ruby":       plugin.PlugRuby,
+		"Scala":      plugin.PlugScala,
+		"Shell":      plugin.PlugShell,
+		"Lua":        plugin.PlugLua,
+		"Python":     plugin.PlugPython,
+		"Html":       plugin.PlugHtml,
+		"Css":        plugin.PlugCss,
+		"Less":       plugin.PlugLess,
+		"Sass scss":  plugin.PlugSass,
+		"Stylus":     plugin.PlugStylus,
+	}
+
 }
 
 func LeaderKey() string {
@@ -103,24 +217,24 @@ func QuickRunPlugin() bool {
 	return cli.ConfirmTemplate(message)
 }
 
-func DataTypeFile() []string {
+func DataTypeFile(r render.Render) []string {
 	questionname := "Data filetype"
 	message := "Which Data filetype you need?"
 	pagesize := 10
 	options := make([]string, 0)
-	for k, _ := range vim.DataFileMap {
+	for k, _ := range NewDataFileMap(r) {
 		options = append(options, k)
 	}
 
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
-func EnhancePlugin() []string {
+func EnhancePlugin(r render.Render) []string {
 	questionname := "Enhance question"
 	message := "Choose the enhance plugins that you need "
 	pagesize := 10
 	options := make([]string, 0)
-	for k, _ := range vim.EnhancePluginMap {
+	for k, _ := range NewEnhancePluginMap(r) {
 		options = append(options, k)
 	}
 
@@ -132,25 +246,25 @@ func SandWichPlugin() bool {
 	return cli.ConfirmTemplate(message)
 }
 
-func VersionControlPlugin() []string {
+func VersionControlPlugin(r render.Render) []string {
 	questionname := "Version Control plugin"
 	message := "Choose the version control plugins that you need"
 	pagesize := 10
 
 	options := make([]string, 0)
-	for k, _ := range vim.VersionControlMap {
+	for k, _ := range NewVersionPluginMap(r) {
 		options = append(options, k)
 	}
 
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)
 }
 
-func LanguageServerProtocol() []string {
+func LanguageServerProtocol(r render.Render) []string {
 	questionname := "LanguageQuestion"
 	message := "What Languages do you write"
 	pagesize := 19
 	options := make([]string, 0)
-	for k, _ := range vim.LanguagesPluginMap {
+	for k, _ := range NewLanguagePlugMap(r) {
 		options = append(options, k)
 	}
 	return cli.MultiSelectTemplate(questionname, message, options, pagesize)

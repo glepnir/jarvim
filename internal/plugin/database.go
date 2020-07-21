@@ -1,7 +1,8 @@
 // Package plugin provides ...
 package plugin
 
-const DeinDatabase = `
+const (
+	DeinDatabase = `
 [[plugins]]
 repo = 'tpope/vim-dadbod'
 
@@ -18,3 +19,17 @@ hook_source = '''
     let g:dbs = initself#load_db_from_env()
 '''
 `
+
+	PlugDatabase = `
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui',{'on':['DBUIToggle', 'DBUIAddConnection', 'DBUI', 'DBUIFindBuffer', 'DBUIRenameBuffer']}
+`
+	PlugDatabaseUiSetting = `
+let g:db_ui_show_help = 0
+let g:db_ui_win_position = 'left'
+let g:db_ui_use_nerd_fonts = 1
+let g:db_ui_winwidth = 35
+let g:db_ui_save_location = $DATA_PATH . '/db_ui_queries'
+let g:dbs = initself#load_db_from_env()
+`
+)

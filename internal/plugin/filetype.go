@@ -1,12 +1,13 @@
 // Package plugin provides ...
 package plugin
 
-const DeinContextFileType = `
+const (
+	DeinContextFileType = `
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 `
 
-const DeinMarkDown = `
+	DeinMarkDown = `
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
 on_ft = 'markdown'
@@ -44,25 +45,74 @@ hook_source = '''
 '''
 `
 
-const DeinToml = `
+	DeinToml = `
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 `
-const DeinNginx = `
+	DeinNginx = `
 [[plugins]]
 repo = 'chr4/nginx.vim'
 on_ft = 'nginx'
 `
 
-const DeinJson = `
+	DeinJson = `
 [[plugins]]
 repo = 'kevinoid/vim-jsonc'
 on_ft = 'json'
 `
 
-const DeinDockerFile = `
+	DeinDockerFile = `
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim'
 on_ft = [ 'Dockerfile', 'docker-compose' ]
 `
+	PlugContextFileType = `
+Plug 'Shougo/context_filetype.vim'
+`
+	PlugMarkDown = `
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install','for':'markdown' }
+`
+	PlugMarkDownSetting = `
+"vim-markdown
+let g:vim_markdown_folding_level = 1
+let g:vim_markdown_folding_style_pythonic = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_auto_insert_bullets = 1
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_edit_url_in = 'vsplit'
+let g:vim_markdown_fenced_languages = [
+  \ 'c++=cpp',
+  \ 'viml=vim',
+  \ 'bash=sh',
+  \ 'ini=dosini',
+  \ 'js=javascript',
+  \ 'json=javascript',
+  \ 'jsx=javascriptreact',
+  \ 'tsx=typescriptreact',
+  \ 'docker=Dockerfile',
+  \ 'makefile=make',
+  \ 'py=python'
+  \ ]
+
+"Markdwon Preview
+let g:mkdp_auto_start = 0
+`
+	PlugToml = `
+repo = 'cespare/vim-toml', {'for': 'toml'}
+`
+	PlugNginx = `
+Plug 'chr4/nginx.vim', {'for': 'nginx'}
+`
+
+	PlugJson = `
+Plug 'kevinoid/vim-jsonc',{'for': ['json','jsonc']}
+`
+	PlugDockerFile = `
+Plug 'ekalinin/Dockerfile.vim',{'for':['Dockerfile','docker-compose']}
+`
+)

@@ -55,7 +55,7 @@ func RollBack(err error) {
 	color.PrintError(err.Error())
 	color.PrintWarn("Rolling back...")
 	os.RemoveAll(vim.ConfPath)
-	os.Exit(1)
+	os.Exit(0)
 }
 
 func ParseTemplate(targetfile, name string, plugintemplate string, data interface{}) {

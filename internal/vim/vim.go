@@ -3,8 +3,6 @@ package vim
 
 import (
 	"os"
-
-	"github.com/glepnir/jarvis/internal/plugin"
 )
 
 var (
@@ -58,47 +56,5 @@ var (
 		"chriskempson/base16-vim":            "base16-default-dark",
 		"kristijanhusak/vim-hybrid-material": "hybrid_material",
 		"nanotech/jellybeans.vim":            "jellybeans",
-	}
-	DataFileMap = map[string]string{
-		"MarkDown":   plugin.DeinMarkDown,
-		"Toml":       plugin.DeinToml,
-		"Nginx":      plugin.DeinNginx,
-		"Json":       plugin.DeinJson,
-		"Dockerfile": plugin.DeinDockerFile,
-	}
-	EnhancePluginMap = map[string]string{
-		"accelerated-jk accelerate up-down moving (j and k mapping)": plugin.DeinFastJK,
-		"vim-mundo  vim undo tree":                                   plugin.DeinMundo,
-		"vim-easymotion fast jump":                                   plugin.DeinEasyMotion,
-		"rainbow  rainbow parentheses":                               plugin.DeinRainbow,
-		"vim-floterm  vim terminal float":                            plugin.DeinFloaterm,
-	}
-	VersionControlMap = map[string]string{
-		"jreybert/vimagit":     plugin.DeinVimagt,
-		"tpope/vim-fugitive":   plugin.DeinFugiTive,
-		"lambdalisue/gina.vim": plugin.DeinGina,
-	}
-	LanguagesPluginMap = map[string]string{
-		"C-family":   plugin.DeinCFamily,
-		"R":          plugin.DeinR,
-		"Javascript": plugin.DeinJavascript,
-		"Typescript": plugin.DeinTypescript,
-		"Dart":       plugin.DeinDart,
-		"React":      plugin.DeinReact,
-		"Vue":        plugin.DeinVue,
-		"Go":         plugin.DeinGo,
-		"Rust":       plugin.DeinRust,
-		"Haskell":    plugin.DeinHaskell,
-		"Php":        plugin.DeinPhp,
-		"Ruby":       plugin.DeinRuby,
-		"Scala":      plugin.DeinScala,
-		"Shell":      plugin.DeinShell,
-		"Lua":        plugin.DeinLua,
-		"Python":     plugin.DeinPython,
-		"Html":       plugin.DeinHtml,
-		"Css":        plugin.DeinCss,
-		"Less":       plugin.DeinLess,
-		"Sass scss":  plugin.DeinSass,
-		"Stylus":     plugin.DeinStylus,
 	}
 )

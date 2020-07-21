@@ -4,6 +4,7 @@ package dein
 import (
 	"os"
 	"strings"
+	"sync"
 
 	"github.com/glepnir/jarvis/internal/plugin"
 	"github.com/glepnir/jarvis/internal/render"
@@ -212,12 +213,21 @@ func (d *Dein) GeneratePluginFolder() {
 }
 
 func (d *Dein) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string) {
+	var once sync.Once
+	needemmet := []string{"React", "Vue", "Html"}
 	data := []interface{}{plugin.DeinCoC, plugin.DeinCocExplorer}
 	for i, k := range UserLanguages {
 		v, ok := LanguagesPluginMap[k]
 		if ok {
 			render.WriteTemplate(vim.ConfModules+"languages.toml", UserLanguages[i], v)
 		}
+		once.Do(func() {
+			for _, j := range needemmet {
+				if j == k {
+					render.WriteTemplate(vim.ConfModules+"program.toml", "emmet plugins", plugin.DeinEmmet)
+				}
+			}
+		})
 	}
 	render.WriteTemplate(vim.ConfAutoload+"initself.vim", "autoload coc function", plugin.AutoloadCoc)
 	render.ParseTemplate(vim.ConfModules+"completion.toml", "coc.nvim", plugin.DeinCoC, data)
