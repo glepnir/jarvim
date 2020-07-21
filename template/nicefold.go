@@ -1,3 +1,7 @@
+// Package tempalte provides ...
+package template
+
+const Nicefold = `
 " Nice Fold
 " ---
 "
@@ -53,4 +57,4 @@ function! FoldText()
 	let expansionString = repeat('.', w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
 	return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
 endfunction
-
+`

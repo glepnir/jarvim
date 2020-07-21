@@ -2,7 +2,6 @@
 package dein
 
 import (
-	"os"
 	"strings"
 	"sync"
 
@@ -10,7 +9,7 @@ import (
 	"github.com/glepnir/jarvis/internal/render"
 	"github.com/glepnir/jarvis/internal/vim"
 	"github.com/glepnir/jarvis/pkg/color"
-	"github.com/glepnir/jarvis/pkg/util"
+	"github.com/glepnir/jarvis/template"
 )
 
 // Dein plugin management
@@ -230,12 +229,13 @@ func (d *Dein) GenerateVersionControl(userversion []string, versionmap map[strin
 
 // GeneratePluginFolder
 func (d *Dein) GeneratePluginFolder() {
-	err := util.CopyDir("./../../plugin", vim.ConfPlugin)
-	if err != nil {
-		color.PrintError("Copy plugin folder to your vim config path failed")
-		os.Exit(0)
-	}
+	render.WriteTemplate(vim.ConfPlugin+"bufkill.vim", "bufkill.vim", template.Bufkill)
+	render.WriteTemplate(vim.ConfPlugin+"difftools.vim", "difftools.vim", template.Difftools)
+	render.WriteTemplate(vim.ConfPlugin+"hlsearch.vim", "hlsearch.vim", template.Hlsearchvim)
+	render.WriteTemplate(vim.ConfPlugin+"nicefold.vim", "nicefold.vim", template.Nicefold)
+	render.WriteTemplate(vim.ConfPlugin+"whitespace.vim", "whitespace.vim", template.Whitespace)
 	color.PrintSuccess("Generate plugin folder success")
+
 }
 
 // GenerateLanguagePlugin

@@ -1,4 +1,7 @@
+// Package template provides ...
+package template
 
+const Hlsearchvim = `
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
@@ -49,4 +52,4 @@ endfunction
 call <SID>toggle(0, &hlsearch)
 
 let &cpoptions = s:save_cpo
-
+`

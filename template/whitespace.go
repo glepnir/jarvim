@@ -1,3 +1,7 @@
+// Package template provides ...
+package template
+
+const Whitespace = `
 " Whitespace utilities
 " ---
 "
@@ -92,3 +96,4 @@ function! s:WhitespaceJump(direction, from, to)
 endfunction
 
 " vim: set ts=2 sw=2 tw=80 noet :
+`

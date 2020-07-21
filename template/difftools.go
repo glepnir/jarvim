@@ -1,3 +1,6 @@
+package template
+
+const Difftools = `
 " Improve diff behavior
 " ---
 "
@@ -59,4 +62,4 @@ endfunction
 command! -nargs=0 DiffOrig call s:open_diff()
 
 " vim: set ts=2 sw=2 tw=80 noet :
-
+`

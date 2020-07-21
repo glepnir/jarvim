@@ -8,7 +8,7 @@ import (
 
 // RunLogic run our logic
 func RunLogic() error {
-	util.EnsureFoldersExist(vim.ConfPath, vim.ConfCore, vim.ConfAutoload, vim.ConfModules, vim.CachePath)
+	util.EnsureFoldersExist(vim.ConfPath, vim.ConfCore, vim.ConfAutoload, vim.ConfModules, vim.CachePath, vim.ConfPlugin)
 	r := PluginManage()
 	vim.Leaderkey = LeaderKey()
 	vim.LocalLeaderKey = LocalLeaderKey()

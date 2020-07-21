@@ -1,66 +1,6 @@
-" bufkill.vim
-" Maintainer:	John Orr (john undersc0re orr yah00 c0m)
-" Version:	1.14
-" Last Change:	29 Apr 2020
+package template
 
-" Credits:
-" Lucas Arantes and others for helping resolve a long-standing, hopefully
-"   spurious warning
-" David Emett - for some major bug fixes and logic improvements.
-"               (I'm still most impressed you understood the thing)
-" D Barsam, and others, for suggestions about optional mappings and commands.
-" Dimitar Dimitrov - for improvements in mappings and robustness
-" A few people who pointed out bugs I'd fixed but not made public.
-" Magnus Thor Torfason - for improvements relating to the 'confirm' setting.
-" Keith Roberts - for many hours of email discussions, ideas and suggestions
-"   to try to get the details as good as possible.
-" Someone from http://www.cs.albany.edu, who described the functionality of
-"   this script in tip #622.
-
-" Possible Improvements:
-" If you're particularly interested in any of these, let me know - some are
-" definitely planned to happen when time permits:
-"
-" - Provide a function to save window variables as global variables,
-"   in order to have them preserved by session saving/restoring commands,
-"   and then restore the globals to window variables with another function.
-"
-" Changelog:
-" 1.14 - Convert warning to debug message for certain types of buffers, which
-"        appear to be un-named, eg floating windows for fzf in neovim,
-"        tabnew, and no doubt others.
-" 1.13 - Improve error message behaviour thanks to louwers@github.
-"        Fix error when debug enabled thanks to nkgm@github and pavoljuhas@github.
-" 1.12 - Convert to bundle format prior to uploading to github
-" 1.11 - Major bug fixes by David Emett, especially relating to
-"        the creation of new buffers when the last buffer is killed.
-"        Also improved restoring of column on console vim.
-"        Key mappings can be disabled by setting g:BufKillCreateMappings to 0
-" 1.10 - Various fixes, eg relating to quicklists
-" 1.9  - Remove unnecessary mapping delays, and a debug message
-" 1.8  - Improved mapping handling, and robustness
-" 1.7  - Minor improvements.
-" 1.6  - Added (opt-in) Ctrl-^ override support to preserve cursor column
-" 1.5  - Improved honouring of the 'confirm' vim option.
-" 1.4  - Add buffer navigation, support for scratch buffer removal
-" 1.3  - Convert to vim 7 lists instead of string-based lists
-" 1.2  - Add column-saving support, to ensure returning to a buffer means
-"        positioning the cursor not only at the right line, but also column,
-"        and prompting the user when removing modified buffers
-" 1.1  - Fix handling of modified, un-named buffers
-" 1.0  - initial functionality
-"
-" Implementation Notes:
-" w:BufKillList stores the list of buffers accessed so far, in order
-"      of most recent access, for each respective window.
-" w:BufKillColumnList store the list of columns the cursor was in when
-"      a buffer was left.  It follows that since w:BufKillList lists
-"      all buffers ever entered, but w:BufKillColumnList lists columns
-"      only for those exited, the latter is expected to be one element
-"      shorted than the former (since the current buffer should only be
-"      entered, but not yet exited).
-" w:BufKillIndex stores the current index into the w:BufKillList array
-
+const Bufkill = `
 " Reload guard and 'compatible' handling {{{1
 let s:save_cpo = &cpo
 set cpo&vim
@@ -749,5 +689,4 @@ augroup END
 
 " Cleanup and modelines {{{1
 let &cpo = s:save_cpo
-
-" vim:ft=vim:fdm=marker:fen:fmr={{{,}}}:
+`
