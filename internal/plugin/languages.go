@@ -307,6 +307,9 @@ call coc#add_extension('coc-vetur')
 Plug  'hardcoreplayers/go-nvim' , {'for' : ['go','gomod']}
 `
 	PlugGoLsp = `
+" Auto generate the comment for function or method
+nnoremap gcg :GoAuToComment<CR>
+
 call coc#config('languageserver', {
 \ 'golang': {
 	\ "command": "gopls",
