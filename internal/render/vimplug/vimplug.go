@@ -97,7 +97,7 @@ func (v *VimPlug) GenerateStatusLine(spaceline bool) {
 // GenerateExplorer
 func (v *VimPlug) GenerateExplorer(explorer string) {
 	if explorer == "coc-explorer" {
-		plugin.DeinCocExplorer = true
+		plugin.PlugCocExplorer = true
 		render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc-explorer keymap", plugin.CocExplorerKeyMap)
 	} else if explorer == "defx.nvim" {
 		render.WriteTemplate(vim.ConfModules+"appearance/plugins.vim", "Defx.nvim", plugin.PlugDefx)
@@ -301,7 +301,7 @@ func (v *VimPlug) GenerateLanguagePlugin(UserLanguages []string, LanguagesPlugin
 
 	var once sync.Once
 	needemmet := []string{"React", "Vue", "Html"}
-	data := []interface{}{plugin.DeinCoC, plugin.DeinCocExplorer}
+	data := []interface{}{plugin.DeinCoC, plugin.PlugCocExplorer}
 	for i, k := range UserLanguages {
 		v, ok := LanguagesPluginMap[k]
 		if ok {
@@ -309,16 +309,23 @@ func (v *VimPlug) GenerateLanguagePlugin(UserLanguages []string, LanguagesPlugin
 		}
 		l, ok := pluglsp[v]
 		if ok {
-			render.WriteTemplate(vim.ConfModules+"languages/config.vim", UserLanguages[i]+"lsp setting", l)
+			if k == "Typescript" || k == "Javascript" {
+				once.Do(func() {
+					render.WriteTemplate(vim.ConfModules+"languages/config.vim", "Js Ts lsp setting", plugin.PlugTypescriptLsp)
+				})
+
+			} else {
+				render.WriteTemplate(vim.ConfModules+"languages/config.vim", UserLanguages[i]+"lsp setting", l)
+			}
 		}
-		once.Do(func() {
-			for _, j := range needemmet {
+		for _, j := range needemmet {
+			once.Do(func() {
 				if j == k {
 					render.WriteTemplate(vim.ConfModules+"program/plugins.vim", "emmet plugins", plugin.PlugEmmet)
 					render.WriteTemplate(vim.ConfModules+"program/config.vim", "emmet plugins setting", plugin.PlugEmmetSetting)
 				}
-			}
-		})
+			})
+		}
 	}
 	render.WriteTemplate(vim.ConfAutoload+"initself.vim", "autoload coc function", plugin.AutoloadCoc)
 	render.WriteTemplate(vim.ConfModules+"completion/plugins.vim", "completion plugins", plugin.PlugCoc)

@@ -342,4 +342,4 @@ let g:NERDTreeDirArrowCollapsible = '▼'
 `
 )
 
-var DeinCocExplorer = false
+var PlugCocExplorer = false

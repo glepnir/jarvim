@@ -86,7 +86,7 @@ func (d *Dein) GenerateStatusLine(spaceline bool) {
 // GenerateExplorer
 func (d *Dein) GenerateExplorer(explorer string) {
 	if explorer == "coc-explorer" {
-		plugin.DeinCocExplorer = true
+		vim.CocExtensions = append(vim.CocExtensions, "coc-explorer")
 		render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc-explorer keymap", plugin.CocExplorerKeyMap)
 	} else if explorer == "defx.nvim" {
 		render.WriteTemplate(vim.ConfModules+"appearance.toml", "Defx.nvim", plugin.DeinDefx)
@@ -240,24 +240,51 @@ func (d *Dein) GeneratePluginFolder() {
 
 // GenerateLanguagePlugin
 func (d *Dein) GenerateLanguagePlugin(UserLanguages []string, LanguagesPluginMap map[string]string) {
+	extensionmap := map[string]interface{}{
+		plugin.DeinR:          plugin.DeinRExtension,
+		plugin.DeinVue:        plugin.DeinVueExtension,
+		plugin.DeinRust:       plugin.DeinRustExtension,
+		plugin.DeinRuby:       plugin.DeinRubyExtension,
+		plugin.DeinScala:      plugin.DeinScalaExtension,
+		plugin.DeinPython:     plugin.DeinPythonExtension,
+		plugin.DeinHtml:       plugin.DeinHtmlExtension,
+		plugin.DeinCss:        plugin.DeinCssExtension,
+		plugin.DeinJavascript: plugin.JsTsExtensions,
+		plugin.DeinTypescript: plugin.JsTsExtensions,
+		plugin.DeinReact:      plugin.ReactExtensions,
+	}
 	var once sync.Once
 	needemmet := []string{"React", "Vue", "Html"}
-	data := []interface{}{plugin.DeinCoC, plugin.DeinCocExplorer}
 	for i, k := range UserLanguages {
 		v, ok := LanguagesPluginMap[k]
 		if ok {
 			render.WriteTemplate(vim.ConfModules+"languages.toml", UserLanguages[i], v)
 		}
-		once.Do(func() {
-			for _, j := range needemmet {
-				if j == k {
-					render.WriteTemplate(vim.ConfModules+"program.toml", "emmet plugins", plugin.DeinEmmet)
+		extensions, ok := extensionmap[v]
+		if ok {
+			switch item := extensions.(type) {
+			case string:
+				vim.CocExtensions = append(vim.CocExtensions, item)
+			case []string:
+				if k == "Typescript" || k == "Javascript" {
+					once.Do(func() {
+						vim.CocExtensions = append(vim.CocExtensions, item...)
+					})
+				} else {
+					vim.CocExtensions = append(vim.CocExtensions, item...)
 				}
 			}
-		})
+		}
+		for _, j := range needemmet {
+			if j == k {
+				once.Do(func() {
+					render.WriteTemplate(vim.ConfModules+"program.toml", "emmet plugins", plugin.DeinEmmet)
+				})
+			}
+		}
 	}
 	render.WriteTemplate(vim.ConfAutoload+"initself.vim", "autoload coc function", plugin.AutoloadCoc)
-	render.ParseTemplate(vim.ConfModules+"completion.toml", "coc.nvim", plugin.DeinCoC, data)
+	render.ParseTemplate(vim.ConfModules+"completion.toml", "coc.nvim", plugin.DeinCoC, vim.CocExtensions)
 	render.WriteTemplate(vim.ConfCore+"pmap.vim", "coc.nvim keymap", plugin.CocKeyMap)
 }
 

@@ -6,8 +6,8 @@ import (
 )
 
 var (
-	ConfPath             = os.ExpandEnv("$HOME/.config/nvim")
-	CachePath            = os.ExpandEnv("$HOME/.cache/vim/")
+	ConfPath             = os.ExpandEnv("$HOME/.config/xnvim")
+	CachePath            = os.ExpandEnv("$HOME/.cache/nvim/")
 	ConfCore             = ConfPath + "/core/"
 	ConfAutoload         = ConfPath + "/autoload/"
 	ConfModules          = ConfPath + "/modules/"
@@ -33,6 +33,7 @@ var (
 	SandwichPlugin       bool
 	VersionControlPlugin []string
 	UserLanguages        []string
+	CocExtensions        = make([]string, 0)
 
 	LeaderKeyMap = map[string]string{
 		"Space":        "\\<Space>",

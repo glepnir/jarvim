@@ -25,10 +25,10 @@ hook_source = '''
 [[plugins]]
 repo = 'jalvesaq/Nvim-R'
 on_ft = 'R'
-hook_source = '''
-	call coc#add_extension('coc-R')
-'''
 `
+
+	DeinRExtension = "coc-R"
+
 	DeinJavascript = `
 [[plugins]]
 repo = 'pangloss/vim-javascript'
@@ -36,7 +36,6 @@ on_ft = [ 'javascript', 'javascriptreact' ]
 hook_source = '''
 	let g:javascript_plugin_jsdoc = 1
     let g:javascript_plugin_flow = 1
-	call coc#add_extension('coc-tsserver','coc-eslint','coc-prettier','coc-docthis')
 '''
 
 [[plugins]]
@@ -48,9 +47,6 @@ on_ft = [ 'javascript', 'javascriptreact' ]
 [[plugin]]
 repo = 'HerringtonDarkholme/yats.vim'
 on_ft = [ 'typescript', 'typescriptreact' ]
-hook_source = '''
-	call coc#add_extension('coc-tsserver','coc-eslint', 'coc-prettier', 'coc-tslint-plugin' ,'coc-docthis')
-'''
 `
 
 	DeinReact = `
@@ -61,18 +57,14 @@ depends = 'vim-javascript'
 hook_add = '''
 	let g:vim_jsx_pretty_colorful_config = 1
 '''
-hook_source = '''
-	call coc#add_extension('coc-style-helper','coc-react-refactor')
-'''
 `
 	DeinVue = `
 [[plugins]]
 repo = 'posva/vim-vue'
 on_ft = 'vue'
-hook_source = '''
-	call coc#add_extension('coc-vetur')
-'''
 `
+	DeinVueExtension = "coc-vetur"
+
 	DeinGo = `
 [[plugins]]
 repo = 'hardcoreplayers/go-nvim'
@@ -96,10 +88,9 @@ hook_source = '''
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 on_ft = 'rust'
-hook_source = '''
-	call coc#add_extension('coc-rust-analyzer')
-'''
 `
+	DeinRustExtension = "coc-rust-analyzer"
+
 	DeinHaskell = `
 [[plugins]]
 repo = 'neovimhaskell/haskell-vim'
@@ -145,19 +136,16 @@ hook_source = '''
 [[plugins]]
 repo = 'vim-ruby/vim-ruby'
 on_ft = 'ruby'
-hook_source = '''
-	call coc#add_extension('coc-solargraph')
-'''
 `
+	DeinRubyExtension = "coc-solargraph"
 
 	DeinScala = `
 [[plugins]]
 repo = 'derekwyatt/vim-scala'
 on_ft = 'scala'
-hook_source = '''
-	call coc#add_extension('coc-metals')
-'''
 `
+	DeinScalaExtension = "coc-metals"
+
 	DeinShell = `
 [[plugins]]
 repo = 'arzg/vim-sh'
@@ -190,13 +178,14 @@ hook_source = '''
 '''
 `
 
+	DeinPythonExtension = "coc-python"
+
 	DeinPython = `
 [[plugins]]
 repo = 'vim-python/python-syntax'
 on_ft = 'python'
 hook_source = '''
 	let g:python_highlight_all = 1
-	call coc#add_extension('coc-python')
 '''
 
 [[plugins]]
@@ -221,18 +210,18 @@ hook_source = '''
     let g:html5_rdfa_attributes_complete = 0
     let g:html5_microdata_attributes_complete = 0
     let g:html5_aria_attributes_complete = 0
-	call coc#add_extension('coc-html')
 '''
 `
+	DeinHtmlExtension = "coc-html"
 
 	DeinCss = `
 [[plugins]]
 repo = 'hail2u/vim-css3-syntax'
 on_ft = 'css'
-hook_source = '''
-	call coc#add_extension('coc-css')
 '''
 `
+	DeinCssExtension = "coc-css"
+
 	DeinLess = `
 repo = 'groenewege/vim-less'
 on_ft = 'less'
@@ -433,8 +422,8 @@ let g:html5_event_handler_attributes_complete = 0
 let g:html5_rdfa_attributes_complete = 0
 let g:html5_microdata_attributes_complete = 0
 let g:html5_aria_attributes_complete = 0
+
 call coc#add_extension('coc-html')
-'''
 `
 
 	PlugCss = `
@@ -461,3 +450,16 @@ Plug  'dart-lang/dart-vim-plugin' ,{'for': 'dart'}
 call coc#add_extension('coc-flutter')
 `
 )
+
+var JsTsExtensions = []string{
+	"coc-tsserver",
+	"coc-eslint",
+	"coc-prettier",
+	"coc-tslint-plugin",
+	"coc-docthis",
+}
+
+var ReactExtensions = []string{
+	"coc-style-helper",
+	"coc-react-refactor",
+}
