@@ -3,7 +3,7 @@
 <p>Generate a module vim configruation like <strong>VIM PRO!</strong></p>
 </div>
 
-> I have been maintaining Thinkvim for a long time, and slowly it deviated from my original intention. At first I wanted
+> I have been maintaining [Thinkvim](https://github.com/hardcoreplayers/ThinkVim) for a long time, and slowly it deviated from my original intention. At first I wanted
 > to use it as a vim configuration template for Vimer to use, but slowly it has to accept everyone’s preferences, I have
 > to get Add more language support and other plug-in configurations, thinkvim becomes more and more bloated. This is wrong.
 > I think that vim should be lightweight, so I wrote this cli tool jarvim, which will generate a greateful configuration
