@@ -4,14 +4,20 @@ Generate a module vim configruation like a VIM PRO!
 
 ## Install
 
-- MacOS
+### MacOS
 
 ```console
 brew tap glepnir/jarvis
 brew install jarvis
 ```
 
-- if you have go env, you can install from source code.
+### Linux
+
+```console
+curl -sSfL https://raw.githubusercontent.com/glepnir/jarvis/master/install.sh | sh
+```
+
+### Install from Source
 
 ```go
 go get github.com/glepnir/jarvis
