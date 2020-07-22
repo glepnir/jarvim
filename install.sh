@@ -2,7 +2,7 @@
 
 set -u
 
-version=v0.1.5
+version=v0.1.6
 
 APP=jarvis
 
@@ -28,14 +28,14 @@ download() {
 try_download() {
   local asset=$1
   if [ -z "${TMPDIR+x}" ]; then
-    rm -f /usr/local/bin/$APP
-    download "$DOWNLOAD_URL/$asset" bin/$APP
+    rm -f $APP
+    download "$DOWNLOAD_URL/$asset" $APP
   else
     local temp=${TMPDIR}/jarvis
     download "$DOWNLOAD_URL/$asset" "$temp"
-    mv "$temp" /usr/local/bin/$APP
+    mv "$temp" $APP
   fi
-  chmod a+x "/usr/local/bin/bin/$APP"
+  chmod a+x "$APP"
 }
 
 main() {
