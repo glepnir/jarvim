@@ -2,7 +2,7 @@
 
 set -u
 
-version=v0.1.6
+version=v0.1.9
 
 APP=jarvim
 
