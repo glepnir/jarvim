@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	cli_version = "0.1.7"
+	cli_version = "0.1.8"
 	version     bool
 	genConfig   bool
 )
