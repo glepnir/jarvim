@@ -38,7 +38,7 @@ go get github.com/glepnir/jarvim
 
 ## Usage
 
-Here is a [gif](https://github.com/glepnir/jarvim/wiki) for how to use jarvim.
+**Here is a [gif](https://github.com/glepnir/jarvim/wiki) to show how to use jarvim.**
 
 ```
  -v to print jarvim version.
