@@ -296,6 +296,7 @@ func (v *VimPlug) GenerateLanguagePlugin(UserLanguages []string, LanguagesPlugin
 		plugin.PlugPython:     plugin.PlugPythonLsp,
 		plugin.PlugHtml:       plugin.PlugHtmlLsp,
 		plugin.PlugCss:        plugin.PlugCssLsp,
+		plugin.PlugReact:      plugin.PlugReactLsp,
 	}
 
 	var once sync.Once

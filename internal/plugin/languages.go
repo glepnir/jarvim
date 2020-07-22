@@ -61,6 +61,9 @@ depends = 'vim-javascript'
 hook_add = '''
 	let g:vim_jsx_pretty_colorful_config = 1
 '''
+hook_source = '''
+	call coc#add_extension('coc-style-helper','coc-react-refactor')
+'''
 `
 	DeinVue = `
 [[plugins]]
@@ -298,6 +301,9 @@ call coc#add_extension('coc-tsserver','coc-eslint', 'coc-prettier', 'coc-tslint-
 
 	PlugReact = `
 Plug 'MaxMEllon/vim-jsx-pretty', {'for': [ 'javascript', 'javascriptreact', 'typescriptreact' ]}
+`
+	PlugReactLsp = `
+call coc#add_extension('coc-style-helper','coc-react-refactor')
 `
 	PlugVue = `
 Plug 'posva/vim-vue' , {'for': 'vue'}
