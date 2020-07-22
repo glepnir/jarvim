@@ -2,8 +2,8 @@
 package logic
 
 import (
-	"github.com/glepnir/jarvis/internal/vim"
-	"github.com/glepnir/jarvis/pkg/util"
+	"github.com/glepnir/jarvim/internal/vim"
+	"github.com/glepnir/jarvim/pkg/util"
 )
 
 // RunLogic run our logic

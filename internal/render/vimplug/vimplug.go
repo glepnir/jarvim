@@ -6,11 +6,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/glepnir/jarvis/internal/plugin"
-	"github.com/glepnir/jarvis/internal/render"
-	"github.com/glepnir/jarvis/internal/vim"
-	"github.com/glepnir/jarvis/pkg/color"
-	"github.com/glepnir/jarvis/template"
+	"github.com/glepnir/jarvim/internal/plugin"
+	"github.com/glepnir/jarvim/internal/render"
+	"github.com/glepnir/jarvim/internal/vim"
+	"github.com/glepnir/jarvim/pkg/color"
+	"github.com/glepnir/jarvim/template"
 )
 
 // VimPlug struct

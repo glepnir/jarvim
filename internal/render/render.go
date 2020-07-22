@@ -6,8 +6,8 @@ import (
 	"os"
 	"text/template"
 
-	"github.com/glepnir/jarvis/internal/vim"
-	"github.com/glepnir/jarvis/pkg/color"
+	"github.com/glepnir/jarvim/internal/vim"
+	"github.com/glepnir/jarvim/pkg/color"
 )
 
 // Render interface

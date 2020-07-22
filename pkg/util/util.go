@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/glepnir/jarvis/pkg/color"
+	"github.com/glepnir/jarvim/pkg/color"
 )
 
 // Exist to check the file or folder exists

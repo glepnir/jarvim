@@ -4,9 +4,9 @@ set -u
 
 version=v0.1.6
 
-APP=jarvis
+APP=jarvim
 
-DOWNLOAD_URL="https://github.com/glepnir/jarvis/releases/download/$version"
+DOWNLOAD_URL="https://github.com/glepnir/jarvim/releases/download/$version"
 
 exists() {
   command -v "$1" >/dev/null 2>&1
@@ -31,7 +31,7 @@ try_download() {
     rm -f $APP
     download "$DOWNLOAD_URL/$asset" $APP
   else
-    local temp=${TMPDIR}/jarvis
+    local temp=${TMPDIR}/jarvim
     download "$DOWNLOAD_URL/$asset" "$temp"
     mv "$temp" $APP
   fi
@@ -46,7 +46,7 @@ main() {
       "Darwin x86_64")
         try_download "$APP"-x86_64-darwin ;;
       *)
-        echo "No prebuilt jarvis binary available for ${osname}."
+        echo "No prebuilt jarvim binary available for ${osname}."
         exit 1
         ;;
   esac

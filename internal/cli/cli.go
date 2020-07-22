@@ -1,4 +1,4 @@
-// Copyright 2020 The jarvis Authors. All rights reserved.
+// Copyright 2020 The jarvim Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -9,7 +9,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/glepnir/jarvis/internal/logic"
+	"github.com/glepnir/jarvim/internal/logic"
 	"github.com/spf13/cobra"
 )
 
@@ -20,9 +20,9 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "jarvis",
-	Short: "Jarvis is a cli tool to generate a module vim configruation which like a pro",
-	Long:  "Jarvis is a cli tool to generate a module vim configruation which like a pro",
+	Use:   "jarvim",
+	Short: "jarvim is a cli tool to generate a module vim configruation which like a pro",
+	Long:  "jarvim is a cli tool to generate a module vim configruation which like a pro",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if version {
 			return printVersion()

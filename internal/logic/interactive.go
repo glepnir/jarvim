@@ -1,16 +1,16 @@
-// Copyright 2020 The jarvis Authors. All rights reserved.
+// Copyright 2020 The jarvim Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
 package logic
 
 import (
-	"github.com/glepnir/jarvis/internal/plugin"
-	"github.com/glepnir/jarvis/internal/render"
-	"github.com/glepnir/jarvis/internal/render/dein"
-	"github.com/glepnir/jarvis/internal/render/vimplug"
-	"github.com/glepnir/jarvis/internal/vim"
-	"github.com/glepnir/jarvis/pkg/cli"
+	"github.com/glepnir/jarvim/internal/plugin"
+	"github.com/glepnir/jarvim/internal/render"
+	"github.com/glepnir/jarvim/internal/render/dein"
+	"github.com/glepnir/jarvim/internal/render/vimplug"
+	"github.com/glepnir/jarvim/internal/vim"
+	"github.com/glepnir/jarvim/pkg/cli"
 )
 
 // PluginManage return the plugin management plugin
