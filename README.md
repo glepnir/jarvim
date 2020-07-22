@@ -14,7 +14,9 @@ brew install jarvis
 ### Linux
 
 ```console
-curl -sSfL https://raw.githubusercontent.com/glepnir/jarvis/master/install.sh | sh
+curl -fLo  install.sh https://raw.githubusercontent.com/glepnir/jarvis/master/install.sh
+sh install.sh
+./jarvis -g
 ```
 
 ### Install from Source
