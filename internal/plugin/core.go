@@ -62,7 +62,6 @@ call initself#source_file($VIM_PATH,'core/event.vim')
 call initself#source_file($VIM_PATH,'core/pmap.vim')
 call initself#source_file($VIM_PATH,'core/vmap.vim')
 call theme#theme_init()
-let g:oceanic_material_allow_bold = 1
 
 set secure
 
@@ -129,7 +128,12 @@ call initself#source_file($VIM_PATH,'core/general.vim')
 call initself#source_file($VIM_PATH,'core/event.vim')
 call initself#source_file($VIM_PATH,'core/vmap.vim')
 call theme#theme_init()
-let g:oceanic_material_allow_bold = 1
+
+let s:config_paths = split(globpath('$VIM_PATH/modules/', '*'), '\n')
+
+for config in s:config_paths
+  exec 'source'. config .'/config.vim'
+endfor
 
 set secure
 

@@ -103,7 +103,7 @@ let g:vim_markdown_fenced_languages = [
 let g:mkdp_auto_start = 0
 `
 	PlugToml = `
-repo = 'cespare/vim-toml', {'for': 'toml'}
+Plug 'cespare/vim-toml', {'for': 'toml'}
 `
 	PlugNginx = `
 Plug 'chr4/nginx.vim', {'for': 'nginx'}

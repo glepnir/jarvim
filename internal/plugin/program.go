@@ -14,7 +14,7 @@ on_event = 'BufReadPre'
 hook_source = '''
     let g:indentLine_enabled = 1
     let g:indentLine_char='┆'
-    let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind','vista','coc-explorer']
+    let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard']
     let g:indentLine_concealcursor = 'niv'
     let g:indentLine_showFirstIndentLevel =1
 '''
@@ -118,7 +118,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 	PlugIndentLineSetting = `
 let g:indentLine_enabled = 1
 let g:indentLine_char='┆'
-let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind','vista','coc-explorer']
+let g:indentLine_fileTypeExclude = ['defx', 'denite','startify','tagbar','vista_kind','vista','coc-explorer','dashboard']
 let g:indentLine_concealcursor = 'niv'
 let g:indentLine_showFirstIndentLevel =1
 `

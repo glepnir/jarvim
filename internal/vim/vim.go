@@ -6,8 +6,8 @@ import (
 )
 
 var (
-	ConfPath             = os.ExpandEnv("$HOME/.config/xnvim")
-	CachePath            = os.ExpandEnv("$HOME/.cache/nvim/")
+	ConfPath             = os.ExpandEnv("$HOME/.config/nvim")
+	CachePath            = os.ExpandEnv("$HOME/.cache/vim/")
 	ConfCore             = ConfPath + "/core/"
 	ConfAutoload         = ConfPath + "/autoload/"
 	ConfModules          = ConfPath + "/modules/"

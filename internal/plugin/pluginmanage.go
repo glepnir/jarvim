@@ -150,7 +150,7 @@ let $DATA_PATH =
 	\ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache') . '/vim')
 
 " Collection of  plugins list config file-paths
-let s:config_paths = split(globpath('$VIM_PATH/modules', '*'), '\n')
+let s:plugin_paths = split(globpath('$VIM_PATH/modules/', '*'), '\n')
 
 function! s:main()
 	if has('vim_starting')
@@ -210,13 +210,14 @@ function! s:use_plug() abort
 
 	if &runtimepath !~# '/init.vimplug'
 
-		if ! isdirectory(l:cache_init)
-			silent !curl -fLo $DATA_PATH/plug/init.vimplug/autoload/plug.vim
-				\ --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-			autocmd user_plugin_vimplug VimEnter * PlugInstall --sync | source $MYVIMRC
-		endif
+    if empty(glob(l:cache_init.'/autoload/plug.vim'))
+      execute '!git clone --depth=1 https://github.com/junegunn/vim-plug' l:cache_init.'/autoload'
+			if v:shell_error
+				call s:error('vim-plug installation has failed! is git installed?')
+        return
+			endif
+      autocmd VimEnter * PlugInstall  | source $MYVIMRC
+    endif
 
 		execute 'set runtimepath+='.substitute(
 			\ fnamemodify(l:cache_init, ':p') , '/$', '', '')
@@ -226,15 +227,25 @@ function! s:use_plug() abort
 
 	" Automatically install missing plugins on startup
 	if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-	autocmd VimEnter * PlugInstall | q
+	  autocmd VimEnter * PlugInstall | q
 	endif
 
-	let l:rc = split(globpath($VIM_PATH."/modules","plugins.vim"))
-	for l:plugin in l:rc
-		source l:plugin
+	for l:plugin in s:plugin_paths
+		exec 'source'. l:plugin .'/plugins.vim'
 	endfor
 
 	call plug#end()
+endfunction
+
+function! s:str2list(expr)
+	" Convert string to list
+	return type(a:expr) ==# v:t_list ? a:expr : split(a:expr, '\n')
+endfunction
+
+function! s:error(msg)
+	for l:mes in s:str2list(a:msg)
+		echohl WarningMsg | echomsg '[config/init] ' . l:mes | echohl None
+	endfor
 endfunction
 
 call s:main()

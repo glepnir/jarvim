@@ -90,24 +90,7 @@ Plug 'easymotion/vim-easymotion'
 `
 	// PlugRainbow
 	PlugRainbow = `
-Plug 'luochen1990/rainbow',{'for': [
-      'html',
-      'css',
-      'javascript',
-      'javascriptreact',
-      'go',
-      'python',
-      'lua',
-      'rust',
-      'vim',
-      'less',
-      'stylus',
-      'sass',
-      'scss',
-      'json',
-      'ruby',
-      'toml',
-    ]}
+Plug 'luochen1990/rainbow',{'for': ['html','css','javascript','javascriptreact','go','python','lua','rust','vim','less','sass','scss','json','ruby','toml']}
 `
 
 	// PlugFloaterm

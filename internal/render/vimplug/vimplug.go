@@ -198,10 +198,10 @@ func (v *VimPlug) GenerateEnhanceplugin(plugins []string, enhancepluginmap map[s
 		"vim-floterm":    plugin.FloatermKeyMap,
 	}
 	var enhancesetting = map[string]string{
-		"vim-floaterm":         plugin.PlugFloatermSetting,
-		"rainbow":              plugin.PlugRainbowSetting,
-		"vim-easymotion":       plugin.PlugEasyMotionSetting,
-		"rhysd/accelerated-jk": plugin.PlugFastJKSetting,
+		"vim-floaterm":   plugin.PlugFloatermSetting,
+		"rainbow":        plugin.PlugRainbowSetting,
+		"vim-easymotion": plugin.PlugEasyMotionSetting,
+		"accelerated-jk": plugin.PlugFastJKSetting,
 	}
 	for _, v := range plugins {
 		pluginname := strings.Split(v, " ")[0]

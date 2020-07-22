@@ -74,6 +74,9 @@ hook_source = '''
 [[plugins]]
 repo = 'hardcoreplayers/go-nvim'
 on_ft = ['go','gomod']
+hook_add = '''
+	nnoremap gcg :GoAuToComment<CR>
+'''
 hook_source = '''
 	call coc#config('languageserver', {
 	\ 'golang': {

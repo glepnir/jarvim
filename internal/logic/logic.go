@@ -36,6 +36,7 @@ func RunLogic() error {
 	r.GenerateGeneral()
 	r.GenerateAutoloadFunc()
 	r.GeneratePluginFolder()
+	r.GenerateDevIcons()
 	r.GenerateTheme()
 	r.GenerateCacheTheme(vim.Colorscheme, vim.ColorschemeMap)
 	r.GenerateColorscheme(vim.Colorscheme)

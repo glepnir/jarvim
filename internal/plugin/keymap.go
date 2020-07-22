@@ -209,7 +209,6 @@ nnoremap <silent> <Leader>fl :<C-u>Clap loclist<CR>
 nnoremap <silent> <Leader>fu :<C-u>Clap git_diff_files<CR>
 nnoremap <silent> <Leader>fv :<C-u>Clap grep ++query=@visual<CR>
 nnoremap <silent> <Leader>oc :<C-u>Clap personalconf<CR>
-nnoremap <silent> <LocalLeader>g :<C-u>Clap gosource<CR>
 `
 const CawKeyMap = `
 function! InitCaw() abort
