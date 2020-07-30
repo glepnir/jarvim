@@ -203,7 +203,7 @@ on_ft = 'requirements'
 
 	DeinHtml = `
 [[plugins]]
-repo = othree/html5.vim
+repo = 'othree/html5.vim'
 on_ft = 'html'
 hook_source = '''
     let g:html5_event_handler_attributes_complete = 0
@@ -414,7 +414,7 @@ call coc#add_extension('coc-python')
 `
 
 	PlugHtml = `
-Plug othree/html5.vim, {'for': 'html'}
+Plug 'othree/html5.vim', {'for': 'html'}
 `
 
 	PlugHtmlLsp = `
