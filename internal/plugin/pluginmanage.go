@@ -216,7 +216,7 @@ function! s:use_plug() abort
 				call s:error('vim-plug installation has failed! is git installed?')
         return
 			endif
-      autocmd VimEnter * PlugInstall  | source $MYVIMRC
+      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 
 		execute 'set runtimepath+='.substitute(
@@ -227,7 +227,7 @@ function! s:use_plug() abort
 
 	" Automatically install missing plugins on startup
 	if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
-	  autocmd VimEnter * PlugInstall | q
+	  autocmd VimEnter * PlugInstall --sync | q
 	endif
 
 	for l:plugin in s:plugin_paths

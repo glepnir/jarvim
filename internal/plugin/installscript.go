@@ -183,10 +183,10 @@ default: install
 
 install:
 	@mkdir -vp "$(XDG_CACHE_HOME)/vim/"{backup,session,swap,tags,undo}; \
-	$(vim)  -V1 -es -i NONE -N -u core/plug.vim -c "try | PlugInstall | finally | echomsg '' | qall! | endtry"
+	$(vim) +'PlugInstall --sync' +qa
 
 upgrade:
-	$(vim) -V1 -es -i NONE -N -u config/init.vim -c "try | PlugUpdate | finally | qall! | endtry"
+	$(vim) +'PlugUpdate --sync' +qa
 `
 
 	PlugInstallShell = `
