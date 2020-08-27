@@ -12,14 +12,14 @@ default: install
 
 install:
 	@mkdir -vp "$(XDG_CACHE_HOME)/vim/"{backup,session,swap,tags,undo}; \
-	$(vim)  -V1 -es -i NONE -N -u core/dein.vim -c "try | call dein#update() | call dein#recache_runtimepath() | finally | echomsg '' | qall! | endtry"
+	$(vim)  -V1 -es -i NONE -N -u --noplugin core/dein.vim -c "try | call dein#update() | call dein#recache_runtimepath() | finally | echomsg '' | qall! | endtry"
 	@rm -rf "$(XDG_CACHE_HOME)/vim/dein/cache_vim";\
 	@rm -rf "$(XDG_CACHE_HOME)/vim/dein/state_nvim.vim";\
 	@rm -rf "$(XDG_CACHE_HOME)/vim/dein/.cache/";\
 	$(vim) -u init.vim -c 'call dein#recache_runtimepath()|q'
 
 upgrade:
-	$(vim) -V1 -es -i NONE -N -u config/init.vim -c "try | call dein#clear_state() | call dein#update() | finally | qall! | endtry"
+	$(vim) -V1 -es -i NONE -N -u --noplugin init.vim -c "try | call dein#clear_state() | call dein#update() | finally | qall! | endtry"
 `
 	DeinInstallShell = `
 #!/usr/bin/env bash
