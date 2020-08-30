@@ -218,7 +218,6 @@ hook_source = '''
 [[plugins]]
 repo = 'hail2u/vim-css3-syntax'
 on_ft = 'css'
-'''
 `
 	DeinCssExtension = "coc-css"
 
