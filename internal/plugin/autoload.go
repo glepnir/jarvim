@@ -74,6 +74,16 @@ endfunction
 
 // AutoloadCoc
 const AutoloadCoc = `
+" Jump definition in other window
+function! initself#definition_other_window() abort
+  if winnr('$') >= 4 || winwidth(0) < 120
+    exec "normal \<Plug>(coc-definition)"
+  else
+    exec 'vsplit'
+    exec "normal \<Plug>(coc-definition)"
+  endif
+endfunction
+
 " COC select the current word
 function! initself#select_current_word()
     if !get(g:, 'coc_cursors_activated', 0)
