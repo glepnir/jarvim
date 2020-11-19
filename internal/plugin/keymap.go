@@ -161,8 +161,8 @@ nmap <Leader>gi <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap <Leader>gm <Plug>(coc-git-commit)
 " float window scroll
-nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
-nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+nnoremap <expr><C-f> coc#float#has_float() ? coc#float#float_scroll(1) : "\<C-f>"
+nnoremap <expr><C-b> coc#float#has_float() ? coc#float#float_scroll(0) : "\<C-b>"
 " Use <TAB> for selections ranges.
 " NOTE: Requires 'textDocument/selectionRange' support from the language server.
 " coc-tsserver, coc-python are the examples of servers that support it.
