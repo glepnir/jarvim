@@ -2,11 +2,9 @@
 
 set -u
 
-version=v0.1.9
-
 APP=jarvim
 
-DOWNLOAD_URL="https://github.com/glepnir/jarvim/releases/download/$version"
+DOWNLOAD_URL="https://github.com/glepnir/jarvim/releases/latest/download/"
 
 exists() {
   command -v "$1" >/dev/null 2>&1
