@@ -92,7 +92,8 @@ nnoremap <silent> <Leader>e
   \ :<C-u>Defx -resume -toggle -buffer-name=tab` + "`tabpagenr()`<CR>"
 const DefxFindKeyMap = `
 nnoremap <silent> <Leader>F
-  \ :<C-u>Defx -resume -buffer-name=tab` + "tabpagenr()` -search=`" + "expand('%:p')`<CR>"
+		\ :<C-u>Defx
+		\   -search=` + "`escape(expand('%:p'), ' :')`" + `\   -buffer-name=explorer` + "`tabpagenr()`<CR>"
 
 const MarkdwonPreviewKeyMap = `
 nnoremap <silent> <Leader>om  :<C-u>MarkdownPreview<CR>
