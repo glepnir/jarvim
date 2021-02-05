@@ -42,7 +42,7 @@ var (
 	}
 
 	ColorschemeMap = map[string]string{
-		"hardcoreplayers/oceanic-material":   "oceanic_materail",
+		"glepnir/oceanic-material":           "oceanic_materail",
 		"drewtempelmeyer/palenight.vim":      "palenight",
 		"gruvbox-community/gruvbox":          "gruvbox",
 		"ayu-theme/ayu-vim":                  "ayu",

@@ -17,12 +17,12 @@ repo = '{{.}}'
 	// DeinDashboard plugin
 	DeinDashboard = `
 [[plugins]]
-repo = 'hardcoreplayers/dashboard-nvim'
+repo = 'glepnir/dashboard-nvim'
 `
 	// DeinStatusline plugin
 	DeinStatusline = `
 [[plugins]]
-repo = 'hardcoreplayers/spaceline.vim'
+repo = 'glepnir/spaceline.vim'
 hook_source = '''
 	let g:spaceline_seperate_style= 'slant'
 '''
@@ -30,7 +30,7 @@ hook_source = '''
 	// DeinBufferLine plugin
 	DeinBufferLine = `
 [[plugins]]
-repo = 'hardcoreplayers/vim-buffet'
+repo = 'romgrk/barbar.nvim'
 on_event = ['BufReadPre','BufNewFile']
 `
 	// PlugColorscheme
@@ -45,15 +45,15 @@ Plug 'ryanoasis/vim-devicons'
 `
 	// PlugDashboard
 	PlugDashboard = `
-Plug 'hardcoreplayers/dashboard-nvim'
+Plug 'glepnir/dashboard-nvim'
 `
 	//PlugBufferLine
 	PlugBufferLine = `
-Plug 'hardcoreplayers/vim-buffet'
+Plug 'romgrk/barbar.nvim'
 `
 	//PlugStatusline
 	PlugStatusline = `
-Plug 'hardcoreplayers/spaceline.vim'
+Plug 'glepnir/spaceline.vim'
 `
 	// PlugStatuslineSetting
 	PlugStatuslineSetting = `

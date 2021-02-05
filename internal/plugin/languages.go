@@ -67,11 +67,8 @@ on_ft = 'vue'
 
 	DeinGo = `
 [[plugins]]
-repo = 'hardcoreplayers/go-nvim'
+repo = 'faith/vim-go'
 on_ft = ['go','gomod']
-hook_add = '''
-	nnoremap gcg :GoAuToComment<CR>
-'''
 hook_source = '''
 	call coc#config('languageserver', {
 	\ 'golang': {
@@ -301,12 +298,9 @@ Plug 'posva/vim-vue' , {'for': 'vue'}
 call coc#add_extension('coc-vetur')
 `
 	PlugGo = `
-Plug  'hardcoreplayers/go-nvim' , {'for' : ['go','gomod']}
+Plug  'fatih/vim-go' , {'for' : ['go','gomod']}
 `
 	PlugGoLsp = `
-" Auto generate the comment for function or method
-nnoremap gcg :GoAuToComment<CR>
-
 call coc#config('languageserver', {
 \ 'golang': {
 	\ "command": "gopls",
