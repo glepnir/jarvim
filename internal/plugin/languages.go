@@ -67,7 +67,7 @@ on_ft = 'vue'
 
 	DeinGo = `
 [[plugins]]
-repo = 'faith/vim-go'
+repo = 'fatih/vim-go'
 on_ft = ['go','gomod']
 hook_source = '''
 	call coc#config('languageserver', {
