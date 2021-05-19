@@ -258,7 +258,6 @@ call coc#config('languageserver', {
 	\ }
 	\ }
 	\})
-'''
 `
 	PlugR = `
 Plug 'jalvesaq/Nvim-R' ,{'for': 'R'}
